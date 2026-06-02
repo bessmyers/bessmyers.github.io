@@ -15,9 +15,9 @@
     <a href="../index.html#portfolio" class="case-back">← portfolio</a>
     <p class="case-tag">facebook · content strategy · AI</p>
     <h1 class="case-title">Creating an AI-driven CD audit agent</h1>
-    <p class="case-intro">As the only content designer on Facebook Core Identity, I created an AI agent named <strong>Spruce</strong> that let me scale myself—focus on current projects while cleaning up outdated content across Profile.</p>
+    <p class="case-intro">As the only content designer on Facebook Core Identity, I created an AI agent named <strong>Spruce</strong> that let me scale myself so I could focus on current projects while cleaning up outdated content across Profile.</p>
     <p class="case-meta">Tools: Claude Code, internal agents for analytics and diff creation</p>
-    <p class="nda-note">Prompt architecture is proprietary and covered by NDA. This page shows how Spruce behaves and what it produces—not the underlying prompt text.</p>
+    <p class="nda-note">Prompt architecture is proprietary and covered by NDA. This page shows how Spruce behaves and what it produces.</p>
   </header>
 
   <section class="case-section">
@@ -26,27 +26,27 @@
       <button type="button" class="flow-step active" data-step="0">
         <span class="flow-step-num">step 1</span>
         <span class="flow-step-title">Scan Profile directories</span>
-        <span class="flow-step-desc">Spruce automatically scans 30 Profile directories throughout the week, looking for outdated or non-compliant strings.</span>
+        <span class="flow-step-desc">Spruce automatically scanned 30 Profile directories throughout the week, looking for outdated or non-compliant strings.</span>
       </button>
       <button type="button" class="flow-step" data-step="1">
         <span class="flow-step-num">step 2</span>
-        <span class="flow-step-title">Flag CD issues</span>
-        <span class="flow-step-desc">Identifies terminology, casing, accessibility and style issues against encoded content-design standards.</span>
+        <span class="flow-step-title">Flag content design issues</span>
+        <span class="flow-step-desc">Identified terminology, casing, accessibility and style issues against encoded content design standards.</span>
       </button>
       <button type="button" class="flow-step" data-step="2">
         <span class="flow-step-num">step 3</span>
         <span class="flow-step-title">Apply severity rubric</span>
-        <span class="flow-step-desc">Classifies each finding by severity so eng prioritization matches user impact—not all fixes are equal.</span>
+        <span class="flow-step-desc">Classified each finding by severity so prioritization aligns with user impact.</span>
       </button>
       <button type="button" class="flow-step" data-step="3">
         <span class="flow-step-num">step 4</span>
         <span class="flow-step-title">Write draft diffs</span>
-        <span class="flow-step-desc">Proposes fixes as draft diffs only. Spruce never lands code directly without human review.</span>
+        <span class="flow-step-desc">Proposed fixes as draft diffs only and no code landed without human review.</span>
       </button>
       <button type="button" class="flow-step" data-step="4">
         <span class="flow-step-num">step 5</span>
         <span class="flow-step-title">File eng tasks &amp; hand off</span>
-        <span class="flow-step-desc">Files tasks to the right eng team and coordinates with other agents for string liveness and daily views analysis.</span>
+        <span class="flow-step-desc">Filed tasks to the appropriate eng team and coordinated with other agents to determine string liveness and daily views.</span>
       </button>
     </div>
   </section>
@@ -56,7 +56,7 @@
     <div class="severity-grid">
       <div class="severity-item">
         <h3>Severe</h3>
-        <p>Blocks assistive technology or misleads users about privacy or safety.</p>
+        <p>Blocks assistive technology or translation, or misleads users about privacy or safety.</p>
       </div>
       <div class="severity-item">
         <h3>Moderate</h3>
@@ -70,7 +70,7 @@
   </section>
 
   <section class="case-section">
-    <h2>example outputs (sanitized)</h2>
+    <h2>example outputs</h2>
     <div class="mock-diff">
       <div class="mock-diff-path">profile/settings/***</div>
       <div class="mock-diff-change"><del>Button label</del> → <ins>Button Label</ins></div>
@@ -86,21 +86,14 @@
         <span>Accessibility · terminology</span>
         <span style="color: var(--ink-muted); font-size: 0.75rem;">in review</span>
       </div>
-    </div>
-    <p class="handoff-list" style="margin-top: 2rem;">
-      <span style="font-size: 0.7rem; color: var(--ink-muted); letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem;">agent handoffs</span>
-      <span class="handoff-chip">Spruce → liveness agent</span>
-      <span class="handoff-chip">Spruce → analytics agent</span>
-      <span class="handoff-chip">Spruce → diff agent</span>
-    </p>
   </section>
 
   <section class="case-section">
     <h2>my role</h2>
     <ul>
-      <li>Encoded CD expertise in the prompt as well as severity levels (e.g. a screen reader blocking issue is severe; casing is nice-to-have)</li>
+      <li>Encoded CD expertise in the prompt as well as severity levels</li>
       <li>Trained Spruce to hand off work to other agents that complete different jobs, such as analyzing string liveness and pulling daily views</li>
-      <li>Ensured Spruce submits diffs as drafts and doesn’t land code directly without review</li>
+      <li>Ensured Spruce submitted diffs as drafts and didn't land code directly without review</li>
     </ul>
   </section>
 
@@ -108,18 +101,18 @@
     <h2>results</h2>
     <div class="case-stats">
       <div class="case-stat">
-        <div class="case-stat-value">13%</div>
-        <div class="case-stat-label">false positive / abandoned diff rate (was 50%)</div>
-      </div>
-      <div class="case-stat">
         <div class="case-stat-value">30</div>
         <div class="case-stat-label">Profile directories scanned weekly</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-value">77%</div>
+        <div class="case-stat-label">Valid diff rate</div>
       </div>
     </div>
     <ul style="margin-top: 1.5rem;">
       <li>Increased CD coverage exponentially across Profile</li>
       <li>Encouraged cross-functional collaboration with eng and product design</li>
-      <li>Created reusable prompt pattern that could scale to other teams</li>
+      <li>Created reusable prompt pattern to scale to other teams</li>
     </ul>
   </section>
 
