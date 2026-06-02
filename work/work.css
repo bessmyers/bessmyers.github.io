@@ -1,13 +1,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --oat: #F4EFE4;
-  --oat-mid: #EBE4D5;
+  --oat: #FBF9F5;
+  --oat-mid: #F3EFE6;
   --ink: #1C1B18;
   --ink-soft: #4A4740;
   --ink-muted: #8A857A;
   --clay: #B5734A;
-  --rule: #D5CEBE;
+  --rule: #E5DFD4;
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
   --radius: 16px;
