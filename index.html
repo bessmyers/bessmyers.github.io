@@ -38,11 +38,14 @@
     }
 
     /* ── Layout ── */
+    .site-frame {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
     .site-band {
       width: 100%;
       border-bottom: 1px solid var(--rule);
-      padding-left: 3.5rem;
-      padding-right: 2.5rem;
     }
 
     .site-band--footer {
@@ -460,6 +463,11 @@
 
     /* ── Desktop ── */
     @media (min-width: 900px) {
+      .site-frame {
+        padding-left: clamp(1.5rem, 4vw, 3rem);
+        padding-right: clamp(1.5rem, 4vw, 3rem);
+      }
+
       .hero.site-band {
         padding-top: 7rem;
       }
@@ -497,6 +505,8 @@
   </style>
 </head>
 <body>
+
+  <div class="site-frame">
 
   <!-- Header -->
   <header class="site-band site-band--header">
@@ -654,6 +664,8 @@
       </div>
     </div>
   </footer>
+
+  </div>
 
 <script>
   const PORTFOLIO_PASSWORD = "MyersCD2026";
