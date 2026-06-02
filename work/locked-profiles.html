@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deprecating locked, publicly followable profiles — bess myers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="work.css" />
+</head>
+<body>
+<div class="site-wrap">
+  <header class="case-header">
+    <a href="../index.html#portfolio" class="case-back">← portfolio</a>
+    <p class="case-tag">facebook · content strategy</p>
+    <h1 class="case-title">Deprecating 100M+ locked, publicly followable profiles</h1>
+    <p class="case-intro">Facebook had ~100M users with a settings contradiction: profiles were both locked (privacy-restricted) and allowed public followers. This initiative deprecated public follow for that cohort and required users who wanted public followers to opt into Professional Mode—or accept losing existing public followers.</p>
+    <p class="case-meta">Target users: 100M+ worldwide · Surfaces: mobile (iOS, Android) · Stakeholders: PMs, eng, designers on Professional Mode, Locked Profile and Profile</p>
+  </header>
+
+  <section class="proto-teaser" aria-label="Flow teaser">
+    <p class="proto-teaser-label">step 1 of 8 · notification</p>
+    <div class="proto-device" id="teaser-device">
+      <div class="proto-screen-wrap">
+        <img src="../images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="" class="proto-screen" id="teaser-screen" />
+      </div>
+    </div>
+    <p class="proto-teaser-hook">The experience begins with a notification that sets expectations before users enter a content-heavy, forced setting change.</p>
+    <button type="button" class="proto-play-btn" id="play-flow">play flow</button>
+  </section>
+
+  <section class="proto-player" id="proto-player" aria-label="Interactive flow prototype">
+    <div class="proto-device">
+      <div class="proto-screen-wrap">
+        <img src="../images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="" class="proto-screen" id="proto-screen" />
+      </div>
+    </div>
+    <p class="proto-step-label" id="proto-label">Notification</p>
+    <p class="proto-step-count" id="proto-count">1 of 8</p>
+    <div class="proto-nav">
+      <button type="button" id="proto-prev" aria-label="Previous screen">←</button>
+      <button type="button" id="proto-next" aria-label="Next screen">→</button>
+    </div>
+    <div class="proto-dots" id="proto-dots"></div>
+    <p class="proto-end-note" id="proto-end"></p>
+  </section>
+
+  <section class="case-section">
+    <h2>my role</h2>
+    <p>As Facebook Profile content designer, I:</p>
+    <ul>
+      <li>Directed content for deprecating 100M+ publicly followable and locked profiles</li>
+      <li>Designed 8 multi-screen flows and 5 cross-channel emails</li>
+      <li>Minimized disruption by ensuring clarity for sensitive cohorts, such as users under age 18</li>
+      <li>Collaborated with Privacy, Legal and Help Center to ensure a compliant and transparent experience</li>
+    </ul>
+  </section>
+
+  <section class="case-section">
+    <h2>challenges</h2>
+    <ul>
+      <li><strong>Forced setting change at scale.</strong> Required careful framing across notifications to avoid panic and churn; all screens are content-heavy.</li>
+      <li><strong>Sensitive cohorts with the same baseline flow.</strong> Under-18 locked profiles, non-MAU users and special edge cases flowed through the same architecture but had different stakes and concerns.</li>
+      <li><strong>Cross-channel consistency.</strong> 8 in-app flows, 5 emails and the Help Center article had to land coherently with different surface-dependent design constraints.</li>
+    </ul>
+  </section>
+
+  <section class="case-section">
+    <h2>results</h2>
+    <ul>
+      <li>Content made choice sufficiently legible so users could elect the option they wanted</li>
+      <li>94.4% of locked profile users confirmed they wanted privacy, as anticipated</li>
+      <li>Unexpected upside: 5.6% (~235K users) elected to convert to ProMode</li>
+      <li>Revenue neutral and did not cause a negative engagement spike</li>
+      <li>No SEVs or rollbacks; all cohorts shipped without incident</li>
+    </ul>
+    <div class="case-stats">
+      <div class="case-stat">
+        <div class="case-stat-value">94.4%</div>
+        <div class="case-stat-label">confirmed privacy intent</div>
+      </div>
+      <div class="case-stat">
+        <div class="case-stat-value">5.6%</div>
+        <div class="case-stat-label">elected ProMode (~235K)</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="case-footer">© 2025 bess myers</footer>
+</div>
+
+<script>
+  const STEPS = [
+    { src: '../images/portfolio/locked-profiles/01-locked-profile-notif.png', label: 'Notification' },
+    { src: '../images/portfolio/locked-profiles/02-make-a-choice.png', label: 'Follower setting changes' },
+    { src: '../images/portfolio/locked-profiles/03-turn-on-promode-option.png', label: 'Turn on ProMode (option)' },
+    { src: '../images/portfolio/locked-profiles/04-intro-promode.png', label: 'Introducing ProMode' },
+    { src: '../images/portfolio/locked-profiles/05-review-key-changes.png', label: 'Review key changes' },
+    { src: '../images/portfolio/locked-profiles/06-turn-on-promode.png', label: 'Turn on ProMode (confirm)' },
+    { src: '../images/portfolio/locked-profiles/07-unlock-profile.png', label: 'Unlock profile' },
+    { src: '../images/portfolio/locked-profiles/08-welcome-to-promode.png', label: 'Welcome to ProMode' }
+  ];
+
+  let index = 0;
+  const screen = document.getElementById('proto-screen');
+  const label = document.getElementById('proto-label');
+  const count = document.getElementById('proto-count');
+  const prev = document.getElementById('proto-prev');
+  const next = document.getElementById('proto-next');
+  const dots = document.getElementById('proto-dots');
+  const endNote = document.getElementById('proto-end');
+
+  STEPS.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'proto-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to step ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dots.appendChild(dot);
+  });
+
+  function goTo(i) {
+    if (i < 0 || i >= STEPS.length || i === index) return;
+    screen.classList.add('fade');
+    setTimeout(() => {
+      index = i;
+      screen.src = STEPS[index].src;
+      label.textContent = STEPS[index].label;
+      count.textContent = (index + 1) + ' of ' + STEPS.length;
+      prev.disabled = index === 0;
+      next.disabled = index === STEPS.length - 1;
+      endNote.textContent = index === STEPS.length - 1 ? 'End of flow' : '';
+      dots.querySelectorAll('.proto-dot').forEach((d, j) => d.classList.toggle('active', j === index));
+      screen.classList.remove('fade');
+    }, 200);
+  }
+
+  prev.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+
+  document.getElementById('play-flow').addEventListener('click', () => {
+    document.getElementById('proto-player').scrollIntoView({ behavior: 'smooth' });
+    goTo(0);
+  });
+
+  let touchX = 0;
+  const wrap = document.querySelector('.proto-player .proto-screen-wrap');
+  wrap.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+  wrap.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - touchX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0 && index < STEPS.length - 1) goTo(index + 1);
+      if (dx > 0 && index > 0) goTo(index - 1);
+    }
+  }, { passive: true });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(index + 1);
+    if (e.key === 'ArrowLeft') goTo(index - 1);
+  });
+
+  prev.disabled = true;
+</script>
+</body>
+</html>

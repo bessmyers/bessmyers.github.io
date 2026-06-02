@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,8 +21,8 @@
       --ink-muted: #8A857A;
       --clay: #B5734A;
       --rule: #D5CEBE;
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Syne', Helvetica, Arial, sans-serif;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -168,6 +168,7 @@
       aspect-ratio: 3/4;
       object-fit: cover;
       display: block;
+      border-radius: 16px;
     }
 
     /* ── Resume / Links ── */
@@ -299,18 +300,84 @@
     }
 
     .portfolio-card {
-      background: var(--oat-mid);
-      padding: 2rem;
       aspect-ratio: 4/3;
+      background: var(--oat-mid);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       cursor: pointer;
       transition: background 0.2s;
       text-decoration: none;
+      overflow: hidden;
     }
 
     .portfolio-card:hover { background: var(--rule); }
+
+    .card-thumb {
+      flex: 1;
+      min-height: 140px;
+      overflow: hidden;
+      background: var(--rule);
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border-radius: 0;
+    }
+
+    .card-visual--ai {
+      flex: 1;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(145deg, var(--oat-mid) 0%, var(--rule) 100%);
+    }
+
+    .card-visual--ai .ai-icon {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--ink-muted);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .card-visual--ai .ai-icon::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--clay);
+      border-radius: 50%;
+    }
+
+    .card-visual--ai .ai-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-visual--ai .ai-lines span {
+      display: block;
+      height: 3px;
+      background: var(--ink-muted);
+      border-radius: 2px;
+    }
+
+    .card-visual--ai .ai-lines span:nth-child(1) { width: 56px; }
+    .card-visual--ai .ai-lines span:nth-child(2) { width: 40px; opacity: 0.6; }
+    .card-visual--ai .ai-lines span:nth-child(3) { width: 48px; opacity: 0.4; }
+
+    .card-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
 
     .card-tag {
       font-family: var(--sans);
@@ -323,10 +390,17 @@
 
     .card-title {
       font-family: var(--sans);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--ink);
       line-height: 1.35;
+    }
+
+    .card-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-top: 0.5rem;
     }
 
     /* ── Footer ── */
@@ -338,7 +412,7 @@
     }
 
     .footer-copy {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.62rem;
       letter-spacing: 0.08em;
       color: var(--ink-muted);
@@ -350,7 +424,7 @@
     }
 
     .footer-links a {
-      font-family: var(--mono);
+      font-family: var(--sans);
       font-size: 0.62rem;
       letter-spacing: 0.08em;
       color: var(--ink-muted);
@@ -492,24 +566,29 @@
     <div id="portfolio-content">
       <div class="portfolio-grid">
 
-        <a class="portfolio-card" href="#">
-          <span class="card-tag">facebook · content strategy</span>
-          <span class="card-title">facebook profile — introducing 3B people to each other</span>
+        <a class="portfolio-card" href="work/locked-profiles.html">
+          <div class="card-thumb">
+            <img src="images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="" />
+          </div>
+          <div class="card-body">
+            <span class="card-tag">facebook · content strategy</span>
+            <span class="card-title">Deprecating 100M+ locked, publicly followable profiles</span>
+            <span class="card-meta">8 screens · interactive flow</span>
+          </div>
         </a>
 
-        <a class="portfolio-card" href="#">
-          <span class="card-tag">meta · ai + content design</span>
-          <span class="card-title">building ai-assisted workflows for content teams</span>
-        </a>
-
-        <a class="portfolio-card" href="#">
-          <span class="card-tag">content systems</span>
-          <span class="card-title">scalable content systems for new app surfaces</span>
-        </a>
-
-        <a class="portfolio-card" href="#">
-          <span class="card-tag">research + ux writing</span>
-          <span class="card-title">from academic research to UX — a systems approach</span>
+        <a class="portfolio-card" href="work/ai-auditing.html">
+          <div class="card-visual--ai" aria-hidden="true">
+            <div class="ai-icon"></div>
+            <div class="ai-lines">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">facebook · content strategy · AI</span>
+            <span class="card-title">Creating an AI-driven CD audit agent</span>
+            <span class="card-meta">agent workflow · 5 steps</span>
+          </div>
         </a>
 
       </div>
