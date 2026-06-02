@@ -141,7 +141,16 @@
 
   document.getElementById('play-flow').addEventListener('click', () => {
     document.getElementById('proto-player').scrollIntoView({ behavior: 'smooth' });
-    goTo(0);
+    if (index !== 0) goTo(0);
+    else {
+      screen.src = STEPS[0].src;
+      label.textContent = STEPS[0].label;
+      count.textContent = '1 of ' + STEPS.length;
+      prev.disabled = true;
+      next.disabled = false;
+      endNote.textContent = '';
+      dots.querySelectorAll('.proto-dot').forEach((d, j) => d.classList.toggle('active', j === 0));
+    }
   });
 
   let touchX = 0;
