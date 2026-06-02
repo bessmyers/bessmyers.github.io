@@ -39,9 +39,9 @@
 
     /* ── Layout ── */
     .site-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      max-width: min(1040px, 100% - 4rem);
+      margin: 0;
+      padding: 0 2.5rem 0 3.5rem;
     }
 
     /* ── Header / Nav ── */
@@ -97,12 +97,11 @@
 
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(3.2rem, 7.5vw, 5.4rem);
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
       font-weight: 400;
       line-height: 1.05;
       letter-spacing: -0.01em;
       color: var(--ink);
-      max-width: 600px;
     }
 
     .hero h1 em {
@@ -435,6 +434,18 @@
 
     .footer-links a:hover { color: var(--clay); }
 
+    /* ── Desktop ── */
+    @media (min-width: 900px) {
+      .hero {
+        padding-top: 7rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr 220px;
+        gap: 4rem;
+      }
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .about-grid {
@@ -474,9 +485,9 @@
   <!-- Hero -->
   <div class="hero">
     <p class="hero-label">content designer · san francisco</p>
-    <h1>words are the <em>interface.</em></h1>
+    <h1>words <em>create</em> things create words <em>create</em> things</h1>
     <p class="hero-sub">
-      meta · facebook profile · ai-assisted workflows · content systems
+      ux design · ai-assisted workflows · content systems
     </p>
   </div>
 
@@ -486,16 +497,13 @@
     <div class="about-grid">
       <div class="about-text">
         <p>
-          hi, i'm bess. i'm a content designer with <strong>10+ years of experience</strong> in academic research, teaching, and UX — and a systems-oriented approach to everything i make.
+          hi, i'm bess. i'm a content designer who brings <strong>10+ years of experience</strong> in academic research and teaching to my design practice. constantly curious, i take a maker-minded and systems approach to everything i create.
         </p>
         <p>
-          since 2022 i've worked at <strong>meta</strong> as a content designer across facebook teams. currently i'm on facebook profile, defining the content strategy for how facebook introduces <strong>3 billion+ people</strong> to each other.
+          most recently i worked as a content designer at <strong>meta</strong> on the facebook profile team, defining the content strategy for how facebook introduces <strong>3B+ people</strong> to each other.
         </p>
         <p>
-          i'm particularly interested in <strong>ai-assisted workflows</strong> for content design and building scalable content systems for new app surfaces. i believe the best UX writing is invisible — and that getting there requires both rigor and craft.
-        </p>
-        <p>
-          off the clock: ballet, bay area trails, and knitting under the watchful eye of my cat, ezra.
+          off the clock you can find me in ballet class, hiking bay area trails or knitting under the watchful eye of my cat, ezra.
         </p>
       </div>
 
