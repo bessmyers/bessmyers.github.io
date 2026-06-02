@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bess myers — content designer</title>
+  <meta name="description" content="Bess Myers is a content designer based in San Francisco with experience at Meta and a focus on AI-assisted workflows and content systems." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --oat: #F4EFE4;
+      --oat-mid: #EBE4D5;
+      --ink: #1C1B18;
+      --ink-soft: #4A4740;
+      --ink-muted: #8A857A;
+      --clay: #B5734A;
+      --rule: #D5CEBE;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Syne', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--oat);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .site-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header / Nav ── */
+    header {
+      padding: 3rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .site-name {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--clay); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 0 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      text-transform: lowercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 7.5vw, 5.4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      max-width: 600px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--clay);
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: 0.07em;
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+
+    /* ── Section ── */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--ink-muted);
+      text-transform: lowercase;
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 1.2em;
+      font-family: var(--sans);
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-text strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Resume / Links ── */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .links-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.2s;
+    }
+
+    .links-list a:first-child { border-top: 1px solid var(--rule); }
+
+    .links-list a:hover { color: var(--clay); }
+
+    .links-list a:hover .link-arrow { transform: translateX(4px); }
+
+    .link-title {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .link-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .link-type {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      font-weight: 400;
+    }
+
+    .link-arrow {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      transition: transform 0.2s;
+    }
+
+    /* ── Portfolio (password-protected) ── */
+    #portfolio-gate {
+      display: block;
+    }
+
+    #portfolio-content {
+      display: none;
+    }
+
+    .gate-wrap {
+      max-width: 380px;
+    }
+
+    .gate-desc {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .gate-form {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+
+    .gate-form input[type="password"] {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .gate-form input::placeholder {
+      color: var(--ink-muted);
+    }
+
+    .gate-form button {
+      background: var(--ink);
+      border: none;
+      padding: 0.75rem 1.25rem;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--oat);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .gate-form button:hover { background: var(--clay); }
+
+    .gate-error {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--clay);
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    /* ── Portfolio Cards (shown after unlock) ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 0.5rem;
+    }
+
+    .portfolio-card {
+      background: var(--oat-mid);
+      padding: 2rem;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .portfolio-card:hover { background: var(--rule); }
+
+    .card-tag {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--clay); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo {
+        order: -1;
+        aspect-ratio: 1/1;
+        max-width: 160px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav { gap: 1.2rem; }
+
+      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-wrap">
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="site-name">bess myers</a>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#resume">resume</a>
+      <a href="#portfolio">portfolio</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="hero-label">content designer · san francisco</p>
+    <h1>words are the <em>interface.</em></h1>
+    <p class="hero-sub">
+      meta · facebook profile · ai-assisted workflows · content systems
+    </p>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <p class="section-label">01 · about</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          hi, i'm bess. i'm a content designer with <strong>10+ years of experience</strong> in academic research, teaching, and UX — and a systems-oriented approach to everything i make.
+        </p>
+        <p>
+          since 2022 i've worked at <strong>meta</strong> as a content designer across facebook teams. currently i'm on facebook profile, defining the content strategy for how facebook introduces <strong>3 billion+ people</strong> to each other.
+        </p>
+        <p>
+          i'm particularly interested in <strong>ai-assisted workflows</strong> for content design and building scalable content systems for new app surfaces. i believe the best UX writing is invisible — and that getting there requires both rigor and craft.
+        </p>
+        <p>
+          off the clock: ballet, bay area trails, and knitting under the watchful eye of my cat, ezra.
+        </p>
+      </div>
+
+      <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" />
+
+    </div>
+  </section>
+
+  <!-- Resume / Links -->
+  <section id="resume">
+    <p class="section-label">02 · resume &amp; links</p>
+    <div class="links-list">
+
+      <a href="https://docs.google.com/document/d/11Ual3xWtB7X68qnpJvmo0jOe8U3OO2a9x_D-X-UKg8o/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="link-title">résumé</span>
+        <span class="link-meta">
+          <span class="link-type">pdf</span>
+          <span class="link-arrow">→</span>
+        </span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">
+        <span class="link-title">linkedin</span>
+        <span class="link-meta">
+          <span class="link-type">linkedin.com</span>
+          <span class="link-arrow">→</span>
+        </span>
+      </a>
+
+      <a href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">
+        <span class="link-title">medium</span>
+        <span class="link-meta">
+          <span class="link-type">writing</span>
+          <span class="link-arrow">→</span>
+        </span>
+      </a>
+
+      <a href="mailto:hello@bessmyers.com">
+        <span class="link-title">get in touch</span>
+        <span class="link-meta">
+          <span class="link-type">email</span>
+          <span class="link-arrow">→</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Portfolio (password-gated) -->
+  <section id="portfolio">
+    <p class="section-label">03 · portfolio</p>
+
+    <!-- Gate -->
+    <div id="portfolio-gate">
+      <div class="gate-wrap">
+        <p class="gate-desc">
+          selected case studies available with a password.<br />
+          reach out if you'd like access.
+        </p>
+        <div class="gate-form">
+          <input type="password" id="pw-input" placeholder="enter password" autocomplete="off" />
+          <button onclick="checkPassword()">enter</button>
+        </div>
+        <p class="gate-error" id="gate-error">incorrect password</p>
+      </div>
+    </div>
+
+    <!-- Portfolio content (revealed on correct password) -->
+    <div id="portfolio-content">
+      <div class="portfolio-grid">
+
+        <a class="portfolio-card" href="#">
+          <span class="card-tag">facebook · content strategy</span>
+          <span class="card-title">facebook profile — introducing 3B people to each other</span>
+        </a>
+
+        <a class="portfolio-card" href="#">
+          <span class="card-tag">meta · ai + content design</span>
+          <span class="card-title">building ai-assisted workflows for content teams</span>
+        </a>
+
+        <a class="portfolio-card" href="#">
+          <span class="card-tag">content systems</span>
+          <span class="card-title">scalable content systems for new app surfaces</span>
+        </a>
+
+        <a class="portfolio-card" href="#">
+          <span class="card-tag">research + ux writing</span>
+          <span class="card-title">from academic research to UX — a systems approach</span>
+        </a>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-copy">© 2025 bess myers</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">medium</a>
+      <a href="mailto:bessrhmyers@gmail.com">email</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const PORTFOLIO_PASSWORD = "MyersCD2026";
+
+  function checkPassword() {
+    const input = document.getElementById('pw-input').value;
+    const error = document.getElementById('gate-error');
+
+    if (input === PORTFOLIO_PASSWORD) {
+      document.getElementById('portfolio-gate').style.display = 'none';
+      document.getElementById('portfolio-content').style.display = 'block';
+      error.style.display = 'none';
+      // Remember unlock in session
+      sessionStorage.setItem('portfolio_unlocked', 'true');
+    } else {
+      error.style.display = 'block';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+
+  // Allow Enter key to submit password
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // Restore session if already unlocked
+  if (sessionStorage.getItem('portfolio_unlocked') === 'true') {
+    document.getElementById('portfolio-gate').style.display = 'none';
+    document.getElementById('portfolio-content').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
