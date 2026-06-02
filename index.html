@@ -38,19 +38,36 @@
     }
 
     /* ── Layout ── */
-    .site-wrap {
-      max-width: min(1040px, 100% - 4rem);
-      margin: 0;
-      padding: 0 2.5rem 0 3.5rem;
+    .site-band {
+      width: 100%;
+      border-bottom: 1px solid var(--rule);
+      padding-left: 3.5rem;
+      padding-right: 2.5rem;
     }
 
-    /* ── Header / Nav ── */
-    header {
-      padding: 3rem 0 2rem;
+    .site-band--footer {
+      border-bottom: none;
+    }
+
+    .section-inner {
+      max-width: 42rem;
+    }
+
+    .section-inner--wide {
+      max-width: 56rem;
+    }
+
+    .section-inner--header {
+      max-width: none;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── Header / Nav ── */
+    .site-band--header {
+      padding-top: 3rem;
+      padding-bottom: 2rem;
     }
 
     .site-name {
@@ -80,9 +97,9 @@
     nav a:hover { color: var(--clay); }
 
     /* ── Hero ── */
-    .hero {
-      padding: 6rem 0 5rem;
-      border-bottom: 1px solid var(--rule);
+    .hero.site-band {
+      padding-top: 6rem;
+      padding-bottom: 5rem;
     }
 
     .hero-label {
@@ -133,12 +150,10 @@
     }
 
     /* ── Section ── */
-    section {
-      padding: 5rem 0;
-      border-bottom: 1px solid var(--rule);
+    section.site-band {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
     }
-
-    section:last-of-type { border-bottom: none; }
 
     .section-label {
       font-family: var(--sans);
@@ -415,11 +430,9 @@
     }
 
     /* ── Footer ── */
-    footer {
-      padding: 3rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    footer.site-band {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
     }
 
     .footer-copy {
@@ -447,7 +460,7 @@
 
     /* ── Desktop ── */
     @media (min-width: 900px) {
-      .hero {
+      .hero.site-band {
         padding-top: 7rem;
       }
 
@@ -479,40 +492,43 @@
 
       nav { gap: 1.2rem; }
 
-      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .section-inner--header { flex-direction: column; gap: 1rem; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<div class="site-wrap">
-
   <!-- Header -->
-  <header>
-    <a href="#" class="site-name">bess myers</a>
-    <nav>
-      <a href="#about">about</a>
-      <a href="#resume">resume</a>
-      <a href="#portfolio">portfolio</a>
-    </nav>
+  <header class="site-band site-band--header">
+    <div class="section-inner section-inner--header">
+      <a href="#" class="site-name">bess myers</a>
+      <nav>
+        <a href="#about">about</a>
+        <a href="#resume">resume</a>
+        <a href="#portfolio">portfolio</a>
+      </nav>
+    </div>
   </header>
 
   <!-- Hero -->
-  <div class="hero">
-    <p class="hero-label">content designer · san francisco</p>
-    <h1 class="hero-headline">
-      <span class="hero-line">words <span class="hero-create">create</span> things</span>
-      <span class="hero-line"><span class="hero-create">create</span> words <span class="hero-create">create</span> things</span>
-    </h1>
-    <p class="hero-sub">
-      ux design · ai-assisted workflows · content systems
-    </p>
+  <div class="hero site-band">
+    <div class="section-inner">
+      <p class="hero-label">content designer · san francisco</p>
+      <h1 class="hero-headline">
+        <span class="hero-line">words <span class="hero-create">create</span> things</span>
+        <span class="hero-line"><span class="hero-create">create</span> words <span class="hero-create">create</span> things</span>
+      </h1>
+      <p class="hero-sub">
+        ux design · ai-assisted workflows · content systems
+      </p>
+    </div>
   </div>
 
   <!-- About -->
-  <section id="about">
-    <p class="section-label">01 · about</p>
-    <div class="about-grid">
+  <section id="about" class="site-band">
+    <div class="section-inner section-inner--wide">
+      <p class="section-label">01 · about</p>
+      <div class="about-grid">
       <div class="about-text">
         <p>
           hi, i'm bess. i'm a content designer who brings <strong>10+ years of experience</strong> in academic research and teaching to my design practice. constantly curious, i take a maker-minded and systems approach to everything i create.
@@ -527,13 +543,15 @@
 
       <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" />
 
+      </div>
     </div>
   </section>
 
   <!-- Resume / Links -->
-  <section id="resume">
-    <p class="section-label">02 · resume &amp; links</p>
-    <div class="links-list">
+  <section id="resume" class="site-band">
+    <div class="section-inner">
+      <p class="section-label">02 · resume &amp; links</p>
+      <div class="links-list">
 
       <a href="https://docs.google.com/document/d/11Ual3xWtB7X68qnpJvmo0jOe8U3OO2a9x_D-X-UKg8o/edit?usp=sharing" target="_blank" rel="noopener">
         <span class="link-title">résumé</span>
@@ -567,31 +585,33 @@
         </span>
       </a>
 
+      </div>
     </div>
   </section>
 
   <!-- Portfolio (password-gated) -->
-  <section id="portfolio">
-    <p class="section-label">03 · portfolio</p>
+  <section id="portfolio" class="site-band">
+    <div class="section-inner section-inner--wide">
+      <p class="section-label">03 · portfolio</p>
 
-    <!-- Gate -->
-    <div id="portfolio-gate">
-      <div class="gate-wrap">
-        <p class="gate-desc">
-          selected case studies available with a password.<br />
-          reach out if you'd like access.
-        </p>
-        <div class="gate-form">
-          <input type="password" id="pw-input" placeholder="enter password" autocomplete="off" />
-          <button onclick="checkPassword()">enter</button>
+      <!-- Gate -->
+      <div id="portfolio-gate">
+        <div class="gate-wrap">
+          <p class="gate-desc">
+            selected case studies available with a password.<br />
+            reach out if you'd like access.
+          </p>
+          <div class="gate-form">
+            <input type="password" id="pw-input" placeholder="enter password" autocomplete="off" />
+            <button onclick="checkPassword()">enter</button>
+          </div>
+          <p class="gate-error" id="gate-error">incorrect password</p>
         </div>
-        <p class="gate-error" id="gate-error">incorrect password</p>
       </div>
-    </div>
 
-    <!-- Portfolio content (revealed on correct password) -->
-    <div id="portfolio-content">
-      <div class="portfolio-grid">
+      <!-- Portfolio content (revealed on correct password) -->
+      <div id="portfolio-content">
+        <div class="portfolio-grid">
 
         <a class="portfolio-card" href="work/locked-profiles.html">
           <div class="card-thumb">
@@ -618,22 +638,22 @@
           </div>
         </a>
 
+        </div>
       </div>
     </div>
-
   </section>
 
   <!-- Footer -->
-  <footer>
-    <span class="footer-copy">© 2025 bess myers</span>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">linkedin</a>
-      <a href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">medium</a>
-      <a href="mailto:bessrhmyers@gmail.com">email</a>
+  <footer class="site-band site-band--footer">
+    <div class="section-inner section-inner--header">
+      <span class="footer-copy">© 2025 bess myers</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">medium</a>
+        <a href="mailto:bessrhmyers@gmail.com">email</a>
+      </div>
     </div>
   </footer>
-
-</div>
 
 <script>
   const PORTFOLIO_PASSWORD = "MyersCD2026";
