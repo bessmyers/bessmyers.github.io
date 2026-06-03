@@ -40,7 +40,9 @@
       <div class="hero site-band reveal">
         <div class="section-inner">
           <p class="hero-eyebrow">Bess Myers · Content design</p>
-          <h1 class="hero-headline">I use words to create things.</h1>
+          <h1 class="hero-headline">
+            I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.
+          </h1>
           <p class="hero-tagline">maker-minded · systems-oriented · constantly curious</p>
         </div>
       </div>
@@ -61,31 +63,27 @@
               <p class="gate-error" id="gate-error">Incorrect password</p>
             </div>
 
-            <div id="portfolio-content" class="project-list is-locked">
-              <a class="project-block" href="work/locked-profiles.html" tabindex="-1">
-                <div class="project-block__visual">
+            <div id="portfolio-content" class="work-grid" hidden>
+              <a class="work-card" href="work/locked-profiles.html">
+                <div class="work-card-visual">
                   <img
                     src="images/portfolio/locked-profiles/01-locked-profile-notif.png"
                     alt="Locked profile notification screen on mobile"
-                    width="1200"
-                    height="750"
+                    width="600"
+                    height="600"
                     loading="lazy"
                   />
                 </div>
-                <div class="project-block__meta">
-                  <h2 class="project-block__title">Deprecating 100M+ locked, publicly followable profiles</h2>
-                  <span class="project-block__cta">View case study →</span>
-                </div>
+                <h2 class="work-card-title">Deprecating 100M+ locked, publicly followable profiles</h2>
+                <span class="work-card-cta">View case study →</span>
               </a>
 
-              <a class="project-block" href="work/ai-auditing.html" tabindex="-1">
-                <div class="project-block__visual project-block__visual--spruce">
-                  <span class="project-block__placeholder">Spruce · AI content audit agent</span>
+              <a class="work-card" href="work/ai-auditing.html">
+                <div class="work-card-visual work-card-visual--spruce">
+                  <span class="work-card-placeholder">Spruce · AI content audit agent</span>
                 </div>
-                <div class="project-block__meta">
-                  <h2 class="project-block__title">Creating a content design audit agent</h2>
-                  <span class="project-block__cta">View case study →</span>
-                </div>
+                <h2 class="work-card-title">Creating a content design audit agent</h2>
+                <span class="work-card-cta">View case study →</span>
               </a>
             </div>
           </div>
@@ -119,11 +117,7 @@
 
     function unlockPortfolio() {
       portfolioGate.classList.add('is-hidden');
-      portfolioContent.classList.remove('is-locked');
-      portfolioContent.classList.add('is-unlocked');
-      portfolioContent.querySelectorAll('.project-block').forEach(function(link) {
-        link.removeAttribute('tabindex');
-      });
+      portfolioContent.hidden = false;
       sessionStorage.setItem('portfolio_unlocked', 'true');
     }
 
