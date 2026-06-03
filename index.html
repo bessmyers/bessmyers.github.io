@@ -336,6 +336,7 @@
       gap: 1.25rem;
       margin-top: 0.5rem;
       justify-content: start;
+      align-items: start;
     }
 
     .portfolio-card {
@@ -346,6 +347,7 @@
       padding: 1.75rem 1.25rem;
       max-width: 280px;
       width: 100%;
+      min-height: 100%;
       border-radius: 12px;
       cursor: pointer;
       transition: background 0.2s;
@@ -365,13 +367,23 @@
       flex-direction: column;
       align-items: center;
       gap: 0.75rem;
+      width: 100%;
+    }
+
+    .card-icon-wrap {
+      width: 96px;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .card-icon {
-      width: 92px;
-      height: 92px;
+      width: 100%;
+      height: 100%;
+      display: block;
       color: var(--ink-muted);
-      flex-shrink: 0;
     }
 
     .card-title {
@@ -572,26 +584,28 @@
 
         <a class="portfolio-card" href="work/ai-auditing.html">
           <div class="card-inner">
-            <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M28 10L42 34H14L28 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M28 20L46 40H10L28 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
-              <path d="M25 40h6v8h-6v-8Z" fill="currentColor" opacity="0.85"/>
-              <line x1="28" y1="48" x2="28" y2="50" stroke="var(--clay)" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <path d="M28 10L42 34H14L28 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M28 20L46 40H10L28 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
+                <path d="M25 40h6v8h-6v-8Z" fill="currentColor" opacity="0.85"/>
+                <line x1="28" y1="48" x2="28" y2="50" stroke="var(--clay)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <span class="card-title">Creating a content design audit agent</span>
-            <span class="card-meta">Spruce · AI audit agent · 5 steps</span>
           </div>
         </a>
 
         <a class="portfolio-card" href="work/locked-profiles.html">
           <div class="card-inner">
-            <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="28" cy="28" r="25" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="28" cy="22" r="7" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M13 42c0-7.2 6.7-12 15-12s15 4.8 15 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+            <div class="card-icon-wrap" aria-hidden="true">
+              <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                <circle cx="28" cy="28" r="25" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="28" cy="22" r="7" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M13 42c0-7.2 6.7-12 15-12s15 4.8 15 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
             <span class="card-title">Deprecating 100M+ locked, publicly followable profiles</span>
-            <span class="card-meta">8 screens · interactive flow</span>
           </div>
         </a>
 
