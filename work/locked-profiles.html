@@ -19,17 +19,6 @@
     <p class="case-meta">Target users: 100M+ worldwide · Surfaces: mobile (iOS, Android) · Stakeholders: PMs, eng, designers on Professional Mode, Locked Profile and Profile</p>
   </header>
 
-  <section class="proto-teaser" aria-label="Flow teaser">
-    <p class="proto-teaser-label">step 1 of 8 · notification</p>
-    <div class="proto-device" id="teaser-device">
-      <div class="proto-screen-wrap">
-        <img src="../images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="" class="proto-screen" id="teaser-screen" />
-      </div>
-    </div>
-    <p class="proto-teaser-hook">The experience begins with an in-app notification that sets expectations before they enter a content-heavy user flow.</p>
-    <button type="button" class="proto-play-btn" id="play-flow">see flow flow</button>
-  </section>
-
   <section class="proto-player" id="proto-player" aria-label="Interactive flow prototype">
     <div class="proto-device">
       <div class="proto-screen-wrap">
@@ -91,14 +80,14 @@
 
 <script>
   const STEPS = [
-    { src: '../images/portfolio/locked-profiles/01-locked-profile-notif.png', label: 'Notification' },
-    { src: '../images/portfolio/locked-profiles/02-make-a-choice.png', label: 'Follower setting changes' },
-    { src: '../images/portfolio/locked-profiles/03-turn-on-promode-option.png', label: 'Turn on ProMode (option)' },
-    { src: '../images/portfolio/locked-profiles/04-intro-promode.png', label: 'Introducing ProMode' },
-    { src: '../images/portfolio/locked-profiles/05-review-key-changes.png', label: 'Review key changes' },
-    { src: '../images/portfolio/locked-profiles/06-turn-on-promode.png', label: 'Turn on ProMode (confirm)' },
+    { src: '../images/portfolio/locked-profiles/01-locked-profile-notif.png', label: 'In-app notification' },
+    { src: '../images/portfolio/locked-profiles/02-make-a-choice.png', label: 'Present choices to user' },
+    { src: '../images/portfolio/locked-profiles/03-turn-on-promode-option.png', label: 'User selects pro mode option' },
+    { src: '../images/portfolio/locked-profiles/04-intro-promode.png', label: 'Introduce pro mode' },
+    { src: '../images/portfolio/locked-profiles/05-review-key-changes.png', label: 'Review key changes for profile' },
+    { src: '../images/portfolio/locked-profiles/06-turn-on-promode.png', label: 'Pro mode confirmation' },
     { src: '../images/portfolio/locked-profiles/07-unlock-profile.png', label: 'Unlock profile' },
-    { src: '../images/portfolio/locked-profiles/08-welcome-to-promode.png', label: 'Welcome to ProMode' }
+    { src: '../images/portfolio/locked-profiles/08-welcome-to-promode.png', label: 'Post-flow success message' }
   ];
 
   let index = 0;
@@ -137,20 +126,6 @@
 
   prev.addEventListener('click', () => goTo(index - 1));
   next.addEventListener('click', () => goTo(index + 1));
-
-  document.getElementById('play-flow').addEventListener('click', () => {
-    document.getElementById('proto-player').scrollIntoView({ behavior: 'smooth' });
-    if (index !== 0) goTo(0);
-    else {
-      screen.src = STEPS[0].src;
-      label.textContent = STEPS[0].label;
-      count.textContent = '1 of ' + STEPS.length;
-      prev.disabled = true;
-      next.disabled = false;
-      endNote.textContent = '';
-      dots.querySelectorAll('.proto-dot').forEach((d, j) => d.classList.toggle('active', j === 0));
-    }
-  });
 
   let touchX = 0;
   const wrap = document.querySelector('.proto-player .proto-screen-wrap');
