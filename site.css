@@ -239,7 +239,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 .index-row {
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem clamp(2rem, 6vw, 5rem);
   padding: clamp(1rem, 3vw, 1.35rem) clamp(0.75rem, 3vw, 1.75rem);
   border-bottom: 1px solid var(--rule);
@@ -275,6 +275,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  line-height: 1;
   color: var(--ink-muted);
   text-align: right;
   white-space: nowrap;
