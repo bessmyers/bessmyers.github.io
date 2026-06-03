@@ -85,6 +85,24 @@ nav a[aria-current="page"] { color: var(--ink); }
 
 nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
 
+.single-page nav a {
+  padding: 0.4rem 0.55rem;
+  margin: -0.4rem -0.55rem;
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
+}
+
+.single-page nav a:hover,
+.single-page nav a:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+  border-bottom-color: transparent;
+  padding-bottom: 0.4rem;
+}
+
+.single-page nav a[aria-current="page"] {
+  border-bottom: none;
+}
+
 .section-label {
   font-size: 0.68rem;
   font-weight: 600;
@@ -216,18 +234,18 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 .connect-page .hero.site-band,
 .work-page .portfolio-section { padding-top: clamp(2rem, 5vw, 3rem); }
 
-.connect-list {
+/* Editorial index rows (connect, work, footer) */
+.index-list {
   list-style: none;
   border-top: 1px solid var(--rule);
 }
 
-.connect-row {
-  display: flex;
-  flex-wrap: wrap;
+.index-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 0.35rem 1rem;
-  padding: clamp(1rem, 3vw, 1.35rem) 0;
+  gap: 1rem clamp(2rem, 6vw, 5rem);
+  padding: clamp(1rem, 3vw, 1.35rem) clamp(0.75rem, 3vw, 1.75rem);
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
   font-family: var(--sans);
@@ -235,39 +253,43 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
 }
 
-.connect-row:hover,
-.connect-row:focus-visible {
+.index-row:hover,
+.index-row:focus-visible {
   background: var(--ink);
   color: var(--bg);
 }
 
-.connect-row:focus-visible {
+.index-row:focus-visible {
   outline: 2px solid var(--clay);
   outline-offset: 2px;
 }
 
-.connect-row:hover .connect-desc,
-.connect-row:focus-visible .connect-desc {
-  color: inherit;
-}
-
-.connect-title {
+.index-row-title {
   font-family: var(--sans);
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
+  min-width: 0;
 }
 
-.connect-desc {
+.index-row-meta {
   font-family: var(--sans);
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-muted);
+  text-align: right;
   white-space: nowrap;
+  min-width: 5.5rem;
+  padding-right: 0.35rem;
   transition: color 0.18s var(--ease-out);
+}
+
+.index-row:hover .index-row-meta,
+.index-row:focus-visible .index-row-meta {
+  color: inherit;
 }
 
 .about-flex {
@@ -290,8 +312,10 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .about-text p {
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
   color: var(--ink-soft);
   margin-bottom: 1.2em;
 }
@@ -314,35 +338,8 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   .about-text-col { flex: 1; min-width: 0; }
 }
 
-/* Footer links */
 .footer-links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.65rem;
   width: 100%;
-}
-
-.footer-links a {
-  font-family: var(--sans-header);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover { color: var(--clay); }
-
-@media (min-width: 640px) {
-  .footer-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.25rem 2rem;
-  }
 }
 
 .footer-copy {
@@ -369,9 +366,11 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .gate-desc {
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--ink-soft);
-  line-height: 1.7;
+  line-height: 1.65;
   margin-bottom: 1.25rem;
 }
 
@@ -418,12 +417,18 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 /* Work index */
-.work-index-head,
-.work-row {
+.work-index-head {
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: baseline;
   gap: 1rem 2rem;
+  column-gap: clamp(1rem, 4vw, 2.5rem);
+  padding-left: clamp(0.75rem, 3vw, 1.75rem);
+  padding-right: clamp(0.75rem, 3vw, 1.75rem);
+}
+
+.work-row {
+  grid-template-columns: 1fr auto auto;
   column-gap: clamp(1rem, 4vw, 2.5rem);
 }
 
@@ -457,60 +462,14 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   border-bottom: 1px solid var(--rule);
 }
 
-.work-row {
-  padding: clamp(1rem, 3vw, 1.35rem) 0;
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
-}
-
-.work-row:hover,
-.work-row:focus-visible {
-  background: var(--ink);
-  color: var(--bg);
-}
-
-.work-row:focus-visible {
-  outline: 2px solid var(--clay);
-  outline-offset: 2px;
-}
-
-.work-row-title {
-  font-family: var(--sans);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.25;
-  min-width: 0;
-}
-
-.work-row-category {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  white-space: nowrap;
-}
-
-.work-row:hover .work-row-category,
-.work-row:focus-visible .work-row-category,
-.work-row:hover .work-row-year,
-.work-row:focus-visible .work-row-year {
-  color: inherit;
-}
-
 .work-row-year {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
+  min-width: 3rem;
   letter-spacing: 0.06em;
-  color: var(--ink-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work-row,
-  .connect-row {
+  .index-row,
+  .single-page nav a {
     transition: none;
   }
 }
@@ -525,15 +484,15 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
     grid-template-rows: auto auto;
   }
 
-  .work-row-title {
+  .work-row .index-row-title {
     grid-column: 1 / -1;
   }
 
-  .work-row-category {
+  .work-row .work-row-category {
     grid-column: 1;
   }
 
-  .work-row-year {
+  .work-row .work-row-year {
     grid-column: 2;
     text-align: right;
   }
