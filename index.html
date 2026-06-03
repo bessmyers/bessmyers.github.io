@@ -13,22 +13,12 @@
 </head>
 <body>
 
-  <div id="site-loader" role="presentation" aria-hidden="true">
-    <p class="loader-eyebrow">Bess Myers</p>
-    <div class="loader-keywords" aria-hidden="true">
-      <span class="loader-word">words</span>
-      <span class="loader-word">create</span>
-      <span class="loader-word">things</span>
-    </div>
-    <p class="loader-line">I use words to create things.</p>
-  </div>
-
   <div id="site-main" class="site-main">
     <div class="site-frame">
 
       <header class="site-band site-band--header">
         <div class="section-inner section-inner--header">
-          <a href="index.html" class="site-name">bess myers</a>
+          <a href="index.html" class="site-name">bess myers · content designer</a>
           <nav>
             <a href="index.html" aria-current="page">Work</a>
             <a href="about.html">About</a>
@@ -37,9 +27,8 @@
         </div>
       </header>
 
-      <div class="hero site-band reveal">
+      <div class="hero site-band enter-step" data-enter-order="0">
         <div class="section-inner">
-          <p class="hero-eyebrow">Bess Myers · Content design</p>
           <h1 class="hero-headline">
             I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.
           </h1>
@@ -47,7 +36,7 @@
         </div>
       </div>
 
-      <section id="work" class="site-band portfolio-section reveal">
+      <section id="work" class="site-band portfolio-section enter-step" data-enter-order="1">
         <div class="section-inner">
           <p class="section-label">Work</p>
 
@@ -90,7 +79,7 @@
         </div>
       </section>
 
-      <footer class="site-band site-band--footer">
+      <footer class="site-band site-band--footer enter-step" data-enter-order="2">
         <div class="section-inner">
           <div class="footer-grid">
             <div class="footer-col">
@@ -109,62 +98,40 @@
     </div>
   </div>
 
+  <script src="portfolio.js"></script>
   <script src="loader.js"></script>
   <script>
-    const PORTFOLIO_PASSWORD = "MyersCD2026";
-    const portfolioContent = document.getElementById('portfolio-content');
-    const portfolioGate = document.getElementById('portfolio-gate');
+    (function () {
+      var portfolioContent = document.getElementById('portfolio-content');
+      var portfolioGate = document.getElementById('portfolio-gate');
 
-    function unlockPortfolio() {
-      portfolioGate.classList.add('is-hidden');
-      portfolioContent.hidden = false;
-      sessionStorage.setItem('portfolio_unlocked', 'true');
-    }
-
-    function checkPassword() {
-      const input = document.getElementById('pw-input').value;
-      const error = document.getElementById('gate-error');
-
-      if (input === PORTFOLIO_PASSWORD) {
-        unlockPortfolio();
-        error.style.display = 'none';
-      } else {
-        error.style.display = 'block';
-        document.getElementById('pw-input').value = '';
-      }
-    }
-
-    document.getElementById('pw-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') checkPassword();
-    });
-
-    if (sessionStorage.getItem('portfolio_unlocked') === 'true') {
-      unlockPortfolio();
-    }
-
-    (function initReveal() {
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const blocks = document.querySelectorAll('.reveal');
-
-      function revealAll() {
-        blocks.forEach(function(el) { el.classList.add('is-visible'); });
+      function unlockPortfolio() {
+        portfolioGate.classList.add('is-hidden');
+        portfolioContent.hidden = false;
+        PortfolioGate.unlock();
       }
 
-      if (prefersReduced) {
-        revealAll();
-        return;
+      function checkPassword() {
+        var input = document.getElementById('pw-input').value;
+        var error = document.getElementById('gate-error');
+
+        if (PortfolioGate.checkPassword(input)) {
+          unlockPortfolio();
+          error.style.display = 'none';
+        } else {
+          error.style.display = 'block';
+          document.getElementById('pw-input').value = '';
+        }
       }
 
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+      window.checkPassword = checkPassword;
 
-      blocks.forEach(function(el) { observer.observe(el); });
+      document.getElementById('pw-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') checkPassword();
+      });
+
+      portfolioContent.hidden = true;
+      portfolioGate.classList.remove('is-hidden');
     })();
   </script>
 
