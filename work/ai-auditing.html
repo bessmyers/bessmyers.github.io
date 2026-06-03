@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="work.css" />
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
 <div class="site-wrap">
@@ -22,32 +25,9 @@
 
   <section class="case-section">
     <h2>how spruce works</h2>
-    <div class="flow-steps" id="flow-steps">
-      <button type="button" class="flow-step active" data-step="0">
-        <span class="flow-step-num">step 1</span>
-        <span class="flow-step-title">Scan Profile directories</span>
-        <span class="flow-step-desc">Spruce automatically scanned 30 Profile directories throughout the week, looking for outdated or non-compliant strings.</span>
-      </button>
-      <button type="button" class="flow-step" data-step="1">
-        <span class="flow-step-num">step 2</span>
-        <span class="flow-step-title">Flag content design issues</span>
-        <span class="flow-step-desc">Identified terminology, casing, accessibility and style issues against encoded content design standards.</span>
-      </button>
-      <button type="button" class="flow-step" data-step="2">
-        <span class="flow-step-num">step 3</span>
-        <span class="flow-step-title">Apply severity rubric</span>
-        <span class="flow-step-desc">Classified each finding by severity so prioritization aligns with user impact.</span>
-      </button>
-      <button type="button" class="flow-step" data-step="3">
-        <span class="flow-step-num">step 4</span>
-        <span class="flow-step-title">Write draft diffs</span>
-        <span class="flow-step-desc">Proposed fixes as draft diffs only and no code landed without human review.</span>
-      </button>
-      <button type="button" class="flow-step" data-step="4">
-        <span class="flow-step-num">step 5</span>
-        <span class="flow-step-title">File eng tasks &amp; hand off</span>
-        <span class="flow-step-desc">Filed tasks to the appropriate eng team and coordinated with other agents to determine string liveness and daily views.</span>
-      </button>
+    <p>Use the controls to step through how Spruce runs. Click Next and Previous to highlight each stage.</p>
+    <div class="spruce-flow-embed embedded-widget">
+      <div id="spruce-flow-root" aria-label="Spruce agent flow animation"></div>
     </div>
   </section>
 
@@ -86,6 +66,7 @@
         <span>Accessibility · terminology</span>
         <span style="color: var(--ink-muted); font-size: 0.75rem;">in review</span>
       </div>
+    </div>
   </section>
 
   <section class="case-section">
@@ -119,13 +100,6 @@
   <footer class="case-footer">© 2025 bess myers</footer>
 </div>
 
-<script>
-  document.querySelectorAll('.flow-step').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.flow-step').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-</script>
+<script type="text/babel" src="spruce-flow.jsx"></script>
 </body>
 </html>
