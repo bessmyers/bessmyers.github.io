@@ -100,13 +100,13 @@ function SpruceFlowAnimation() {
               key={idx}
               className="spruce-flow-step"
               style={{
-                flex: '1 1 140px',
-                minWidth: '120px',
+                flex: '1 1 0',
+                minWidth: 0,
                 height: step === idx ? '260px' : '200px',
                 background: step >= idx ? clayLight : oat,
                 border: step >= idx ? `2px solid ${clay}` : `2px solid ${rule}`,
                 borderRadius: '12px',
-                padding: '1.25rem',
+                padding: '1rem 0.65rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -133,7 +133,7 @@ function SpruceFlowAnimation() {
               </div>
               <div
                 style={{
-                  fontSize: step === idx ? '15px' : '13px',
+                  fontSize: step === idx ? '14px' : '12px',
                   fontWeight: step === idx ? '600' : '500',
                   color: '#1C1B18',
                   marginBottom: '0.5rem',
