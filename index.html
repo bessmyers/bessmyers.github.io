@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,7 +22,11 @@
       --clay: #B5734A;
       --rule: #E5DFD4;
       --serif: 'Newsreader', Georgia, serif;
-      --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
+      --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+      --space-hero-top: clamp(5rem, 10vw, 7rem);
+      --space-block: clamp(2rem, 4vw, 3rem);
+      --space-label: 0.75rem;
+      --content-max: 62.5rem;
     }
 
     html { scroll-behavior: smooth; }
@@ -39,25 +43,33 @@
 
     /* ── Layout ── */
     .site-frame {
+      max-width: var(--content-max);
+      margin: 0 auto;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
 
     .site-band {
       width: 100%;
-      border-bottom: 1px solid var(--rule);
     }
 
-    .site-band--footer {
+    .site-band + .site-band {
+      padding-top: var(--space-block);
+    }
+
+    .site-band--header {
+      padding-top: 2rem;
+      padding-bottom: 0;
       border-bottom: none;
     }
 
-    .section-inner {
-      max-width: 42rem;
+    .site-band--footer {
+      border-top: 1px solid var(--rule);
+      margin-top: var(--space-block);
     }
 
-    .section-inner--wide {
-      max-width: 56rem;
+    .section-inner {
+      max-width: var(--content-max);
     }
 
     .section-inner--header {
@@ -67,31 +79,76 @@
       align-items: baseline;
     }
 
-    /* ── Header / Nav ── */
-    .site-band--header {
-      padding-top: 3rem;
-      padding-bottom: 2rem;
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
 
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .hero.reveal {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .hero.reveal.is-visible {
+      animation: hero-in 0.6s ease-out forwards;
+    }
+
+    @keyframes hero-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .hero.reveal,
+      .hero.reveal.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+      }
+
+      .work-card-visual img,
+      .work-card:hover .work-card-visual img {
+        transform: none;
+      }
+    }
+
+    /* ── Header / Nav ── */
     .site-name {
       font-family: var(--sans);
-      font-size: 1.05rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
     }
 
     nav {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     nav a {
       font-family: var(--sans);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--ink-soft);
       text-decoration: none;
       transition: color 0.2s;
@@ -101,43 +158,22 @@
 
     /* ── Hero ── */
     .hero.site-band {
-      padding-top: 6rem;
-      padding-bottom: 5rem;
+      padding-top: var(--space-hero-top);
+      padding-bottom: 0;
+      border-bottom: none;
     }
 
-    .hero-label {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      color: var(--ink-muted);
-      text-transform: lowercase;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1,
     .hero-headline {
       font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3.25rem);
+      font-size: clamp(2.25rem, 4.5vw, 3.5rem);
       font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
       color: var(--ink);
-    }
-
-    .hero-headline {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15em;
     }
 
     .hero-line {
       display: block;
-    }
-
-    .hero-line--cycle {
-      font-size: 0.85em;
-      color: var(--ink-soft);
     }
 
     .hero-keyword {
@@ -152,55 +188,81 @@
     }
 
     .hero-tagline {
-      margin-top: 2rem;
+      margin-top: 1.25rem;
       font-family: var(--sans);
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       font-weight: 500;
       color: var(--ink-muted);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       line-height: 1.5;
     }
 
-    .hero-sub {
-      margin-top: 2rem;
+    .hero-cta {
+      display: inline-block;
+      margin-top: 1rem;
       font-family: var(--sans);
-      font-size: 0.95rem;
-      font-weight: 400;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--ink-soft);
-      letter-spacing: 0.01em;
-      line-height: 1.65;
-      max-width: 36rem;
+      text-decoration: none;
+      transition: color 0.2s;
     }
 
-    /* ── Section ── */
-    section.site-band {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-    }
+    .hero-cta:hover { color: var(--clay); }
 
+    /* ── Section labels ── */
     .section-label {
       font-family: var(--sans);
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--ink-muted);
       font-weight: 600;
-      margin-bottom: 2.5rem;
+      margin-bottom: var(--space-label);
+    }
+
+    section.site-band {
+      padding-top: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
 
     /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 200px;
-      gap: 3rem;
-      align-items: start;
+    .about-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-photo-col {
+      flex: 0 0 auto;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--rule);
+    }
+
+    .about-caption {
+      margin-top: 0.5rem;
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-muted);
     }
 
     .about-text p {
-      font-size: 1rem;
-      line-height: 1.8;
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.75;
       color: var(--ink-soft);
       margin-bottom: 1.2em;
-      font-family: var(--sans);
     }
 
     .about-text p:last-child { margin-bottom: 0; }
@@ -210,58 +272,68 @@
       color: var(--ink);
     }
 
-    .about-photo {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      display: block;
-      border-radius: 16px;
+    @media (min-width: 768px) {
+      .about-flex {
+        flex-direction: row;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+
+      .about-photo-col {
+        flex: 0 0 40%;
+        max-width: 40%;
+      }
+
+      .about-text-col {
+        flex: 1;
+        min-width: 0;
+      }
     }
 
-    /* ── Resume / Links ── */
-    .links-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+    /* ── Connect ── */
+    .connect-list {
+      list-style: none;
+      border-top: 1px solid var(--rule);
     }
 
-    .link-card {
-      display: block;
-      background: var(--oat-mid);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
+    .connect-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.35rem 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
       text-decoration: none;
       color: var(--ink);
-      transition: background 0.2s, color 0.2s;
+      transition: color 0.2s;
     }
 
-    .link-card:hover {
-      background: var(--rule);
+    .connect-row:hover {
       color: var(--clay);
     }
 
-    .link-card-title {
+    .connect-row:hover .connect-desc {
+      color: var(--ink-muted);
+    }
+
+    .connect-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .connect-desc {
       font-family: var(--sans);
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      transition: color 0.2s;
     }
 
-    .link-card-desc {
-      font-family: var(--sans);
-      font-size: 0.85rem;
-      margin-top: 0.35rem;
-      color: var(--ink-soft);
-      display: block;
-      line-height: 1.5;
-    }
-
-    .link-card:hover .link-card-desc {
-      color: var(--ink-soft);
-    }
-
-    /* ── Portfolio (password-protected) ── */
+    /* ── Portfolio gate ── */
     #portfolio-gate {
       display: block;
     }
@@ -271,20 +343,19 @@
     }
 
     .gate-wrap {
-      max-width: 380px;
+      max-width: 28rem;
     }
 
     .gate-desc {
-      font-family: var(--sans);
-      font-size: 0.95rem;
+      font-family: var(--serif);
+      font-size: 1rem;
       color: var(--ink-soft);
       line-height: 1.7;
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
     }
 
     .gate-form {
       display: flex;
-      gap: 0;
       border: 1px solid var(--rule);
     }
 
@@ -310,9 +381,10 @@
       border: none;
       padding: 0.75rem 1.25rem;
       font-family: var(--sans);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--oat);
       cursor: pointer;
       transition: background 0.2s;
@@ -329,106 +401,105 @@
       display: none;
     }
 
-    /* ── Portfolio Cards (shown after unlock) ── */
-    .portfolio-grid {
+    /* ── Selected work (large cards) ── */
+    .work-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(200px, 280px));
-      gap: 1.25rem;
-      margin-top: 0.5rem;
-      justify-content: start;
-      align-items: start;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
 
-    .portfolio-card {
-      background: var(--oat-mid);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1.75rem 1.25rem;
-      max-width: 280px;
-      width: 100%;
-      min-height: 100%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s;
+    .work-card {
+      display: block;
       text-decoration: none;
-      text-align: center;
+      color: inherit;
     }
 
-    .portfolio-card:hover { background: var(--rule); }
-
-    .portfolio-card:focus-visible {
+    .work-card:focus-visible {
       outline: 2px solid var(--clay);
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
 
-    .card-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      width: 100%;
-    }
-
-    .card-icon-wrap {
-      width: 96px;
-      height: 96px;
+    .work-card-visual {
+      aspect-ratio: 1;
+      background: var(--oat-mid);
+      border: 1px solid var(--rule);
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
     }
 
-    .card-icon {
+    .work-card-visual img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
       display: block;
+      transition: transform 0.4s ease-out;
+    }
+
+    .work-card:hover .work-card-visual img {
+      transform: scale(1.02);
+    }
+
+    .work-card-visual--icon {
+      padding: 3rem;
+    }
+
+    .work-card-visual--icon .card-icon {
+      width: 100%;
+      max-width: 140px;
+      height: auto;
       color: var(--ink-muted);
     }
 
-    .card-title {
-      font-family: var(--sans);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--ink);
+    .work-card-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
       line-height: 1.35;
+      color: var(--ink);
+      margin-top: 1rem;
+      transition: color 0.2s;
     }
 
-    .card-meta {
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
+    .work-card:hover .work-card-title {
+      color: var(--clay);
+    }
+
+    .work-card-subtitle {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       color: var(--ink-muted);
-      margin-top: 0;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 700px) {
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 2.5rem;
+      }
+
+      .work-card:nth-child(2) {
+        margin-top: 3rem;
+      }
     }
 
     /* ── Footer ── */
     footer.site-band {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
+      padding-top: var(--space-block);
+      padding-bottom: var(--space-block);
     }
 
     .footer-copy {
       font-family: var(--sans);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--ink-muted);
     }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-family: var(--sans);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      color: var(--ink-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--clay); }
 
     /* ── Desktop ── */
     @media (min-width: 900px) {
@@ -436,50 +507,26 @@
         padding-left: clamp(1.5rem, 4vw, 3rem);
         padding-right: clamp(1.5rem, 4vw, 3rem);
       }
+    }
 
-      .hero.site-band {
-        padding-top: 7rem;
-      }
-
-      .hero-line--cycle {
-        white-space: nowrap;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr 220px;
-        gap: 4rem;
+    @media (max-width: 699px) {
+      .work-card:nth-child(2) {
+        margin-top: 0;
       }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 600px) {
-      .about-grid {
-        grid-template-columns: 1fr;
+      nav { gap: 1rem; }
+
+      .section-inner--header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
       }
 
-      .about-photo {
-        order: -1;
-        aspect-ratio: 1/1;
-        max-width: 160px;
+      .about-photo-col {
+        max-width: 12rem;
       }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-        justify-content: center;
-        justify-items: center;
-      }
-
-      .portfolio-card {
-        max-width: 100%;
-      }
-
-      .links-grid {
-        grid-template-columns: 1fr;
-      }
-
-      nav { gap: 1.2rem; }
-
-      .section-inner--header { flex-direction: column; gap: 1rem; align-items: flex-start; }
     }
   </style>
 </head>
@@ -487,104 +534,96 @@
 
   <div class="site-frame">
 
-  <!-- Header -->
   <header class="site-band site-band--header">
     <div class="section-inner section-inner--header">
       <a href="#" class="site-name">bess myers · content designer</a>
       <nav>
         <a href="#about">about</a>
-        <a href="#resume">resume</a>
-        <a href="#portfolio">portfolio</a>
+        <a href="#connect">connect</a>
+        <a href="#portfolio">work</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <div class="hero site-band">
+  <div class="hero site-band reveal">
     <div class="section-inner">
       <h1 class="hero-headline">
-        <span class="hero-line hero-line--lead">Hi, I'm Bess, and I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.</span>
+        <span class="hero-line">Hi, I'm Bess, and I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.</span>
       </h1>
       <p class="hero-tagline">maker-minded · systems-oriented · constantly curious</p>
+      <a class="hero-cta" href="#about">Read about →</a>
     </div>
   </div>
 
-  <!-- About -->
-  <section id="about" class="site-band">
-    <div class="section-inner section-inner--wide">
-      <p class="section-label">About</p>
-      <div class="about-grid">
-      <div class="about-text">
-        <p>
-        As a content designer based in San Francisco, I bring 10+ years of experience in academic research and teaching to my design practice.
-        </p>
-        <p>
-          Most recently I was a content designer at <strong>Meta on the Facebook Profile team</strong>, defining the content strategy for how Facebook introduces <strong>3B+ people</strong> to each other.
-        </p>
-        <p>
-          Off the clock you can find me in ballet class, hiking Bay Area trails, or knitting under the watchful eye of my cat, Ezra.
-        </p>
-      </div>
-
-      <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" />
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume / Links -->
-  <section id="resume" class="site-band">
+  <section id="about" class="site-band reveal">
     <div class="section-inner">
-      <p class="section-label">Links</p>
-      <div class="links-grid">
-
-        <a class="link-card" href="/resume.pdf" target="_blank" rel="noopener">
-          <span class="link-card-title">Resume</span>
-        </a>
-
-        <a class="link-card" href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">
-          <span class="link-card-title">LinkedIn</span>
-        </a>
-
-        <a class="link-card" href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">
-          <span class="link-card-title">Essays</span>
-        </a>
-
-        <a class="link-card" href="mailto:bessrhmyers@gmail.com">
-          <span class="link-card-title">Email</span>
-        </a>
-
+      <p class="section-label">About</p>
+      <div class="about-flex">
+        <div class="about-photo-col">
+          <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" width="400" height="400" />
+          <p class="about-caption">San Francisco · content designer</p>
+        </div>
+        <div class="about-text-col about-text">
+          <p>
+            As a content designer based in San Francisco, I bring 10+ years of experience in academic research and teaching to my design practice.
+          </p>
+          <p>
+            Most recently I was a content designer at <strong>Meta on the Facebook Profile team</strong>, defining the content strategy for how Facebook introduces <strong>3B+ people</strong> to each other.
+          </p>
+          <p>
+            Off the clock you can find me in ballet class, hiking Bay Area trails, or knitting under the watchful eye of my cat, Ezra.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio (password-gated) -->
-  <section id="portfolio" class="site-band">
-    <div class="section-inner section-inner--wide">
-      <p class="section-label">Portfolio</p>
+  <section id="connect" class="site-band reveal">
+    <div class="section-inner">
+      <p class="section-label">Connect</p>
+      <div class="connect-list">
+        <a class="connect-row" href="/resume.pdf" target="_blank" rel="noopener">
+          <span class="connect-title">Resume</span>
+          <span class="connect-desc">PDF</span>
+        </a>
+        <a class="connect-row" href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">
+          <span class="connect-title">LinkedIn</span>
+          <span class="connect-desc">Professional profile</span>
+        </a>
+        <a class="connect-row" href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">
+          <span class="connect-title">Essays</span>
+          <span class="connect-desc">Writing on Medium</span>
+        </a>
+        <a class="connect-row" href="mailto:bessrhmyers@gmail.com">
+          <span class="connect-title">Email</span>
+          <span class="connect-desc">Say hello</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <!-- Gate -->
+  <section id="portfolio" class="site-band reveal">
+    <div class="section-inner">
+      <p class="section-label">Selected work</p>
+
       <div id="portfolio-gate">
         <div class="gate-wrap">
           <p class="gate-desc">
-            Selected work available with a password.<br />
-            Reach out if you'd like access.
+            Selected work is available with a password. Reach out if you'd like access.
           </p>
           <div class="gate-form">
             <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off" />
-            <button onclick="checkPassword()">Enter</button>
+            <button type="button" onclick="checkPassword()">Enter</button>
           </div>
           <p class="gate-error" id="gate-error">Incorrect password</p>
         </div>
       </div>
 
-      <!-- Portfolio content (revealed on correct password) -->
       <div id="portfolio-content">
-        <div class="portfolio-grid">
+        <div class="work-grid">
 
-        <a class="portfolio-card" href="work/ai-auditing.html">
-          <div class="card-inner">
-            <div class="card-icon-wrap" aria-hidden="true">
+          <a class="work-card" href="work/ai-auditing.html">
+            <div class="work-card-visual work-card-visual--icon" aria-hidden="true">
               <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <path d="M28 10L42 34H14L28 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
                 <path d="M28 20L46 40H10L28 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
@@ -592,37 +631,26 @@
                 <line x1="28" y1="48" x2="28" y2="50" stroke="var(--clay)" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <span class="card-title">Creating a content design audit agent</span>
-          </div>
-        </a>
+            <h2 class="work-card-title">Creating a content design audit agent</h2>
+            <p class="work-card-subtitle">Content design · AI workflow</p>
+          </a>
 
-        <a class="portfolio-card" href="work/locked-profiles.html">
-          <div class="card-inner">
-            <div class="card-icon-wrap" aria-hidden="true">
-              <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                <circle cx="28" cy="28" r="25" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="28" cy="22" r="7" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M13 42c0-7.2 6.7-12 15-12s15 4.8 15 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
+          <a class="work-card" href="work/locked-profiles.html">
+            <div class="work-card-visual">
+              <img src="images/portfolio/locked-profiles/04-intro-promode.png" alt="" width="600" height="600" loading="lazy" />
             </div>
-            <span class="card-title">Deprecating 100M+ locked, publicly followable profiles</span>
-          </div>
-        </a>
+            <h2 class="work-card-title">Deprecating 100M+ locked, publicly followable profiles</h2>
+            <p class="work-card-subtitle">Content design · Meta · Profile</p>
+          </a>
 
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="site-band site-band--footer">
     <div class="section-inner section-inner--header">
       <span class="footer-copy">© 2025 bess myers</span>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">linkedin</a>
-        <a href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">medium</a>
-        <a href="mailto:bessrhmyers@gmail.com">email</a>
-      </div>
     </div>
   </footer>
 
@@ -639,7 +667,6 @@
       document.getElementById('portfolio-gate').style.display = 'none';
       document.getElementById('portfolio-content').style.display = 'block';
       error.style.display = 'none';
-      // Remember unlock in session
       sessionStorage.setItem('portfolio_unlocked', 'true');
     } else {
       error.style.display = 'block';
@@ -647,16 +674,43 @@
     }
   }
 
-  // Allow Enter key to submit password
   document.getElementById('pw-input').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkPassword();
   });
 
-  // Restore session if already unlocked
   if (sessionStorage.getItem('portfolio_unlocked') === 'true') {
     document.getElementById('portfolio-gate').style.display = 'none';
     document.getElementById('portfolio-content').style.display = 'block';
   }
+
+  (function initReveal() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hero = document.querySelector('.hero.reveal');
+    if (hero && !prefersReduced) {
+      requestAnimationFrame(function() {
+        hero.classList.add('is-visible');
+      });
+    } else if (hero) {
+      hero.classList.add('is-visible');
+    }
+
+    const blocks = document.querySelectorAll('.site-band.reveal:not(.hero)');
+    if (prefersReduced) {
+      blocks.forEach(function(el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+
+    blocks.forEach(function(el) { observer.observe(el); });
+  })();
 </script>
 
 </body>

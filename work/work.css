@@ -9,8 +9,8 @@
   --clay: #B5734A;
   --rule: #E5DFD4;
   --serif: 'Newsreader', Georgia, serif;
-  --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
-  --radius: 16px;
+  --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+  --radius: 0;
 }
 
 html { scroll-behavior: smooth; }
