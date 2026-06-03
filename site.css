@@ -308,10 +308,9 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .about-text p {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  font-weight: 500;
-  line-height: 1.65;
-  letter-spacing: -0.01em;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.75;
   color: var(--ink-soft);
   margin-bottom: 1.2em;
 }
@@ -362,11 +361,10 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .gate-desc {
   font-family: var(--sans);
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--ink-soft);
-  line-height: 1.65;
+  line-height: 1.7;
   margin-bottom: 1.25rem;
 }
 
