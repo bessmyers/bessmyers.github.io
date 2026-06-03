@@ -1,0 +1,18 @@
+:root {
+  --bg: #FFFFFF;
+  --bg-tint: #F7F7F5;
+  --ink: #1C1B18;
+  --ink-soft: #4A4740;
+  --ink-muted: #8A857A;
+  --clay: #B5734A;
+  --accent-cool: #3D6B8E;
+  --rule: #E8E6E1;
+  --spruce-tint: #E8F0E6;
+  --display-serif: 'Bodoni Moda', 'Libre Bodoni', Georgia, serif;
+  --sans: 'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --space-hero-top: clamp(3rem, 8vw, 5rem);
+  --space-block: clamp(2.5rem, 5vw, 4rem);
+  --space-label: 0.75rem;
+  --content-max: 68rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
