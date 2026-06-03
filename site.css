@@ -2,7 +2,10 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
 
 body {
   background: var(--bg);
@@ -128,51 +131,62 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   width: 100%;
 }
 
-/* Full-viewport landing (connormurphy.design–style) */
-.landing-page {
+/* Single-page layout */
+.single-page {
   overflow-x: hidden;
 }
 
-.landing-page .site-shell {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+.single-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
 }
 
-.landing-page .site-band--header {
-  flex-shrink: 0;
+.single-page .site-band + .site-band,
+.single-page .site-header + .site-band {
+  padding-top: var(--space-block);
 }
 
-.landing-main {
-  flex: 1;
+.single-page .landing-section {
+  min-height: calc(100svh - 4.5rem);
   display: flex;
   align-items: center;
-  min-height: 0;
+  padding-top: 0;
   padding-bottom: clamp(1.5rem, 6vh, 4rem);
 }
 
-.landing-inner {
+.single-page .landing-section.site-band + .site-band,
+.single-page .site-header + .landing-section {
+  padding-top: 0;
+}
+
+.single-page .landing-inner {
   width: 100%;
 }
 
-.landing-page .hero-headline--landing {
+.single-page .hero-headline--landing {
   font-size: clamp(2rem, 6.8vw, 7.5rem);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 0.98;
   letter-spacing: -0.04em;
   max-width: none;
 }
 
+.single-page .page-section {
+  scroll-margin-top: 5rem;
+}
+
+.single-page .page-section .section-label:first-child {
+  margin-top: 0;
+}
+
 @media (max-width: 600px) {
-  .landing-page .hero-headline--landing {
+  .single-page .hero-headline--landing {
     font-size: clamp(1.65rem, 9vw, 2.75rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
   }
-}
-
-.about-page .hero.site-band {
-  padding-top: clamp(2rem, 5vw, 3rem);
 }
 
 .reveal {

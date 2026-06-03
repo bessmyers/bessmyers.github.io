@@ -12,7 +12,7 @@
 
     guardCaseStudy: function () {
       if (!this.isUnlocked()) {
-        var target = '../work.html';
+        var target = '../index.html#work';
         window.location.replace(target);
       }
     },

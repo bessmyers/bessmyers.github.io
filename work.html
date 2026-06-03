@@ -2,118 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work — bess myers</title>
-  <meta name="description" content="Portfolio work by Bess Myers, content designer." />
-
+  <meta http-equiv="refresh" content="0; url=index.html#work" />
+  <link rel="canonical" href="index.html#work" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="site.css" />
+  <title>Redirecting…</title>
+  <script>window.location.replace('index.html#work');</script>
 </head>
-<body class="work-page">
-
-  <div class="site-frame site-main is-ready">
-
-    <header class="site-band site-band--header">
-      <div class="section-inner section-inner--header">
-        <a href="index.html" class="site-name">bess myers · content designer</a>
-        <nav>
-          <a href="work.html" aria-current="page">Work</a>
-          <a href="about.html">About</a>
-          <a href="connect.html">Connect</a>
-        </nav>
-      </div>
-    </header>
-
-    <section id="work" class="site-band portfolio-section">
-      <div class="section-inner">
-        <p class="section-label">Work</p>
-
-        <div class="portfolio-wrap">
-          <div id="portfolio-gate">
-            <p class="gate-desc">
-              Work is available with a password. Reach out if you'd like access.
-            </p>
-            <div class="gate-form">
-              <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off" />
-              <button type="button" onclick="checkPassword()">Enter</button>
-            </div>
-            <p class="gate-error" id="gate-error">Incorrect password</p>
-          </div>
-
-          <div id="portfolio-content" hidden>
-            <div class="work-index-head" aria-hidden="true">
-              <span class="work-index-head-cell work-index-head-cell--title">Project</span>
-              <span class="work-index-head-cell">Category</span>
-              <span class="work-index-head-cell work-index-head-cell--year">Year</span>
-            </div>
-            <ul class="work-index" role="list">
-              <li class="work-index-item">
-                <a class="work-row" href="work/locked-profiles.html">
-                  <span class="work-row-title">Locked profiles deprecation</span>
-                  <span class="work-row-category">Content design · Meta</span>
-                  <time class="work-row-year" datetime="2025">2025</time>
-                </a>
-              </li>
-              <li class="work-index-item">
-                <a class="work-row" href="work/ai-auditing.html">
-                  <span class="work-row-title">Spruce · AI audit agent</span>
-                  <span class="work-row-category">Tools · AI · Meta</span>
-                  <time class="work-row-year" datetime="2026">2026</time>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-band site-band--footer">
-      <div class="section-inner">
-        <p class="footer-copy">© 2025 bess myers</p>
-      </div>
-    </footer>
-
-  </div>
-
-  <script src="portfolio.js"></script>
-  <script>
-    (function () {
-      var portfolioContent = document.getElementById('portfolio-content');
-      var portfolioGate = document.getElementById('portfolio-gate');
-
-      function unlockPortfolio() {
-        portfolioGate.classList.add('is-hidden');
-        portfolioContent.hidden = false;
-        PortfolioGate.unlock();
-      }
-
-      function checkPassword() {
-        var input = document.getElementById('pw-input').value;
-        var error = document.getElementById('gate-error');
-
-        if (PortfolioGate.checkPassword(input)) {
-          unlockPortfolio();
-          error.style.display = 'none';
-        } else {
-          error.style.display = 'block';
-          document.getElementById('pw-input').value = '';
-        }
-      }
-
-      window.checkPassword = checkPassword;
-
-      document.getElementById('pw-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') checkPassword();
-      });
-
-      portfolioContent.hidden = true;
-      portfolioGate.classList.remove('is-hidden');
-
-      if (PortfolioGate.isUnlocked()) {
-        unlockPortfolio();
-      }
-    })();
-  </script>
-
+<body>
+  <p><a href="index.html#work">Continue to work</a></p>
 </body>
 </html>
