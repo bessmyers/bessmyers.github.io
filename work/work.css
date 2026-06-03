@@ -146,6 +146,14 @@ body {
   letter-spacing: 0.04em;
 }
 
+.case-stats--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.case-results-list {
+  margin-top: 1.5rem;
+}
+
 .proto-teaser {
   padding: 4rem 0 2rem;
   border-bottom: 1px solid var(--rule);
