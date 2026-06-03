@@ -7,9 +7,10 @@
   --ink-soft: #4A4740;
   --ink-muted: #8A857A;
   --clay: #B5734A;
+  --accent-cool: #3D6B8E;
   --rule: #E5DFD4;
   --serif: 'Newsreader', Georgia, serif;
-  --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+  --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
   --radius: 0;
 }
 
@@ -62,7 +63,7 @@ body {
 }
 
 .case-title {
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 500;
   line-height: 1.15;

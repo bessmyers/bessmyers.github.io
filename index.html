@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,9 +20,14 @@
       --ink-soft: #4A4740;
       --ink-muted: #8A857A;
       --clay: #B5734A;
+      --accent-cool: #3D6B8E;
       --rule: #E5DFD4;
+      --card-spruce-bg: #E8F0E6;
+      --card-profile-bg: #E8EEF4;
+      --card-icon-green: #6B8F5E;
+      --card-icon-blue: #7A9BB8;
       --serif: 'Newsreader', Georgia, serif;
-      --sans: 'DM Sans', Helvetica, Arial, sans-serif;
+      --sans: 'Source Sans 3', Helvetica, Arial, sans-serif;
       --space-hero-top: clamp(5rem, 10vw, 7rem);
       --space-block: clamp(2rem, 4vw, 3rem);
       --space-label: 0.75rem;
@@ -146,7 +151,7 @@
       font-family: var(--sans);
       font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--ink-soft);
       text-decoration: none;
@@ -180,31 +185,37 @@
       color: var(--ink);
     }
 
+    .hero-keyword--cool {
+      color: var(--accent-cool);
+    }
+
     .hero-create {
       font-style: italic;
       font-weight: 300;
+      font-size: 1.05em;
       color: var(--clay);
     }
 
     .hero-tagline {
       margin-top: 1.25rem;
       font-family: var(--sans);
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 0.85rem;
+      font-weight: 400;
+      font-style: italic;
       color: var(--ink-muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      text-transform: none;
       line-height: 1.5;
     }
 
     /* ── Section labels ── */
     .section-label {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      text-transform: none;
       color: var(--ink-muted);
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: var(--space-label);
     }
 
@@ -288,7 +299,11 @@
     }
 
     .connect-row:hover {
-      color: var(--clay);
+      color: var(--accent-cool);
+    }
+
+    .connect-row:hover .connect-title {
+      color: var(--accent-cool);
     }
 
     .connect-row:hover .connect-desc {
@@ -405,6 +420,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.3s ease-out;
     }
 
     .work-card-visual--icon {
@@ -413,11 +429,19 @@
     }
 
     .work-card-visual--spruce {
-      background: #E8F0E6;
+      background: var(--card-spruce-bg);
     }
 
     .work-card-visual--profile {
-      background: #E8EEF4;
+      background: var(--card-profile-bg);
+    }
+
+    .work-card:hover .work-card-visual--spruce {
+      background: #DCE8D9;
+    }
+
+    .work-card:hover .work-card-visual--profile {
+      background: #D8E4EF;
     }
 
     .work-card-visual--icon .card-icon {
@@ -432,7 +456,7 @@
     }
 
     .work-card-title {
-      font-family: var(--sans);
+      font-family: var(--serif);
       font-size: 1.2rem;
       font-weight: 500;
       line-height: 1.35;
@@ -443,16 +467,6 @@
 
     .work-card:hover .work-card-title {
       color: var(--clay);
-    }
-
-    .work-card-subtitle {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--ink-muted);
-      margin-top: 0.35rem;
-      line-height: 1.5;
     }
 
     @media (min-width: 700px) {
@@ -471,7 +485,7 @@
     .footer-copy {
       font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--ink-muted);
     }
@@ -517,7 +531,7 @@
   <div class="hero site-band reveal">
     <div class="section-inner">
       <h1 class="hero-headline">
-        <span class="hero-line">Hi, I'm Bess, and I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.</span>
+        <span class="hero-line">Hi, I'm Bess, and I use <strong class="hero-keyword hero-keyword--cool">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.</span>
       </h1>
       <p class="hero-tagline">maker-minded · systems-oriented · constantly curious</p>
     </div>
@@ -592,34 +606,32 @@
           <a class="work-card" href="work/ai-auditing.html">
             <div class="work-card-visual work-card-visual--icon work-card-visual--spruce" aria-hidden="true">
               <svg class="card-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="44" y="78" width="32" height="14" rx="7" fill="#5C7A52"/>
-                <path d="M60 22C60 22 38 48 38 68C38 74 44 78 60 78C76 78 82 74 82 68C82 48 60 22 60 22Z" fill="#6B8F5E"/>
-                <path d="M60 34C60 34 46 52 46 64C46 68 50 72 60 72C70 72 74 68 74 64C74 52 60 34 60 34Z" fill="#8AAF7A"/>
-                <circle cx="60" cy="18" r="6" fill="#B5734A"/>
-                <circle cx="88" cy="32" r="5" fill="#B5734A" opacity="0.85"/>
-                <circle cx="32" cy="40" r="4" fill="#B5734A" opacity="0.7"/>
-                <rect x="78" y="48" width="22" height="16" rx="8" fill="#4A4740" opacity="0.12"/>
-                <circle cx="89" cy="56" r="3" fill="#B5734A"/>
-                <path d="M84 52h10M89 47v10" stroke="#B5734A" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                <rect x="52" y="82" width="16" height="14" rx="4" fill="#5C7A52"/>
+                <path d="M60 26C60 26 42 50 42 68C42 74 48 78 60 78C72 78 78 74 78 68C78 50 60 26 60 26Z" fill="#6B8F5E"/>
+                <path d="M60 38C60 38 50 52 50 64C50 68 54 72 60 72C66 72 70 68 70 64C70 52 60 38 60 38Z" fill="#8AAF7A"/>
+                <circle cx="36" cy="38" r="5" fill="#B5734A" opacity="0.75"/>
+                <rect x="74" y="50" width="24" height="18" rx="6" fill="#1C1B18" opacity="0.08"/>
+                <circle cx="86" cy="59" r="3.5" fill="#3D6B8E"/>
+                <path d="M82 55h8M86 51v8" stroke="#3D6B8E" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
               </svg>
             </div>
             <h2 class="work-card-title">Creating a content design audit agent</h2>
-            <p class="work-card-subtitle">Content design · AI workflow</p>
           </a>
 
           <a class="work-card" href="work/locked-profiles.html">
             <div class="work-card-visual work-card-visual--icon work-card-visual--profile" aria-hidden="true">
               <svg class="card-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="28" y="24" width="64" height="72" rx="20" fill="#C5D4E8"/>
-                <circle cx="60" cy="48" r="16" fill="#7A9BB8"/>
-                <path d="M36 88C36 72 48 64 60 64C72 64 84 72 84 88" fill="#7A9BB8"/>
-                <rect x="72" y="68" width="28" height="22" rx="11" fill="#B5734A" opacity="0.9"/>
-                <path d="M80 79h12v6a6 6 0 0 1-12 0v-6Z" fill="#FBF9F5"/>
-                <path d="M86 79v-4a2 2 0 0 1 4 0v4" stroke="#FBF9F5" stroke-width="2.5" stroke-linecap="round"/>
+                <rect x="34" y="16" width="52" height="88" rx="10" fill="#FFFFFF" stroke="#7A9BB8" stroke-width="2"/>
+                <rect x="52" y="94" width="16" height="4" rx="2" fill="#C5D4E8"/>
+                <rect x="38" y="22" width="44" height="14" rx="7" fill="#3D6B8E" opacity="0.12"/>
+                <circle cx="46" cy="29" r="3.5" fill="#3D6B8E"/>
+                <rect x="54" y="27" width="22" height="4" rx="2" fill="#3D6B8E" opacity="0.55"/>
+                <circle cx="60" cy="50" r="12" fill="#7A9BB8"/>
+                <rect x="44" y="68" width="32" height="5" rx="2.5" fill="#C5D4E8"/>
+                <rect x="48" y="78" width="24" height="4" rx="2" fill="#C5D4E8" opacity="0.7"/>
               </svg>
             </div>
             <h2 class="work-card-title">Deprecating 100M+ locked, publicly followable profiles</h2>
-            <p class="work-card-subtitle">Content design · Meta · Profile</p>
           </a>
 
         </div>
