@@ -128,8 +128,51 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   width: 100%;
 }
 
-.home-page .hero.site-band {
-  padding-top: clamp(2.5rem, 6vw, 4rem);
+/* Full-viewport landing (connormurphy.design–style) */
+.landing-page {
+  overflow-x: hidden;
+}
+
+.landing-page .site-shell {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-page .site-band--header {
+  flex-shrink: 0;
+}
+
+.landing-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 0;
+  padding-bottom: clamp(1.5rem, 6vh, 4rem);
+}
+
+.landing-inner {
+  width: 100%;
+}
+
+.landing-page .hero-headline--landing {
+  font-size: clamp(2rem, 6.8vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  max-width: none;
+}
+
+@media (max-width: 600px) {
+  .landing-page .hero-headline--landing {
+    font-size: clamp(1.65rem, 9vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+}
+
+.about-page .hero.site-band {
+  padding-top: clamp(2rem, 5vw, 3rem);
 }
 
 .reveal {
