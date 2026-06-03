@@ -125,9 +125,24 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   max-width: 14em;
 }
 
+/* Landing hero — Cormorant Garamond (~Fishtown / Recoleta editorial italic) */
+.landing-page .hero-headline {
+  font-family: var(--display-hero);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3rem, 8.5vw, 5.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 13em;
+}
+
 .hero-keyword {
   font-weight: 600;
   color: var(--ink);
+}
+
+.landing-page .hero-keyword {
+  font-weight: 600;
 }
 
 .hero-create {
@@ -135,6 +150,10 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   font-weight: 300;
   font-size: 1.05em;
   color: var(--clay);
+}
+
+.landing-page .hero-create {
+  font-weight: 600;
 }
 
 .hero-tagline {
@@ -146,7 +165,8 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 /* About / Connect pages */
 .about-page .hero.site-band,
-.connect-page .hero.site-band { padding-top: clamp(2rem, 5vw, 3rem); }
+.connect-page .hero.site-band,
+.work-page .portfolio-section { padding-top: clamp(2rem, 5vw, 3rem); }
 
 .connect-list {
   list-style: none;

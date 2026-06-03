@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — bess myers</title>
+  <meta name="description" content="Portfolio work by Bess Myers, content designer." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body class="work-page">
+
+  <div class="site-frame site-main is-ready">
+
+    <header class="site-band site-band--header">
+      <div class="section-inner section-inner--header">
+        <a href="index.html" class="site-name">bess myers · content designer</a>
+        <nav>
+          <a href="work.html" aria-current="page">Work</a>
+          <a href="about.html">About</a>
+          <a href="connect.html">Connect</a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="work" class="site-band portfolio-section">
+      <div class="section-inner">
+        <p class="section-label">Work</p>
+
+        <div class="portfolio-wrap">
+          <div id="portfolio-gate">
+            <p class="gate-desc">
+              Work is available with a password. Reach out if you'd like access.
+            </p>
+            <div class="gate-form">
+              <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off" />
+              <button type="button" onclick="checkPassword()">Enter</button>
+            </div>
+            <p class="gate-error" id="gate-error">Incorrect password</p>
+          </div>
+
+          <div id="portfolio-content" class="work-grid" hidden>
+            <a class="work-card" href="work/locked-profiles.html">
+              <div class="work-card-visual">
+                <img
+                  src="images/portfolio/locked-profiles/01-locked-profile-notif.png"
+                  alt="Locked profile notification screen on mobile"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                />
+              </div>
+              <h2 class="work-card-title">Deprecating 100M+ locked, publicly followable profiles</h2>
+              <span class="work-card-cta">View case study →</span>
+            </a>
+
+            <a class="work-card" href="work/ai-auditing.html">
+              <div class="work-card-visual work-card-visual--spruce">
+                <span class="work-card-placeholder">Spruce · AI content audit agent</span>
+              </div>
+              <h2 class="work-card-title">Creating a content design audit agent</h2>
+              <span class="work-card-cta">View case study →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-band site-band--footer">
+      <div class="section-inner">
+        <p class="footer-copy">© 2025 bess myers</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="portfolio.js"></script>
+  <script>
+    (function () {
+      var portfolioContent = document.getElementById('portfolio-content');
+      var portfolioGate = document.getElementById('portfolio-gate');
+
+      function unlockPortfolio() {
+        portfolioGate.classList.add('is-hidden');
+        portfolioContent.hidden = false;
+        PortfolioGate.unlock();
+      }
+
+      function checkPassword() {
+        var input = document.getElementById('pw-input').value;
+        var error = document.getElementById('gate-error');
+
+        if (PortfolioGate.checkPassword(input)) {
+          unlockPortfolio();
+          error.style.display = 'none';
+        } else {
+          error.style.display = 'block';
+          document.getElementById('pw-input').value = '';
+        }
+      }
+
+      window.checkPassword = checkPassword;
+
+      document.getElementById('pw-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') checkPassword();
+      });
+
+      portfolioContent.hidden = true;
+      portfolioGate.classList.remove('is-hidden');
+
+      if (PortfolioGate.isUnlocked()) {
+        unlockPortfolio();
+      }
+    })();
+  </script>
+
+</body>
+</html>

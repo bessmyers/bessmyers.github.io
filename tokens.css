@@ -9,6 +9,7 @@
   --rule: #E8E6E1;
   --spruce-tint: #E8F0E6;
   --display-serif: 'Bodoni Moda', 'Libre Bodoni', Georgia, serif;
+  --display-hero: 'Cormorant Garamond', 'Fraunces', Georgia, serif;
   --sans: 'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --space-hero-top: clamp(3rem, 8vw, 5rem);
   --space-block: clamp(2.5rem, 5vw, 4rem);
