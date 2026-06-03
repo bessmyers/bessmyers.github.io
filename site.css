@@ -116,55 +116,82 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .hero-headline {
-  font-family: var(--display-serif);
-  font-size: clamp(2.75rem, 7vw, 4.75rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+  font-family: var(--sans);
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  max-width: 14em;
+  max-width: 16em;
 }
 
-/* Landing hero — Cormorant Garamond (~Fishtown / Recoleta editorial italic) */
-.landing-page .hero-headline {
-  font-family: var(--display-hero);
+.home-page .hero.site-band {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.hero-headline .hero-keyword {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: default;
+  transition:
+    color 0.25s var(--ease-out),
+    font-family 0.25s var(--ease-out),
+    text-shadow 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.hero-headline .hero-keyword:hover,
+.hero-headline .hero-keyword:focus,
+.hero-headline .hero-keyword:focus-visible {
+  font-family: var(--display-serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(3rem, 8.5vw, 5.5rem);
-  line-height: 1.06;
-  letter-spacing: -0.02em;
-  max-width: 13em;
-}
-
-.hero-keyword {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.landing-page .hero-keyword {
-  font-weight: 600;
+  color: var(--clay);
+  text-shadow:
+    1px 1px 0 var(--ink-muted),
+    2px 2px 0 rgba(28, 27, 24, 0.12);
+  transform: translate(-1px, -1px);
 }
 
 .hero-create {
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.05em;
+  font-weight: 600;
   color: var(--clay);
 }
 
-.landing-page .hero-create {
-  font-weight: 600;
+@media (prefers-reduced-motion: reduce) {
+  .hero-headline .hero-keyword {
+    transition: color 0.2s, font-family 0.2s;
+  }
+
+  .hero-headline .hero-keyword:hover,
+  .hero-headline .hero-keyword:focus,
+  .hero-headline .hero-keyword:focus-visible {
+    transform: none;
+    text-shadow: none;
+  }
 }
 
-.hero-tagline {
-  margin-top: 1.25rem;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.02em;
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* About / Connect pages */
-.about-page .hero.site-band,
 .connect-page .hero.site-band,
 .work-page .portfolio-section { padding-top: clamp(2rem, 5vw, 3rem); }
 
@@ -348,91 +375,121 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   display: none;
 }
 
-/* Work cards */
-.work-grid {
+/* Work index */
+.work-index-head,
+.work-row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 1rem 2rem;
+  column-gap: clamp(1rem, 4vw, 2.5rem);
 }
 
-.work-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
+.work-index-head {
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
 }
 
-.work-card:focus-visible {
-  outline: 2px solid var(--clay);
-  outline-offset: 4px;
-}
-
-.work-card-visual {
-  aspect-ratio: 1;
-  background: var(--bg-tint);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.work-card-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  transition: transform 0.4s var(--ease-out);
-}
-
-.work-card:hover .work-card-visual img {
-  transform: scale(1.03);
-}
-
-.work-card-visual--spruce {
-  background: var(--spruce-tint);
-}
-
-.work-card-placeholder {
-  font-size: 0.72rem;
+.work-index-head-cell {
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-muted);
-  padding: 2rem;
-  text-align: center;
 }
 
-.work-card-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.4;
+.work-index-head-cell--year,
+.work-row-year {
+  text-align: right;
+  min-width: 3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-index {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.work-index-item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-row {
+  padding: clamp(1rem, 3vw, 1.35rem) 0;
+  text-decoration: none;
   color: var(--ink);
-  margin-top: 1rem;
-  transition: color 0.2s;
+  transition: background 0.18s var(--ease-out), color 0.18s var(--ease-out);
 }
 
-.work-card:hover .work-card-title,
-.work-card:hover .work-card-cta { color: var(--clay); }
+.work-row:hover,
+.work-row:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+}
 
-.work-card-cta {
-  display: inline-block;
-  margin-top: 0.5rem;
+.work-row:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+}
+
+.work-row-title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.work-row-category {
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  transition: color 0.2s;
+  color: var(--ink-muted);
+  white-space: nowrap;
 }
 
-@media (min-width: 700px) {
-  .work-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 2.5rem;
+.work-row:hover .work-row-category,
+.work-row:focus-visible .work-row-category,
+.work-row:hover .work-row-year,
+.work-row:focus-visible .work-row-year {
+  color: inherit;
+}
+
+.work-row-year {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-row {
+    transition: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .work-index-head {
+    display: none;
+  }
+
+  .work-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .work-row-title {
+    grid-column: 1 / -1;
+  }
+
+  .work-row-category {
+    grid-column: 1;
+  }
+
+  .work-row-year {
+    grid-column: 2;
+    text-align: right;
   }
 }
 
