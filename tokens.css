@@ -10,6 +10,7 @@
   --spruce-tint: #E8F0E6;
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --sans-header: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --display-serif: 'Cormorant Garamond', Georgia, serif;
   --space-hero-top: clamp(3rem, 8vw, 5rem);
   --space-block: clamp(2.5rem, 5vw, 4rem);
   --space-label: 0.75rem;
