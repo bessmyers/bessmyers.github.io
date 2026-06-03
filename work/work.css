@@ -62,9 +62,9 @@ body {
 }
 
 .case-title {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(2rem, 5vw, 2.75rem);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.01em;
   max-width: 600px;
@@ -133,7 +133,7 @@ body {
 }
 
 .case-stat-value {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 2rem;
   color: var(--clay);
   line-height: 1.1;

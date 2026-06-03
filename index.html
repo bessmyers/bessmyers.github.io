@@ -121,8 +121,7 @@
         animation: none;
       }
 
-      .work-card-visual img,
-      .work-card:hover .work-card-visual img {
+      .work-card:hover .work-card-visual--icon .card-icon {
         transform: none;
       }
     }
@@ -198,21 +197,6 @@
       line-height: 1.5;
     }
 
-    .hero-cta {
-      display: inline-block;
-      margin-top: 1rem;
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .hero-cta:hover { color: var(--clay); }
-
     /* ── Section labels ── */
     .section-label {
       font-family: var(--sans);
@@ -243,22 +227,16 @@
 
     .about-photo {
       width: 100%;
-      aspect-ratio: 1;
+      aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: center 18%;
       display: block;
       border: 1px solid var(--rule);
-    }
-
-    .about-caption {
-      margin-top: 0.5rem;
-      font-family: var(--serif);
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--ink-muted);
+      border-radius: 12px;
     }
 
     .about-text p {
-      font-family: var(--serif);
+      font-family: var(--sans);
       font-size: 1.05rem;
       line-height: 1.75;
       color: var(--ink-soft);
@@ -318,9 +296,9 @@
     }
 
     .connect-title {
-      font-family: var(--serif);
+      font-family: var(--sans);
       font-size: 1.15rem;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.3;
     }
 
@@ -347,7 +325,7 @@
     }
 
     .gate-desc {
-      font-family: var(--serif);
+      font-family: var(--sans);
       font-size: 1rem;
       color: var(--ink-soft);
       line-height: 1.7;
@@ -401,7 +379,7 @@
       display: none;
     }
 
-    /* ── Selected work (large cards) ── */
+    /* ── Work (large cards) ── */
     .work-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -429,31 +407,32 @@
       justify-content: center;
     }
 
-    .work-card-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease-out;
-    }
-
-    .work-card:hover .work-card-visual img {
-      transform: scale(1.02);
-    }
-
     .work-card-visual--icon {
       padding: 3rem;
+      border-radius: 16px;
+    }
+
+    .work-card-visual--spruce {
+      background: #E8F0E6;
+    }
+
+    .work-card-visual--profile {
+      background: #E8EEF4;
     }
 
     .work-card-visual--icon .card-icon {
       width: 100%;
-      max-width: 140px;
+      max-width: 160px;
       height: auto;
-      color: var(--ink-muted);
+      transition: transform 0.4s ease-out;
+    }
+
+    .work-card:hover .work-card-visual--icon .card-icon {
+      transform: scale(1.04);
     }
 
     .work-card-title {
-      font-family: var(--serif);
+      font-family: var(--sans);
       font-size: 1.2rem;
       font-weight: 500;
       line-height: 1.35;
@@ -481,10 +460,6 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem 2.5rem;
       }
-
-      .work-card:nth-child(2) {
-        margin-top: 3rem;
-      }
     }
 
     /* ── Footer ── */
@@ -506,12 +481,6 @@
       .site-frame {
         padding-left: clamp(1.5rem, 4vw, 3rem);
         padding-right: clamp(1.5rem, 4vw, 3rem);
-      }
-    }
-
-    @media (max-width: 699px) {
-      .work-card:nth-child(2) {
-        margin-top: 0;
       }
     }
 
@@ -551,7 +520,6 @@
         <span class="hero-line">Hi, I'm Bess, and I use <strong class="hero-keyword">words</strong> to <span class="hero-create">create</span> <strong class="hero-keyword">things</strong>.</span>
       </h1>
       <p class="hero-tagline">maker-minded · systems-oriented · constantly curious</p>
-      <a class="hero-cta" href="#about">Read about →</a>
     </div>
   </div>
 
@@ -560,8 +528,7 @@
       <p class="section-label">About</p>
       <div class="about-flex">
         <div class="about-photo-col">
-          <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" width="400" height="400" />
-          <p class="about-caption">San Francisco · content designer</p>
+          <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" width="400" height="500" />
         </div>
         <div class="about-text-col about-text">
           <p>
@@ -604,12 +571,12 @@
 
   <section id="portfolio" class="site-band reveal">
     <div class="section-inner">
-      <p class="section-label">Selected work</p>
+      <p class="section-label">Work</p>
 
       <div id="portfolio-gate">
         <div class="gate-wrap">
           <p class="gate-desc">
-            Selected work is available with a password. Reach out if you'd like access.
+            Work is available with a password. Reach out if you'd like access.
           </p>
           <div class="gate-form">
             <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off" />
@@ -623,12 +590,17 @@
         <div class="work-grid">
 
           <a class="work-card" href="work/ai-auditing.html">
-            <div class="work-card-visual work-card-visual--icon" aria-hidden="true">
-              <svg class="card-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                <path d="M28 10L42 34H14L28 10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                <path d="M28 20L46 40H10L28 20Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.55"/>
-                <path d="M25 40h6v8h-6v-8Z" fill="currentColor" opacity="0.85"/>
-                <line x1="28" y1="48" x2="28" y2="50" stroke="var(--clay)" stroke-width="2" stroke-linecap="round"/>
+            <div class="work-card-visual work-card-visual--icon work-card-visual--spruce" aria-hidden="true">
+              <svg class="card-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="44" y="78" width="32" height="14" rx="7" fill="#5C7A52"/>
+                <path d="M60 22C60 22 38 48 38 68C38 74 44 78 60 78C76 78 82 74 82 68C82 48 60 22 60 22Z" fill="#6B8F5E"/>
+                <path d="M60 34C60 34 46 52 46 64C46 68 50 72 60 72C70 72 74 68 74 64C74 52 60 34 60 34Z" fill="#8AAF7A"/>
+                <circle cx="60" cy="18" r="6" fill="#B5734A"/>
+                <circle cx="88" cy="32" r="5" fill="#B5734A" opacity="0.85"/>
+                <circle cx="32" cy="40" r="4" fill="#B5734A" opacity="0.7"/>
+                <rect x="78" y="48" width="22" height="16" rx="8" fill="#4A4740" opacity="0.12"/>
+                <circle cx="89" cy="56" r="3" fill="#B5734A"/>
+                <path d="M84 52h10M89 47v10" stroke="#B5734A" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
               </svg>
             </div>
             <h2 class="work-card-title">Creating a content design audit agent</h2>
@@ -636,8 +608,15 @@
           </a>
 
           <a class="work-card" href="work/locked-profiles.html">
-            <div class="work-card-visual">
-              <img src="images/portfolio/locked-profiles/04-intro-promode.png" alt="" width="600" height="600" loading="lazy" />
+            <div class="work-card-visual work-card-visual--icon work-card-visual--profile" aria-hidden="true">
+              <svg class="card-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="28" y="24" width="64" height="72" rx="20" fill="#C5D4E8"/>
+                <circle cx="60" cy="48" r="16" fill="#7A9BB8"/>
+                <path d="M36 88C36 72 48 64 60 64C72 64 84 72 84 88" fill="#7A9BB8"/>
+                <rect x="72" y="68" width="28" height="22" rx="11" fill="#B5734A" opacity="0.9"/>
+                <path d="M80 79h12v6a6 6 0 0 1-12 0v-6Z" fill="#FBF9F5"/>
+                <path d="M86 79v-4a2 2 0 0 1 4 0v4" stroke="#FBF9F5" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
             </div>
             <h2 class="work-card-title">Deprecating 100M+ locked, publicly followable profiles</h2>
             <p class="work-card-subtitle">Content design · Meta · Profile</p>
