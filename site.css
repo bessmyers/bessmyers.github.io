@@ -523,6 +523,16 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   margin-bottom: 1.25rem;
 }
 
+.gate-desc a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.gate-desc a:hover {
+  color: var(--clay);
+}
+
 .gate-form {
   display: flex;
   border: 1px solid var(--rule);
@@ -609,6 +619,10 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
 
 .work-index-item {
   border-bottom: 1px solid var(--rule);
+}
+
+.work-index-item .work-row--case-study {
+  border-bottom: none;
 }
 
 .work-teaser {
