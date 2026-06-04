@@ -3,6 +3,10 @@
   font-weight: var(--type-title-weight);
   letter-spacing: var(--type-title-tracking);
   line-height: var(--type-title-leading);
+}
+
+.type-title--hero,
+.type-title--case {
   color: var(--ink);
 }
 

@@ -195,15 +195,27 @@
       var text = hero.textContent.trim();
       var storageKey = 'hero_newspaper_mode';
       var fontCount = 11;
+      var resizeTimer;
+
+      function lockHeroHeight() {
+        hero.style.height = 'auto';
+        hero.style.minHeight = '';
+        void hero.offsetHeight;
+        var height = hero.getBoundingClientRect().height + 'px';
+        hero.style.minHeight = height;
+        hero.style.height = height;
+      }
 
       function renderPlain() {
         hero.textContent = text;
         document.documentElement.removeAttribute('data-hero-font');
         toggle.setAttribute('aria-checked', 'false');
         toggle.setAttribute('aria-label', 'Off');
+        lockHeroHeight();
       }
 
       function renderNewspaper() {
+        if (!hero.style.minHeight) lockHeroHeight();
         var words = text.split(/\s+/);
         hero.innerHTML = words.map(function (word, i) {
           return '<span class="hero-word hero-word--f' + (i % fontCount) + '">' + word + '</span>';
@@ -225,12 +237,20 @@
         setMode(toggle.getAttribute('aria-checked') !== 'true');
       });
 
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          if (toggle.getAttribute('aria-checked') !== 'true') lockHeroHeight();
+        }, 150);
+      });
+
       var saved = false;
       try {
         saved = localStorage.getItem(storageKey) === '1';
       } catch (e) {}
 
-      setMode(saved);
+      renderPlain();
+      if (saved) renderNewspaper();
     })();
 
     (function initReveal() {
