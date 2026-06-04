@@ -1,4 +1,5 @@
 @import url('../tokens.css');
+@import url('../type.css');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -78,16 +79,6 @@ body {
   color: var(--ink-muted);
   font-weight: 600;
   margin-bottom: 1rem;
-}
-
-.case-title {
-  font-family: var(--sans);
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  max-width: 42rem;
 }
 
 .case-lead-visual {
