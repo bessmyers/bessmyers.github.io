@@ -579,7 +579,7 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
 .work-index-head {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem 2rem;
   column-gap: clamp(1rem, 4vw, 2.5rem);
   padding-left: clamp(0.75rem, 3vw, 1.75rem);
@@ -618,12 +618,23 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
 }
 
 .work-index-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  column-gap: clamp(1rem, 4vw, 2.5rem);
+  align-items: center;
+  row-gap: 0.35rem;
+  padding: clamp(1rem, 3vw, 1.35rem) clamp(0.75rem, 3vw, 1.75rem) 0;
   border-bottom: 1px solid var(--rule);
 }
 
 .work-index-item .work-row--case-study {
+  display: contents;
   border-bottom: none;
-  padding-bottom: 0.35rem;
+}
+
+.work-index-item > .work-teaser {
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .work-teaser {
@@ -633,8 +644,30 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   line-height: 1.65;
   color: var(--ink-soft);
   margin: 0;
-  padding: 0 clamp(0.75rem, 3vw, 1.75rem) clamp(1rem, 3vw, 1.35rem);
+  padding: 0 0 clamp(1rem, 3vw, 1.35rem);
   max-width: 42rem;
+}
+
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:hover) > .index-row-title,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:hover) > .work-row-category,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:hover) > .work-row-year,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) > .index-row-title,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) > .work-row-category,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) > .work-row-year {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:hover) > .index-row-meta,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) > .index-row-meta,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:hover) > .type-title,
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) > .type-title {
+  color: var(--bg);
+}
+
+.portfolio-wrap.is-unlocked .work-index-item:has(.work-row--case-study:focus-visible) {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
 }
 
 .portfolio-wrap:not(.is-unlocked) .work-row--case-study {
@@ -696,6 +729,32 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   .work-row .work-row-year {
     grid-column: 2;
     text-align: right;
+  }
+
+  .work-index-item {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+  }
+
+  .work-index-item > .index-row-title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .work-index-item > .work-row-category {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .work-index-item > .work-row-year {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: right;
+  }
+
+  .work-index-item > .work-teaser {
+    grid-column: 1 / -1;
+    grid-row: 3;
   }
 }
 
