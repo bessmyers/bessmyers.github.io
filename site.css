@@ -186,6 +186,10 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   width: 100%;
 }
 
+.hero-text-slot {
+  width: 100%;
+}
+
 .single-page .hero-headline.hero-headline--landing,
 .single-page .type-title--hero.hero-headline--landing {
   font-size: clamp(2rem, 7.25vw, 8rem);
@@ -206,10 +210,6 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .hero-controls {
   margin-top: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-html[data-hero-font="newspaper"] .hero-controls {
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .single-page .hero-headline.hero-headline--landing {

@@ -29,7 +29,9 @@
 
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
-      <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
+      <div class="hero-text-slot">
+        <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
+      </div>
       <div class="hero-controls">
         <button
           type="button"
@@ -190,7 +192,8 @@
     (function initHeroNewspaperToggle() {
       var toggle = document.getElementById('hero-newspaper-toggle');
       var hero = document.querySelector('.hero-headline');
-      if (!toggle || !hero) return;
+      var heroSlot = document.querySelector('.hero-text-slot');
+      if (!toggle || !hero || !heroSlot) return;
 
       var text = hero.textContent.trim();
       var storageKey = 'hero_newspaper_mode';
@@ -213,20 +216,26 @@
         return Object.keys(tops).length;
       }
 
-      function clearHeroBoxLock() {
-        hero.style.height = '';
-        hero.style.minHeight = '';
-      }
+      function updateHeroSlotHeight() {
+        var wasNewspaper = document.documentElement.getAttribute('data-hero-font') === 'newspaper';
+        var savedFontSize = hero.style.fontSize;
 
-      function lockHeroHeight() {
-        clearHeroBoxLock();
+        hero.style.fontSize = '';
+        hero.textContent = text;
+        document.documentElement.removeAttribute('data-hero-font');
         void hero.offsetHeight;
-        hero.style.minHeight = hero.scrollHeight + 'px';
+        heroSlot.style.minHeight = hero.scrollHeight + 'px';
+
+        if (wasNewspaper) {
+          wrapNewspaperWords();
+          hero.style.fontSize = savedFontSize;
+        } else {
+          plainLineCount = getLineCount(hero);
+        }
       }
 
       function measurePlainLineCount() {
         hero.style.fontSize = '';
-        clearHeroBoxLock();
         hero.textContent = text;
         document.documentElement.removeAttribute('data-hero-font');
         void hero.offsetHeight;
@@ -253,16 +262,13 @@
 
       function fitNewspaperFontSize() {
         if (!desktopMQ.matches) {
-          lockHeroHeight();
           return;
         }
 
         hero.style.fontSize = '';
-        clearHeroBoxLock();
         void hero.offsetHeight;
 
         if (getLineCount(hero) <= plainLineCount) {
-          lockHeroHeight();
           return;
         }
 
@@ -283,7 +289,6 @@
         }
 
         hero.style.fontSize = low + 'px';
-        lockHeroHeight();
       }
 
       function refreshPlainLineCount() {
@@ -305,10 +310,8 @@
         document.documentElement.removeAttribute('data-hero-font');
         toggle.setAttribute('aria-checked', 'false');
         toggle.setAttribute('aria-label', 'Off');
-        clearHeroBoxLock();
         void hero.offsetHeight;
         plainLineCount = getLineCount(hero);
-        lockHeroHeight();
       }
 
       function renderNewspaper() {
@@ -359,6 +362,7 @@
       }
 
       function onResize() {
+        updateHeroSlotHeight();
         if (toggle.getAttribute('aria-checked') === 'true') {
           refreshPlainLineCount();
           fitNewspaperFontSize();
@@ -382,6 +386,7 @@
       } catch (e) {}
 
       renderPlain();
+      updateHeroSlotHeight();
 
       function applySavedNewspaper() {
         if (saved) setMode(true, { instant: true });
