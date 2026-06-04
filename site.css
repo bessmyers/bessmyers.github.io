@@ -37,7 +37,7 @@ a { color: inherit; }
 
 .site-band--header {
   padding-top: 2rem;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0;
 }
 
 .site-band--footer {
@@ -180,11 +180,6 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   align-items: flex-start;
   padding-top: 0;
   padding-bottom: clamp(1.5rem, 6vh, 4rem);
-}
-
-.single-page .landing-section.site-band + .site-band,
-.single-page .site-header + .landing-section {
-  padding-top: var(--space-landing-top);
 }
 
 .single-page .landing-inner {
