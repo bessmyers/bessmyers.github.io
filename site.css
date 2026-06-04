@@ -513,9 +513,9 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   overflow: hidden;
   max-height: 24rem;
   transition:
-    max-height 0.45s var(--ease-out),
-    opacity 0.35s var(--ease-out),
-    margin-top 0.45s var(--ease-out);
+    max-height 0.38s var(--ease-out),
+    opacity 0.32s var(--ease-out),
+    margin-top 0.38s var(--ease-out);
 }
 
 #portfolio-gate.is-hidden { display: none; }
@@ -525,32 +525,6 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   opacity: 0;
   margin-top: 0;
   pointer-events: none;
-}
-
-#portfolio-gate.is-success .gate-desc,
-#portfolio-gate.is-success .gate-form,
-#portfolio-gate.is-success .gate-error {
-  display: none;
-}
-
-.gate-success {
-  display: none;
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--ink);
-  line-height: 1.7;
-  margin: 0;
-}
-
-#portfolio-gate.is-success .gate-success {
-  display: block;
-  animation: gateSuccessIn 0.3s var(--ease-out) forwards;
-}
-
-@keyframes gateSuccessIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .gate-desc {
@@ -673,6 +647,12 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   grid-row: 2;
 }
 
+.work-row--case-study .index-row-meta,
+.work-row--case-study .type-title,
+.work-row--case-study .work-teaser {
+  transition: color 0.32s var(--ease-out), opacity 0.32s var(--ease-out);
+}
+
 .work-teaser {
   font-family: var(--sans);
   font-size: 0.95rem;
@@ -699,6 +679,15 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   cursor: default;
 }
 
+.portfolio-wrap:not(.is-unlocked) .work-row--case-study .index-row-title,
+.portfolio-wrap:not(.is-unlocked) .work-row--case-study .type-title {
+  color: var(--ink-muted);
+}
+
+.portfolio-wrap.is-unlocked .work-row--case-study {
+  cursor: pointer;
+}
+
 .portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover,
 .portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible {
   background: transparent;
@@ -721,15 +710,6 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   color: var(--ink);
 }
 
-.portfolio-wrap.is-just-unlocked .work-index-item .work-row--case-study {
-  animation: workUnlockPulse 1.2s var(--ease-out);
-}
-
-@keyframes workUnlockPulse {
-  0%, 100% { background-color: transparent; }
-  45% { background-color: color-mix(in srgb, var(--clay) 22%, transparent); }
-}
-
 .work-row-year {
   min-width: 3rem;
   letter-spacing: 0.06em;
@@ -745,12 +725,10 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
     transition: none;
   }
 
-  #portfolio-gate.is-success .gate-success {
-    animation: none;
-  }
-
-  .portfolio-wrap.is-just-unlocked .work-index-item .work-row--case-study {
-    animation: none;
+  .work-row--case-study .index-row-meta,
+  .work-row--case-study .type-title,
+  .work-row--case-study .work-teaser {
+    transition: none;
   }
 }
 

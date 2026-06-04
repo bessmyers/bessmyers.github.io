@@ -121,9 +121,6 @@
               <button type="button" onclick="checkPassword()">Submit</button>
             </div>
             <p class="gate-error" id="gate-error">Incorrect password</p>
-            <p class="gate-success" id="gate-success" hidden>
-              Case studies unlocked — select a project above.
-            </p>
           </div>
         </div>
       </div>
@@ -187,22 +184,42 @@
         });
       }
 
-      var gateSuccess = document.getElementById('gate-success');
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var unlockCollapseTimer;
-      var unlockPulseTimer;
 
       function hideGateImmediate() {
         window.clearTimeout(unlockCollapseTimer);
-        portfolioGate.classList.remove('is-success', 'is-collapsing');
+        portfolioGate.classList.remove('is-collapsing');
         portfolioGate.classList.add('is-hidden');
-        if (gateSuccess) gateSuccess.hidden = true;
       }
 
       function finishGateCollapse() {
-        portfolioGate.classList.remove('is-collapsing', 'is-success');
+        portfolioGate.classList.remove('is-collapsing');
         portfolioGate.classList.add('is-hidden');
-        if (gateSuccess) gateSuccess.hidden = true;
+      }
+
+      function collapseGateAnimated() {
+        portfolioGate.classList.remove('is-hidden');
+        portfolioGate.classList.remove('is-collapsing');
+        void portfolioGate.offsetHeight;
+        portfolioGate.classList.add('is-collapsing');
+
+        var collapsed = false;
+        function onCollapseEnd(e) {
+          if (collapsed || e.target !== portfolioGate) return;
+          if (e.propertyName !== 'max-height' && e.propertyName !== 'opacity') return;
+          collapsed = true;
+          portfolioGate.removeEventListener('transitionend', onCollapseEnd);
+          finishGateCollapse();
+        }
+        portfolioGate.addEventListener('transitionend', onCollapseEnd);
+        unlockCollapseTimer = window.setTimeout(function () {
+          if (!collapsed) {
+            collapsed = true;
+            portfolioGate.removeEventListener('transitionend', onCollapseEnd);
+            finishGateCollapse();
+          }
+        }, 450);
       }
 
       function unlockPortfolio(options) {
@@ -211,49 +228,12 @@
         setCaseStudyLinksLocked(false);
         PortfolioGate.unlock();
 
-        if (!animate) {
+        if (!animate || prefersReducedMotion) {
           hideGateImmediate();
           return;
         }
 
-        portfolioGate.classList.remove('is-hidden', 'is-collapsing');
-        portfolioGate.classList.add('is-success');
-        if (gateSuccess) {
-          gateSuccess.hidden = false;
-          gateSuccess.textContent = 'Case studies unlocked — select a project above.';
-        }
-
-        if (prefersReducedMotion) {
-          hideGateImmediate();
-          return;
-        }
-
-        portfolioWrap.classList.add('is-just-unlocked');
-        window.clearTimeout(unlockPulseTimer);
-        unlockPulseTimer = window.setTimeout(function () {
-          portfolioWrap.classList.remove('is-just-unlocked');
-        }, 1200);
-
-        window.clearTimeout(unlockCollapseTimer);
-        unlockCollapseTimer = window.setTimeout(function () {
-          portfolioGate.classList.add('is-collapsing');
-          var collapsed = false;
-          function onCollapseEnd(e) {
-            if (collapsed || e.target !== portfolioGate) return;
-            if (e.propertyName !== 'max-height' && e.propertyName !== 'opacity') return;
-            collapsed = true;
-            portfolioGate.removeEventListener('transitionend', onCollapseEnd);
-            finishGateCollapse();
-          }
-          portfolioGate.addEventListener('transitionend', onCollapseEnd);
-          window.setTimeout(function () {
-            if (!collapsed) {
-              collapsed = true;
-              portfolioGate.removeEventListener('transitionend', onCollapseEnd);
-              finishGateCollapse();
-            }
-          }, 600);
-        }, 2000);
+        collapseGateAnimated();
       }
 
       function checkPassword() {
