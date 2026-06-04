@@ -7,6 +7,9 @@
   <meta name="description" content="Bess Myers is a designer based in San Francisco. She uses words to make cool things." />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="site.css" />
 </head>
 <body class="single-page">
@@ -27,6 +30,19 @@
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
       <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
+      <div class="hero-controls">
+        <button
+          type="button"
+          class="hero-font-toggle"
+          id="hero-font-toggle"
+          aria-pressed="false"
+          aria-label="Switch hero typography between sans and serif"
+        >
+          <span class="hero-font-toggle-option" data-font="sans">Sans</span>
+          <span class="hero-font-toggle-sep" aria-hidden="true">/</span>
+          <span class="hero-font-toggle-option" data-font="serif">Serif</span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -168,6 +184,38 @@
       if (PortfolioGate.isUnlocked()) {
         unlockPortfolio();
       }
+    })();
+
+    (function initHeroFontToggle() {
+      var toggle = document.getElementById('hero-font-toggle');
+      if (!toggle) return;
+
+      var options = toggle.querySelectorAll('.hero-font-toggle-option');
+      var storageKey = 'hero_font_preference';
+
+      function setFont(mode) {
+        var isSerif = mode === 'serif';
+        document.documentElement.setAttribute('data-hero-font', isSerif ? 'serif' : 'sans');
+        toggle.setAttribute('aria-pressed', isSerif ? 'true' : 'false');
+        options.forEach(function (option) {
+          option.classList.toggle('is-active', option.dataset.font === mode);
+        });
+        try {
+          localStorage.setItem(storageKey, mode);
+        } catch (e) {}
+      }
+
+      toggle.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-hero-font') === 'serif' ? 'serif' : 'sans';
+        setFont(current === 'serif' ? 'sans' : 'serif');
+      });
+
+      var saved = null;
+      try {
+        saved = localStorage.getItem(storageKey);
+      } catch (e) {}
+
+      setFont(saved === 'serif' ? 'serif' : 'sans');
     })();
 
     (function initReveal() {
