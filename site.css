@@ -37,7 +37,7 @@ a { color: inherit; }
 
 .site-band--header {
   padding-top: 2rem;
-  padding-bottom: 0;
+  padding-bottom: 0.75rem;
 }
 
 .site-band--footer {
@@ -49,10 +49,10 @@ a { color: inherit; }
 
 .footer-copy {
   font-family: var(--sans);
-  font-size: clamp(0.72rem, 1.4vw, 0.9rem);
+  font-size: clamp(0.58rem, 0.85vw, 0.68rem);
   font-weight: 400;
   letter-spacing: -0.04em;
-  line-height: 1.12;
+  line-height: 1.2;
   text-transform: lowercase;
   color: var(--ink-muted);
 }
@@ -177,14 +177,14 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 .single-page .landing-section {
   min-height: calc(100svh - 4.5rem);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 0;
   padding-bottom: clamp(1.5rem, 6vh, 4rem);
 }
 
 .single-page .landing-section.site-band + .site-band,
 .single-page .site-header + .landing-section {
-  padding-top: clamp(2.5rem, 8vw, 6rem);
+  padding-top: var(--space-landing-top);
 }
 
 .single-page .landing-inner {
@@ -217,9 +217,9 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
-  min-width: 3rem;
-  min-height: 3rem;
+  padding: 0.4rem;
+  min-width: 2.65rem;
+  min-height: 2.65rem;
   border: none;
   background: none;
   cursor: pointer;
@@ -237,8 +237,8 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 .hero-switch-track {
   position: relative;
   flex-shrink: 0;
-  width: 3.75rem;
-  height: 2.25rem;
+  width: 3.25rem;
+  height: 2rem;
   border-radius: 999px;
   border: 2px solid var(--ink);
   background: var(--rule);
@@ -254,8 +254,8 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   position: absolute;
   top: 0.1rem;
   left: 0.1rem;
-  width: 1.85rem;
-  height: 1.85rem;
+  width: 1.55rem;
+  height: 1.55rem;
   border-radius: 50%;
   border: 2px solid var(--ink);
   background: #fff;
@@ -264,30 +264,30 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .hero-switch[aria-checked="true"] .hero-switch-thumb {
-  transform: translateX(1.45rem);
+  transform: translateX(1.5rem);
 }
 
 @media (min-width: 768px) {
   .hero-switch {
-    padding: 0.65rem;
-    min-width: 3.75rem;
-    min-height: 3.75rem;
+    padding: 0.55rem;
+    min-width: 3.25rem;
+    min-height: 3.25rem;
   }
 
   .hero-switch-track {
-    width: 5.25rem;
-    height: 3.15rem;
+    width: 4.5rem;
+    height: 2.75rem;
   }
 
   .hero-switch-thumb {
     top: 0.12rem;
     left: 0.12rem;
-    width: 2.65rem;
-    height: 2.65rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
   .hero-switch[aria-checked="true"] .hero-switch-thumb {
-    transform: translateX(2.1rem);
+    transform: translateX(2rem);
   }
 }
 

@@ -14,6 +14,7 @@
   --type-title-tracking: -0.02em;
   --type-title-leading: 1.25;
   --space-hero-top: clamp(3rem, 8vw, 5rem);
+  --space-landing-top: clamp(3.5rem, 10vw, 7.5rem);
   --space-block: clamp(2.5rem, 5vw, 4rem);
   --space-label: 0.75rem;
   --content-max: 68rem;

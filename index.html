@@ -196,33 +196,117 @@
       var storageKey = 'hero_newspaper_mode';
       var fontCount = 11;
       var resizeTimer;
+      var plainLineCount = 0;
+      var desktopMQ = window.matchMedia('(min-width: 601px)');
 
-      function lockHeroHeight() {
+      function getLineCount(el) {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var rects = range.getClientRects();
+        var tops = {};
+        for (var i = 0; i < rects.length; i++) {
+          tops[Math.round(rects[i].top)] = true;
+        }
+        return Object.keys(tops).length;
+      }
+
+      function clearHeroBoxLock() {
         hero.style.height = 'auto';
         hero.style.minHeight = '';
+      }
+
+      function lockHeroHeight() {
+        clearHeroBoxLock();
         void hero.offsetHeight;
         var height = hero.getBoundingClientRect().height + 'px';
         hero.style.minHeight = height;
         hero.style.height = height;
       }
 
-      function renderPlain() {
+      function measurePlainLineCount() {
+        hero.style.fontSize = '';
+        clearHeroBoxLock();
         hero.textContent = text;
         document.documentElement.removeAttribute('data-hero-font');
-        toggle.setAttribute('aria-checked', 'false');
-        toggle.setAttribute('aria-label', 'Off');
-        lockHeroHeight();
+        void hero.offsetHeight;
+        plainLineCount = getLineCount(hero);
       }
 
-      function renderNewspaper() {
-        if (!hero.style.minHeight) lockHeroHeight();
+      function wrapNewspaperWords() {
         var words = text.split(/\s+/);
         hero.innerHTML = words.map(function (word, i) {
           return '<span class="hero-word hero-word--f' + (i % fontCount) + '">' + word + '</span>';
         }).join(' ');
         document.documentElement.setAttribute('data-hero-font', 'newspaper');
+      }
+
+      function fitNewspaperFontSize() {
+        if (!desktopMQ.matches) {
+          lockHeroHeight();
+          return;
+        }
+
+        hero.style.fontSize = '';
+        clearHeroBoxLock();
+        void hero.offsetHeight;
+
+        if (getLineCount(hero) <= plainLineCount) {
+          lockHeroHeight();
+          return;
+        }
+
+        var sizePx = parseFloat(window.getComputedStyle(hero).fontSize);
+        var minPx = sizePx * 0.7;
+        var low = minPx;
+        var high = sizePx;
+
+        while (high - low > 0.5) {
+          var mid = (low + high) / 2;
+          hero.style.fontSize = mid + 'px';
+          void hero.offsetHeight;
+          if (getLineCount(hero) <= plainLineCount) {
+            low = mid;
+          } else {
+            high = mid;
+          }
+        }
+
+        hero.style.fontSize = low + 'px';
+        lockHeroHeight();
+      }
+
+      function refreshPlainLineCount() {
+        var wasNewspaper = document.documentElement.getAttribute('data-hero-font') === 'newspaper';
+        var savedFontSize = hero.style.fontSize;
+
+        measurePlainLineCount();
+
+        if (wasNewspaper) {
+          wrapNewspaperWords();
+          hero.style.fontSize = savedFontSize;
+        }
+      }
+
+      function renderPlain() {
+        hero.textContent = text;
+        hero.style.fontSize = '';
+        document.documentElement.removeAttribute('data-hero-font');
+        toggle.setAttribute('aria-checked', 'false');
+        toggle.setAttribute('aria-label', 'Off');
+        clearHeroBoxLock();
+        void hero.offsetHeight;
+        plainLineCount = getLineCount(hero);
+        lockHeroHeight();
+      }
+
+      function renderNewspaper() {
+        if (!plainLineCount) {
+          measurePlainLineCount();
+        }
+        wrapNewspaperWords();
         toggle.setAttribute('aria-checked', 'true');
         toggle.setAttribute('aria-label', 'On');
+        fitNewspaperFontSize();
       }
 
       function setMode(on) {
@@ -233,15 +317,22 @@
         } catch (e) {}
       }
 
+      function onResize() {
+        if (toggle.getAttribute('aria-checked') === 'true') {
+          refreshPlainLineCount();
+          fitNewspaperFontSize();
+        } else {
+          renderPlain();
+        }
+      }
+
       toggle.addEventListener('click', function () {
         setMode(toggle.getAttribute('aria-checked') !== 'true');
       });
 
       window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () {
-          if (toggle.getAttribute('aria-checked') !== 'true') lockHeroHeight();
-        }, 150);
+        resizeTimer = setTimeout(onResize, 150);
       });
 
       var saved = false;
@@ -250,7 +341,16 @@
       } catch (e) {}
 
       renderPlain();
-      if (saved) renderNewspaper();
+
+      function applySavedNewspaper() {
+        if (saved) renderNewspaper();
+      }
+
+      if (saved && document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(applySavedNewspaper);
+      } else if (saved) {
+        applySavedNewspaper();
+      }
     })();
 
     (function initReveal() {
