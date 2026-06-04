@@ -9,7 +9,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="site.css" />
 </head>
 <body class="single-page">
@@ -29,20 +29,20 @@
 
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
-      <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
       <div class="hero-controls">
         <button
           type="button"
-          class="hero-font-toggle"
-          id="hero-font-toggle"
+          class="hero-newspaper-toggle"
+          id="hero-newspaper-toggle"
           aria-pressed="false"
-          aria-label="Switch hero typography between sans and serif"
+          aria-label="Toggle newspaper font collage on hero headline"
         >
-          <span class="hero-font-toggle-option" data-font="sans">Sans</span>
-          <span class="hero-font-toggle-sep" aria-hidden="true">/</span>
-          <span class="hero-font-toggle-option" data-font="serif">Serif</span>
+          <span class="hero-newspaper-toggle-icon" aria-hidden="true">Aa</span>
+          <span class="hero-newspaper-toggle-label">Newspaper fonts</span>
+          <span class="hero-newspaper-toggle-state">Off</span>
         </button>
       </div>
+      <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
     </div>
   </section>
 
@@ -186,36 +186,51 @@
       }
     })();
 
-    (function initHeroFontToggle() {
-      var toggle = document.getElementById('hero-font-toggle');
-      if (!toggle) return;
+    (function initHeroNewspaperToggle() {
+      var toggle = document.getElementById('hero-newspaper-toggle');
+      var hero = document.querySelector('.hero-headline');
+      var stateLabel = toggle && toggle.querySelector('.hero-newspaper-toggle-state');
+      if (!toggle || !hero || !stateLabel) return;
 
-      var options = toggle.querySelectorAll('.hero-font-toggle-option');
-      var storageKey = 'hero_font_preference';
+      var text = hero.textContent.trim();
+      var storageKey = 'hero_newspaper_mode';
+      var fontCount = 11;
 
-      function setFont(mode) {
-        var isSerif = mode === 'serif';
-        document.documentElement.setAttribute('data-hero-font', isSerif ? 'serif' : 'sans');
-        toggle.setAttribute('aria-pressed', isSerif ? 'true' : 'false');
-        options.forEach(function (option) {
-          option.classList.toggle('is-active', option.dataset.font === mode);
-        });
+      function renderPlain() {
+        hero.textContent = text;
+        document.documentElement.removeAttribute('data-hero-font');
+        toggle.setAttribute('aria-pressed', 'false');
+        stateLabel.textContent = 'Off';
+      }
+
+      function renderNewspaper() {
+        var words = text.split(/\s+/);
+        hero.innerHTML = words.map(function (word, i) {
+          return '<span class="hero-word hero-word--f' + (i % fontCount) + '">' + word + '</span>';
+        }).join(' ');
+        document.documentElement.setAttribute('data-hero-font', 'newspaper');
+        toggle.setAttribute('aria-pressed', 'true');
+        stateLabel.textContent = 'On';
+      }
+
+      function setMode(on) {
+        if (on) renderNewspaper();
+        else renderPlain();
         try {
-          localStorage.setItem(storageKey, mode);
+          localStorage.setItem(storageKey, on ? '1' : '0');
         } catch (e) {}
       }
 
       toggle.addEventListener('click', function () {
-        var current = document.documentElement.getAttribute('data-hero-font') === 'serif' ? 'serif' : 'sans';
-        setFont(current === 'serif' ? 'sans' : 'serif');
+        setMode(toggle.getAttribute('aria-pressed') !== 'true');
       });
 
-      var saved = null;
+      var saved = false;
       try {
-        saved = localStorage.getItem(storageKey);
+        saved = localStorage.getItem(storageKey) === '1';
       } catch (e) {}
 
-      setFont(saved === 'serif' ? 'serif' : 'sans');
+      setMode(saved);
     })();
 
     (function initReveal() {

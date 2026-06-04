@@ -48,11 +48,12 @@ a { color: inherit; }
 }
 
 .footer-copy {
-  font-family: var(--sans-header);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-tracking);
+  font-variant-caps: small-caps;
+  text-transform: none;
   color: var(--ink-muted);
 }
 
@@ -68,11 +69,12 @@ a { color: inherit; }
 }
 
 .site-name {
-  font-family: var(--sans-header);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-tracking);
+  font-variant-caps: small-caps;
+  text-transform: none;
   color: var(--ink);
   text-decoration: none;
 }
@@ -80,11 +82,12 @@ a { color: inherit; }
 nav { display: flex; gap: 1.5rem; align-items: baseline; }
 
 nav a {
-  font-family: var(--sans-header);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: var(--type-title-weight);
+  letter-spacing: var(--type-title-tracking);
+  font-variant-caps: small-caps;
+  text-transform: none;
   color: var(--ink-soft);
   text-decoration: none;
   transition: color 0.2s;
@@ -194,51 +197,162 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .hero-controls {
-  margin-top: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
 }
 
-.hero-font-toggle {
+.hero-newspaper-toggle {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  padding: 0;
-  border: none;
-  background: none;
-  font-family: var(--sans-header);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  cursor: pointer;
-  transition: color 0.18s var(--ease-out);
-}
-
-.hero-font-toggle:hover,
-.hero-font-toggle:focus-visible {
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.35rem;
+  border: 2px solid var(--ink);
+  background: var(--bg);
   color: var(--ink);
+  font-family: var(--sans-header);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
 }
 
-.hero-font-toggle:focus-visible {
-  outline: 2px solid var(--clay);
+.hero-newspaper-toggle:hover,
+.hero-newspaper-toggle:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.hero-newspaper-toggle[aria-pressed="true"] {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--bg);
+}
+
+.hero-newspaper-toggle[aria-pressed="true"]:hover,
+.hero-newspaper-toggle[aria-pressed="true"]:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.hero-newspaper-toggle:focus-visible {
+  outline: 2px solid var(--accent-cool);
   outline-offset: 3px;
 }
 
-.hero-font-toggle-option {
-  transition: color 0.18s var(--ease-out);
+.hero-newspaper-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid currentColor;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1;
 }
 
-.hero-font-toggle-option.is-active {
-  color: var(--ink);
+.hero-newspaper-toggle-state {
+  padding: 0.2rem 0.45rem;
+  border: 1px solid currentColor;
+  font-size: 0.68rem;
 }
 
-.hero-font-toggle-sep {
-  color: var(--rule);
-  user-select: none;
+html[data-hero-font="newspaper"] .landing-section {
+  background: linear-gradient(180deg, var(--bg-tint) 0%, var(--bg) 55%);
 }
 
-html[data-hero-font="serif"] .landing-section {
-  background: linear-gradient(180deg, var(--bg-tint) 0%, var(--bg) 100%);
+html[data-hero-font="newspaper"] .type-title--hero {
+  line-height: 1.45;
+}
+
+html[data-hero-font="newspaper"] .hero-word {
+  display: inline-block;
+  margin: 0.08em 0.14em 0.08em 0;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f0 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  transform: rotate(-1.5deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f2 {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-weight: 400;
+  font-size: 1.12em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transform: rotate(1deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f3 {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 0.92em;
+  transform: rotate(-0.5deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f4 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.05em;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f5 {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 1.08em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transform: rotate(-1deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f6 {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-weight: 400;
+  font-size: 0.95em;
+  transform: rotate(1.25deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f7 {
+  font-family: 'Abril Fatface', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.1em;
+  transform: rotate(-0.75deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f8 {
+  font-family: 'UnifrakturMaguntia', 'Old English Text MT', serif;
+  font-weight: 400;
+  font-size: 1.15em;
+  transform: rotate(0.75deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f9 {
+  font-family: 'Permanent Marker', 'Comic Sans MS', cursive;
+  font-weight: 400;
+  font-size: 0.98em;
+  transform: rotate(-1.25deg);
+}
+
+html[data-hero-font="newspaper"] .hero-word--f10 {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-weight: 600;
+  font-size: 1.18em;
+  transform: rotate(1deg);
 }
 
 .single-page .page-section {
