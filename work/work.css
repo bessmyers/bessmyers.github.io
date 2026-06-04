@@ -529,8 +529,12 @@ body {
 
 .case-footer {
   padding: 3rem 0;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  font-family: var(--sans);
+  font-size: clamp(0.875rem, 1.25vw, 1rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  text-transform: lowercase;
   color: var(--ink-muted);
 }
 
