@@ -597,14 +597,6 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   margin-bottom: 0;
 }
 
-.work-index-head-cell {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-}
-
 .work-index-head-cell--year,
 .work-row-year {
   text-align: right;

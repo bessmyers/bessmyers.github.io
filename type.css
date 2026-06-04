@@ -1,3 +1,15 @@
+.type-eyebrow,
+.work-index-head-cell,
+.case-tag,
+.case-section > h2 {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
 .type-title {
   font-family: var(--sans);
   font-weight: var(--type-title-weight);

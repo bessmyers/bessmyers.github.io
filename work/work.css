@@ -73,11 +73,6 @@ body {
 }
 
 .case-tag {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  font-weight: 600;
   margin-bottom: 1rem;
 }
 
@@ -118,12 +113,7 @@ body {
 
 .case-section:last-of-type { border-bottom: none; }
 
-.case-section h2 {
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-muted);
-  font-weight: 600;
-  text-transform: none;
+.case-section > h2 {
   margin-bottom: 1.5rem;
 }
 
@@ -417,14 +407,38 @@ body {
 .severity-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--rule);
+  gap: 1rem;
   margin-top: 1rem;
 }
 
 .severity-item {
   background: var(--oat-mid);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
   padding: 1.25rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.severity-item:focus {
+  outline: none;
+}
+
+.severity-item--high:hover,
+.severity-item--high:focus-visible {
+  background: rgba(200, 60, 50, 0.12);
+  border-color: rgba(200, 60, 50, 0.45);
+}
+
+.severity-item--moderate:hover,
+.severity-item--moderate:focus-visible {
+  background: rgba(230, 120, 40, 0.12);
+  border-color: rgba(230, 120, 40, 0.45);
+}
+
+.severity-item--low:hover,
+.severity-item--low:focus-visible {
+  background: rgba(220, 180, 40, 0.14);
+  border-color: rgba(200, 160, 30, 0.45);
 }
 
 .severity-item h3 {
