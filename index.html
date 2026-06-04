@@ -211,16 +211,14 @@
       }
 
       function clearHeroBoxLock() {
-        hero.style.height = 'auto';
+        hero.style.height = '';
         hero.style.minHeight = '';
       }
 
       function lockHeroHeight() {
         clearHeroBoxLock();
         void hero.offsetHeight;
-        var height = hero.getBoundingClientRect().height + 'px';
-        hero.style.minHeight = height;
-        hero.style.height = height;
+        hero.style.minHeight = hero.scrollHeight + 'px';
       }
 
       function measurePlainLineCount() {

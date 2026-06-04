@@ -213,6 +213,14 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   margin-top: clamp(1.25rem, 2.5vw, 2rem);
 }
 
+html[data-hero-font="newspaper"] .hero-controls {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.single-page .hero-headline.hero-headline--landing {
+  overflow: visible;
+}
+
 .hero-switch {
   display: inline-flex;
   align-items: center;
