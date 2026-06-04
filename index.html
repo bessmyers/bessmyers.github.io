@@ -198,6 +198,14 @@
       var resizeTimer;
       var plainLineCount = 0;
       var desktopMQ = window.matchMedia('(min-width: 601px)');
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var isAnimating = false;
+      var PLAIN_EXIT_MS = 280;
+      var PLAIN_ENTER_MS = 400;
+      var WORD_IN_MS = 450;
+      var WORD_OUT_MS = 320;
+      var WORD_IN_STAGGER_MS = 28;
+      var WORD_OUT_STAGGER_MS = 22;
 
       function getLineCount(el) {
         var range = document.createRange();
@@ -230,12 +238,39 @@
         plainLineCount = getLineCount(hero);
       }
 
+      function heroWordTilt(index) {
+        return ((index * 17) % 7) - 3;
+      }
+
       function wrapNewspaperWords() {
         var words = text.split(/\s+/);
         hero.innerHTML = words.map(function (word, i) {
-          return '<span class="hero-word hero-word--f' + (i % fontCount) + '">' + word + '</span>';
+          return '<span class="hero-word hero-word--f' + (i % fontCount) + '" style="--hero-word-i:' + i + ';--hero-word-tilt:' + heroWordTilt(i) + 'deg">' + word + '</span>';
         }).join(' ');
         document.documentElement.setAttribute('data-hero-font', 'newspaper');
+      }
+
+      function stampWordMotionStyles() {
+        var words = hero.querySelectorAll('.hero-word');
+        words.forEach(function (wordEl, i) {
+          wordEl.style.setProperty('--hero-word-i', String(i));
+          wordEl.style.setProperty('--hero-word-tilt', heroWordTilt(i) + 'deg');
+        });
+        return words.length;
+      }
+
+      function clearHeroMotionClasses() {
+        hero.classList.remove(
+          'hero-headline--plain-exit',
+          'hero-headline--plain-enter',
+          'hero-headline--shuffle-in',
+          'hero-headline--shuffle-out'
+        );
+      }
+
+      function setAnimating(active) {
+        isAnimating = active;
+        toggle.disabled = active;
       }
 
       function fitNewspaperFontSize() {
@@ -286,6 +321,7 @@
       }
 
       function renderPlain() {
+        clearHeroMotionClasses();
         hero.textContent = text;
         hero.style.fontSize = '';
         document.documentElement.removeAttribute('data-hero-font');
@@ -307,12 +343,67 @@
         fitNewspaperFontSize();
       }
 
-      function setMode(on) {
-        if (on) renderNewspaper();
-        else renderPlain();
+      function animateToNewspaper() {
+        setAnimating(true);
+        clearHeroMotionClasses();
+        hero.classList.add('hero-headline--plain-exit');
+
+        window.setTimeout(function () {
+          hero.classList.remove('hero-headline--plain-exit');
+          renderNewspaper();
+          var wordCount = text.split(/\s+/).length;
+          void hero.offsetHeight;
+          hero.classList.add('hero-headline--shuffle-in');
+          window.setTimeout(function () {
+            hero.classList.remove('hero-headline--shuffle-in');
+            setAnimating(false);
+          }, WORD_IN_MS + Math.max(0, wordCount - 1) * WORD_IN_STAGGER_MS);
+        }, PLAIN_EXIT_MS);
+      }
+
+      function animateToPlain() {
+        setAnimating(true);
+        clearHeroMotionClasses();
+
+        var wordCount = stampWordMotionStyles();
+        if (!wordCount) {
+          renderPlain();
+          setAnimating(false);
+          return;
+        }
+
+        hero.classList.add('hero-headline--shuffle-out');
+        window.setTimeout(function () {
+          hero.classList.remove('hero-headline--shuffle-out');
+          renderPlain();
+          void hero.offsetHeight;
+          hero.classList.add('hero-headline--plain-enter');
+          window.setTimeout(function () {
+            hero.classList.remove('hero-headline--plain-enter');
+            setAnimating(false);
+          }, PLAIN_ENTER_MS);
+        }, WORD_OUT_MS + Math.max(0, wordCount - 1) * WORD_OUT_STAGGER_MS);
+      }
+
+      function setMode(on, options) {
+        options = options || {};
         try {
           localStorage.setItem(storageKey, on ? '1' : '0');
         } catch (e) {}
+
+        if (options.instant || prefersReducedMotion) {
+          if (on) renderNewspaper();
+          else renderPlain();
+          return;
+        }
+
+        if (isAnimating) return;
+
+        toggle.setAttribute('aria-checked', on ? 'true' : 'false');
+        toggle.setAttribute('aria-label', on ? 'On' : 'Off');
+
+        if (on) animateToNewspaper();
+        else animateToPlain();
       }
 
       function onResize() {
@@ -341,7 +432,7 @@
       renderPlain();
 
       function applySavedNewspaper() {
-        if (saved) renderNewspaper();
+        if (saved) setMode(true, { instant: true });
       }
 
       if (saved && document.fonts && document.fonts.ready) {
