@@ -29,20 +29,21 @@
 
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
+      <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
       <div class="hero-controls">
         <button
           type="button"
-          class="hero-newspaper-toggle"
+          class="hero-switch"
           id="hero-newspaper-toggle"
-          aria-pressed="false"
-          aria-label="Toggle newspaper font collage on hero headline"
+          role="switch"
+          aria-checked="false"
+          aria-label="Off"
         >
-          <span class="hero-newspaper-toggle-icon" aria-hidden="true">Aa</span>
-          <span class="hero-newspaper-toggle-label">Newspaper fonts</span>
-          <span class="hero-newspaper-toggle-state">Off</span>
+          <span class="hero-switch-track" aria-hidden="true">
+            <span class="hero-switch-thumb"></span>
+          </span>
         </button>
       </div>
-      <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
     </div>
   </section>
 
@@ -189,8 +190,7 @@
     (function initHeroNewspaperToggle() {
       var toggle = document.getElementById('hero-newspaper-toggle');
       var hero = document.querySelector('.hero-headline');
-      var stateLabel = toggle && toggle.querySelector('.hero-newspaper-toggle-state');
-      if (!toggle || !hero || !stateLabel) return;
+      if (!toggle || !hero) return;
 
       var text = hero.textContent.trim();
       var storageKey = 'hero_newspaper_mode';
@@ -199,8 +199,8 @@
       function renderPlain() {
         hero.textContent = text;
         document.documentElement.removeAttribute('data-hero-font');
-        toggle.setAttribute('aria-pressed', 'false');
-        stateLabel.textContent = 'Off';
+        toggle.setAttribute('aria-checked', 'false');
+        toggle.setAttribute('aria-label', 'Off');
       }
 
       function renderNewspaper() {
@@ -209,8 +209,8 @@
           return '<span class="hero-word hero-word--f' + (i % fontCount) + '">' + word + '</span>';
         }).join(' ');
         document.documentElement.setAttribute('data-hero-font', 'newspaper');
-        toggle.setAttribute('aria-pressed', 'true');
-        stateLabel.textContent = 'On';
+        toggle.setAttribute('aria-checked', 'true');
+        toggle.setAttribute('aria-label', 'On');
       }
 
       function setMode(on) {
@@ -222,7 +222,7 @@
       }
 
       toggle.addEventListener('click', function () {
-        setMode(toggle.getAttribute('aria-pressed') !== 'true');
+        setMode(toggle.getAttribute('aria-checked') !== 'true');
       });
 
       var saved = false;
