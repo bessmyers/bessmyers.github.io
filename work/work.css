@@ -49,13 +49,6 @@ body {
 
 .case-back:hover { color: var(--clay); }
 
-.case-back--top {
-  display: block;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 2rem 0;
-}
-
 .site-wrap--wide .case-header {
   max-width: 1100px;
   margin: 0 auto;
