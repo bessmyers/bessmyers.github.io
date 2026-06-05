@@ -471,7 +471,8 @@ body {
   border: 1px solid var(--rule);
   border-radius: 8px;
   padding: 1.25rem;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s ease;
+  transform-origin: center center;
 }
 
 .severity-item:focus {
@@ -482,18 +483,27 @@ body {
 .severity-item--high:focus-visible {
   background: rgba(200, 60, 50, 0.12);
   border-color: rgba(200, 60, 50, 0.45);
+  transform: scale(1.04);
+  position: relative;
+  z-index: 1;
 }
 
 .severity-item--moderate:hover,
 .severity-item--moderate:focus-visible {
   background: rgba(230, 120, 40, 0.12);
   border-color: rgba(230, 120, 40, 0.45);
+  transform: scale(1.04);
+  position: relative;
+  z-index: 1;
 }
 
 .severity-item--low:hover,
 .severity-item--low:focus-visible {
   background: rgba(220, 180, 40, 0.14);
   border-color: rgba(200, 160, 30, 0.45);
+  transform: scale(1.04);
+  position: relative;
+  z-index: 1;
 }
 
 .severity-item h3 {

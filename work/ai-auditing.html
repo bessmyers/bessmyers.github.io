@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Creating an AI-driven CD audit agent — bess myers</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="work.css" />
   <script src="../portfolio.js"></script>
   <script>PortfolioGate.guardCaseStudy();</script>
@@ -18,18 +21,37 @@
     <a href="../work.html" class="case-back">← Work</a>
     <p class="case-tag">Tools · AI · Meta</p>
     <h1 class="case-title type-title type-title--case">Creating an AI-driven CD audit agent</h1>
-    <p class="case-intro">As the only content designer on Facebook Core Identity, I created an AI agent named <strong>Spruce</strong> that let me scale myself so I could focus on current projects while cleaning up outdated content across Profile.</p>
-    <p class="case-meta">Tools: Claude Code, internal agents for analytics and diff creation</p>
-    <p class="nda-note">Prompt architecture is proprietary and covered by NDA. This page shows how Spruce behaves and what it produces.</p>
+    <p class="case-lead-question">How do you scale one content designer across an entire product surface?</p>
+    <p class="case-intro">When you're the only content designer on a team, you have to make choices about what gets your attention. There are only so many hours, and the work that's in front of you always feels more urgent than the work that's been sitting untouched for years.</p>
+    <p class="case-intro">On Facebook Core Identity, that untouched work was everywhere. Profile is a sprawling surface with decades of accumulated strings. I could do the current projects well, or I could do the audit work, but I couldn't do both. I built an agent AI that could help me be in 50 places at once.</p>
+    <div class="case-meta-grid" aria-label="Project scope">
+      <div class="case-meta-item">
+        <p class="case-meta-label">Tools</p>
+        <p class="case-meta-value">Claude Code, internal agents for analytics and diff creation</p>
+      </div>
+      <div class="case-meta-item">
+        <p class="case-meta-label">Surface</p>
+        <p class="case-meta-value">Facebook Profile</p>
+      </div>
+      <div class="case-meta-item">
+        <p class="case-meta-label">Team</p>
+        <p class="case-meta-value">Core Identity (sole content designer)</p>
+      </div>
+    </div>
   </header>
 
   <section class="case-section">
+    <h2>Core content problem</h2>
+    <p>Without a way to systematically surface outdated, inconsistent or incorrect content across Profile, problems stayed invisible until someone happened to stumble across them. I needed a way to monitor the codebase continuously, flag issues by severity and generate draft fixes I could review, without that work consuming all of my time.</p>
+    <p>The challenge building an agent with enough content design judgment to ensure useful rather than superfluous output.</p>
+  </section>
+
+  <section class="case-section">
     <h2>My approach</h2>
-    <ul>
-      <li>Encoded CD expertise in the prompt as well as severity levels</li>
-      <li>Trained Spruce to hand off work to other agents that complete different jobs, such as analyzing string liveness and pulling daily views</li>
-      <li>Ensured Spruce submitted diffs as drafts and didn't land code directly without review</li>
-    </ul>
+    <p>I created an agent I named Spruce, built with Claude Code and connected to internal tools for analytics and diff creation. Prompt architecture was key so Spruce could decide effectively what to care about most and what to do about it.</p>
+    <p>I defined severity levels for content issues so Spruce could triage flagged issues. The prompt went through 23 test rounds before I was confident in its accuracy.</p>
+    <p>I also designed Spruce to hand off work to other agents rather than try to do everything itself. It would call out to separate tools to check string liveness and pull daily view counts before deciding whether to flag it.</p>
+    <p>One constraint I held firm on was that Spruce submitted diffs as drafts and didn't land code directly to ensure accuracy and protect the time of engineers and designers.</p>
   </section>
 
   <section class="case-section case-section--spruce">
@@ -59,6 +81,8 @@
 
   <section class="case-section">
     <h2>Results</h2>
+    <p>Over the prompt lifecycle, Spruce scanned 30 Profile directories weekly, giving me continuous visibility, and diff accuracy improved by 54%. Coverage across Profile increased in a way that would have been impossible for one person to achieve manually.</p>
+    <p>One unexpected outcome was improved collaboration with eng. Engineers engaged with my diffs in ways that opened up conversations we wouldn't have had otherwise.</p>
     <div class="case-stats case-stats--three">
       <div class="case-stat">
         <div class="case-stat-value">23</div>
