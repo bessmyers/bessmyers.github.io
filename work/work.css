@@ -84,16 +84,16 @@ body {
 }
 
 .case-lead-question {
-  margin-top: 1.75rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: 0.25rem;
-  max-width: 40rem;
+  max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
-  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.4;
   text-align: center;
-  color: var(--ink);
+  color: var(--accent-cool);
 }
 
 .case-intro {
@@ -102,6 +102,19 @@ body {
   color: var(--ink-soft);
   line-height: 1.8;
   max-width: 560px;
+}
+
+.case-intro strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.site-wrap--wide .case-title {
+  max-width: none;
+}
+
+.site-wrap--wide .case-intro {
+  max-width: none;
 }
 
 .case-meta {
@@ -114,6 +127,35 @@ body {
 
 .case-meta + .case-meta {
   margin-top: 0.35rem;
+}
+
+.case-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  margin-top: 2.5rem;
+}
+
+.case-meta-item {
+  background: var(--oat-mid);
+  padding: 1.25rem 1.5rem;
+}
+
+.case-meta-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.case-meta-value {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0;
 }
 
 .case-section {
@@ -564,6 +606,7 @@ body {
 
 @media (max-width: 600px) {
   .case-stats,
+  .case-meta-grid,
   .severity-grid {
     grid-template-columns: 1fr;
   }
