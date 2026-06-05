@@ -84,7 +84,7 @@ body {
 }
 
 .case-lead-question {
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
   margin-bottom: 0.25rem;
   max-width: 48rem;
   margin-left: auto;
@@ -92,7 +92,7 @@ body {
   font-family: var(--serif);
   font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   line-height: 1.45;
   letter-spacing: 0.01em;
   text-align: center;
