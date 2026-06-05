@@ -83,6 +83,19 @@ body {
   border: 1px solid var(--rule);
 }
 
+.case-lead-question {
+  margin-top: 1.75rem;
+  margin-bottom: 0.25rem;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--ink);
+}
+
 .case-intro {
   margin-top: 1.5rem;
   font-size: 1rem;
@@ -97,6 +110,10 @@ body {
   letter-spacing: 0.06em;
   color: var(--ink-muted);
   line-height: 1.6;
+}
+
+.case-meta + .case-meta {
+  margin-top: 0.35rem;
 }
 
 .case-section {

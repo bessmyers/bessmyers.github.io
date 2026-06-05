@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deprecating locked, publicly followable profiles — bess myers</title>
+  <title>Changing privacy settings for 100M people — bess myers</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="work.css" />
   <script src="../portfolio.js"></script>
@@ -14,10 +14,29 @@
   <header class="case-header">
     <a href="../work.html" class="case-back">← Work</a>
     <p class="case-tag">User flows · Meta</p>
-    <h1 class="case-title type-title type-title--case">Deprecating 100M+ locked, publicly followable profiles</h1>
-    <p class="case-intro">Facebook had ~100M users with a settings contradiction: profiles were both locked (privacy-restricted) and allowed public followers. This initiative deprecated public follow for this cohort. The deprecation process required users who wanted public followers either to opt into Professional Mode or accept losing existing public followers.</p>
-    <p class="case-meta">Target users: 100M+ worldwide · Surfaces: mobile (iOS, Android) · Stakeholders: PMs, eng, designers on Professional Mode, Locked Profile and Profile</p>
+    <h1 class="case-title type-title type-title--case">Changing privacy settings for 100M people without causing panic</h1>
+    <p class="case-lead-question">How do you change a privacy setting for 100M people without causing panic or making them feel punished?</p>
+    <p class="case-intro">Facebook had ~100M users with a settings contradiction: profiles were both locked (privacy-restricted) and allowed public followers. This initiative deprecated the "publicly followable" option for locked profiles, and the process required users who wanted public followers either to opt into professional mode or lose their existing public followers entirely.</p>
+    <p class="case-intro">At this scale, poorly framed notifications and confusing flows would cause churn, complaints and loss of trust. My role as content designer was to make sure that didn't happen.</p>
+    <p class="case-meta">Target users: 100M+ worldwide</p>
+    <p class="case-meta">Surfaces: mobile (iOS, Android), email</p>
+    <p class="case-meta">Stakeholders: PMs, eng, designers on Professional Mode, Locked Profile and Main Profile teams</p>
   </header>
+
+  <section class="case-section">
+    <h2>Core content problem</h2>
+    <p>The core content challenge was an emotional one. The framing needed to be honest without causing alarm, and clear enough that users could make their own choice rather than simply react to the situation.</p>
+    <p>Additionally, the same baseline flow needed to serve very different people: adults who'd accumulated public followers over years, teenagers with locked profiles who may not have fully understood their settings, and gen pop users who hadn't opened the app in months.</p>
+  </section>
+
+  <section class="case-section">
+    <h2>My approach</h2>
+    <p>I directed content across 8 multi-screen flows and 5 cross-channel emails. A few decisions that mattered most:</p>
+    <ul>
+      <li><strong>The first screen of the flow had to lead with what users gained rather than loss.</strong> In early drafts I leaned too hard on what users stood to lose, such as followers and reach, which could create anxiety. I reframed the lead around the privacy protection aspect so users understood the change as something being done for them, not to them.</li>
+      <li><strong>Cross-functional alignment.</strong> I worked closely with Privacy, Legal, and the Help Center team to make sure the experience was both compliant and genuinely transparent.</li>
+    </ul>
+  </section>
 
   <section class="proto-player" id="proto-player" aria-label="Interactive flow prototype">
     <div class="proto-device">
@@ -36,33 +55,8 @@
   </section>
 
   <section class="case-section">
-    <h2>My role</h2>
-    <p>As the Facebook Profile content designer on this project, I:</p>
-    <ul>
-      <li>Directed content for deprecating 100M+ publicly followable and locked profiles</li>
-      <li>Designed 8 multi-screen flows and 5 cross-channel emails</li>
-      <li>Minimized disruption by ensuring clarity for sensitive cohorts, such as users under age 18</li>
-      <li>Collaborated with Privacy, Legal and Help Center team to ensure a compliant and transparent experience</li>
-    </ul>
-  </section>
-
-  <section class="case-section">
-    <h2>Challenges</h2>
-    <ul>
-      <li><strong>Forced setting change at scale.</strong> Required careful framing across notifications and flow to avoid panic and churn. All screens are content-heavy.</li>
-      <li><strong>Sensitive cohorts with the same baseline flow.</strong> Under-18 locked profiles, non-MAU users and special edge cases flowed through the same architecture but had different stakes and concerns.</li>
-      <li><strong>Cross-channel consistency.</strong> 8 in-app flows, 5 emails and the Help Center article had to land coherently with different surface-dependent design constraints.</li>
-    </ul>
-  </section>
-
-  <section class="case-section">
     <h2>Results</h2>
-    <ul>
-      <li>94.4% of locked profile users confirmed they wanted privacy, as anticipated</li>
-      <li>Unexpected upside: 5.6% elected to convert to pro mode</li>
-      <li>Revenue neutral and did not cause a negative engagement spike</li>
-      <li>No SEVs or rollbacks, and all cohorts shipped without incident</li>
-    </ul>
+    <p>94.4% of users who entered the flow confirmed they wanted privacy, which told us that the framing worked. People understood their choice and made it decisively. The more surprising outcome was that 5.6% elected to convert to professional mode to keep their public followers and lean into their identities as creators. The project shipped without incident across all cohorts, with no SEVs or rollbacks.</p>
     <div class="case-stats">
       <div class="case-stat">
         <div class="case-stat-value">94.4%</div>
