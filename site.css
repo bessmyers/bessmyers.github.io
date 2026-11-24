@@ -500,93 +500,10 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   .about-text-col { flex: 1; min-width: 0; }
 }
 
-/* Portfolio gate */
+/* Portfolio */
 .portfolio-section { padding-top: var(--space-block); }
 
 .portfolio-wrap { position: relative; }
-
-#portfolio-gate {
-  position: relative;
-  z-index: 2;
-  max-width: 28rem;
-  margin-top: clamp(2rem, 5vw, 2.75rem);
-  overflow: hidden;
-  max-height: 24rem;
-  transition:
-    max-height 0.38s var(--ease-out),
-    opacity 0.32s var(--ease-out),
-    margin-top 0.38s var(--ease-out);
-}
-
-#portfolio-gate.is-hidden { display: none; }
-
-#portfolio-gate.is-collapsing {
-  max-height: 0;
-  opacity: 0;
-  margin-top: 0;
-  pointer-events: none;
-}
-
-.gate-desc {
-  font-family: var(--sans);
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--ink-soft);
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
-}
-
-.gate-desc a {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.gate-desc a:hover {
-  color: var(--clay);
-}
-
-.gate-form {
-  display: flex;
-  border: 1px solid var(--rule);
-  background: var(--bg);
-}
-
-.gate-form input[type="password"] {
-  flex: 1;
-  background: transparent;
-  border: none;
-  padding: 0.75rem 1rem;
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--ink);
-  outline: none;
-}
-
-.gate-form input::placeholder { color: var(--ink-muted); }
-
-.gate-form button {
-  background: var(--ink);
-  border: none;
-  padding: 0.75rem 1.25rem;
-  font-family: var(--sans);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--bg);
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.gate-form button:hover { background: var(--clay); }
-
-.gate-error {
-  font-size: 0.7rem;
-  color: var(--clay);
-  margin-top: 0.75rem;
-  display: none;
-}
 
 /* Work index */
 .work-index-head {
@@ -665,49 +582,13 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
   transition: color 0.18s var(--ease-out);
 }
 
-.portfolio-wrap.is-unlocked .work-row--case-study:hover .work-teaser,
-.portfolio-wrap.is-unlocked .work-row--case-study:focus-visible .work-teaser {
+.portfolio-wrap .work-row--case-study:hover .work-teaser,
+.portfolio-wrap .work-row--case-study:focus-visible .work-teaser {
   color: var(--bg);
 }
 
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .work-teaser,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .work-teaser {
-  color: var(--ink-soft);
-}
-
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study {
-  cursor: default;
-}
-
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study .index-row-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study .type-title {
-  color: var(--ink-muted);
-}
-
-.portfolio-wrap.is-unlocked .work-row--case-study {
+.portfolio-wrap .work-row--case-study {
   cursor: pointer;
-}
-
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible {
-  background: transparent;
-  color: var(--ink);
-}
-
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .index-row-meta,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .index-row-meta,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .index-row-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .index-row-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .type-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .type-title {
-  color: var(--ink-muted);
-}
-
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .index-row-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .index-row-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:hover .type-title,
-.portfolio-wrap:not(.is-unlocked) .work-row--case-study:focus-visible .type-title {
-  color: var(--ink);
 }
 
 .work-row-year {
@@ -718,10 +599,6 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
 @media (prefers-reduced-motion: reduce) {
   .index-row,
   .single-page nav a {
-    transition: none;
-  }
-
-  #portfolio-gate {
     transition: none;
   }
 

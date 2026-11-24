@@ -78,7 +78,7 @@
       <div class="section-inner">
         <p class="section-label">work</p>
 
-        <div class="portfolio-wrap" id="portfolio-wrap">
+        <div class="portfolio-wrap">
           <div id="portfolio-public">
             <div class="work-index-head" aria-hidden="true">
               <span class="work-index-head-cell work-index-head-cell--title">Project</span>
@@ -89,9 +89,7 @@
               <li class="work-index-item">
                 <a
                   class="index-row work-row work-row--case-study"
-                  data-case-href="work/locked-profiles.html"
-                  aria-disabled="true"
-                  tabindex="-1"
+                  href="work/locked-profiles.html"
                 >
                   <span class="index-row-title type-title type-title--row">Changing privacy settings for 100M people</span>
                   <span class="index-row-meta work-row-category">User flows · Meta</span>
@@ -102,11 +100,9 @@
               <li class="work-index-item">
                 <a
                   class="index-row work-row work-row--case-study"
-                  data-case-href="work/ai-auditing.html"
-                  aria-disabled="true"
-                  tabindex="-1"
+                  href="work/ai-auditing.html"
                 >
-                  <span class="index-row-title type-title type-title--row">How I scaled my content design expertise into an agent</span>
+                  <span class="index-row-title type-title type-title--row">Teaching AI what good content design looks like</span>
                   <span class="index-row-meta work-row-category">Tools · AI · Meta</span>
                   <time class="index-row-meta work-row-year" datetime="2026">2026</time>
                   <p class="work-teaser">Turned CD expertise into an agent that expanded coverage across Facebook Profile</p>
@@ -115,16 +111,6 @@
             </ul>
           </div>
 
-          <div id="portfolio-gate" aria-live="polite">
-            <p class="gate-desc">
-              Full case studies require a password. Reach out on <a href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">LinkedIn</a> or via <a href="mailto:bessrhmyers@gmail.com">email</a> for access.
-            </p>
-            <div class="gate-form">
-              <input type="password" id="pw-input" placeholder="Enter password" autocomplete="off" />
-              <button type="button" onclick="checkPassword()">Submit</button>
-            </div>
-            <p class="gate-error" id="gate-error">Incorrect password</p>
-          </div>
         </div>
       </div>
     </div>
@@ -164,116 +150,7 @@
     </div>
   </footer>
 
-  <script src="portfolio.js"></script>
   <script>
-    (function initPortfolio() {
-      var portfolioWrap = document.getElementById('portfolio-wrap');
-      var portfolioGate = document.getElementById('portfolio-gate');
-      var caseStudyLinks = document.querySelectorAll('.work-row--case-study');
-      if (!portfolioWrap || !portfolioGate || !caseStudyLinks.length) return;
-
-      function setCaseStudyLinksLocked(locked) {
-        caseStudyLinks.forEach(function (link) {
-          var href = link.getAttribute('data-case-href');
-          if (locked) {
-            link.removeAttribute('href');
-            link.setAttribute('aria-disabled', 'true');
-            link.setAttribute('tabindex', '-1');
-          } else if (href) {
-            link.setAttribute('href', href);
-            link.removeAttribute('aria-disabled');
-            link.removeAttribute('tabindex');
-          }
-        });
-      }
-
-      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var unlockCollapseTimer;
-
-      function hideGateImmediate() {
-        window.clearTimeout(unlockCollapseTimer);
-        portfolioGate.classList.remove('is-collapsing');
-        portfolioGate.classList.add('is-hidden');
-      }
-
-      function finishGateCollapse() {
-        portfolioGate.classList.remove('is-collapsing');
-        portfolioGate.classList.add('is-hidden');
-      }
-
-      function collapseGateAnimated() {
-        portfolioGate.classList.remove('is-hidden');
-        portfolioGate.classList.remove('is-collapsing');
-        void portfolioGate.offsetHeight;
-        portfolioGate.classList.add('is-collapsing');
-
-        var collapsed = false;
-        function onCollapseEnd(e) {
-          if (collapsed || e.target !== portfolioGate) return;
-          if (e.propertyName !== 'max-height' && e.propertyName !== 'opacity') return;
-          collapsed = true;
-          portfolioGate.removeEventListener('transitionend', onCollapseEnd);
-          finishGateCollapse();
-        }
-        portfolioGate.addEventListener('transitionend', onCollapseEnd);
-        unlockCollapseTimer = window.setTimeout(function () {
-          if (!collapsed) {
-            collapsed = true;
-            portfolioGate.removeEventListener('transitionend', onCollapseEnd);
-            finishGateCollapse();
-          }
-        }, 450);
-      }
-
-      function unlockPortfolio(options) {
-        var animate = options && options.animate;
-        portfolioWrap.classList.add('is-unlocked');
-        setCaseStudyLinksLocked(false);
-        PortfolioGate.unlock();
-
-        if (!animate || prefersReducedMotion) {
-          hideGateImmediate();
-          return;
-        }
-
-        collapseGateAnimated();
-      }
-
-      function checkPassword() {
-        var input = document.getElementById('pw-input').value;
-        var error = document.getElementById('gate-error');
-
-        if (PortfolioGate.checkPassword(input)) {
-          unlockPortfolio({ animate: true });
-          error.style.display = 'none';
-        } else {
-          error.style.display = 'block';
-          document.getElementById('pw-input').value = '';
-        }
-      }
-
-      window.checkPassword = checkPassword;
-
-      document.getElementById('pw-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') checkPassword();
-      });
-
-      setCaseStudyLinksLocked(true);
-      portfolioGate.classList.remove('is-hidden');
-
-      caseStudyLinks.forEach(function (link) {
-        link.addEventListener('click', function (e) {
-          if (!portfolioWrap.classList.contains('is-unlocked')) {
-            e.preventDefault();
-          }
-        });
-      });
-
-      if (PortfolioGate.isUnlocked()) {
-        unlockPortfolio({ animate: false });
-      }
-    })();
-
     (function initHeroNewspaperToggle() {
       var toggle = document.getElementById('hero-newspaper-toggle');
       var hero = document.querySelector('.hero-headline');
