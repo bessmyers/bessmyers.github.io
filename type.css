@@ -23,7 +23,7 @@
 }
 
 .type-title--hero {
-  font-size: clamp(2rem, 7.25vw, 8rem);
+  font-size: clamp(2rem, 6.5vw, 7.25rem);
   font-weight: 400;
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -33,7 +33,7 @@
 
 @media (max-width: 600px) {
   .type-title--hero {
-    font-size: clamp(1.65rem, 8.5vw, 3rem);
+    font-size: clamp(1.6rem, 7.75vw, 2.75rem);
     line-height: 1.15;
     letter-spacing: -0.03em;
   }
@@ -53,8 +53,7 @@
 .site-name,
 nav a,
 .case-back,
-.index-row-title-text,
-.drafts-toggle-text {
+.index-row-title-text {
   text-decoration: none;
   background-repeat: repeat-x;
   background-position: 0 100%;
@@ -71,9 +70,7 @@ nav a:focus-visible,
 .case-back:hover,
 .case-back:focus-visible,
 .index-row:hover .index-row-title-text,
-.index-row:focus-visible .index-row-title-text,
-.drafts-toggle:hover .drafts-toggle-text,
-.drafts-toggle:focus-visible .drafts-toggle-text {
+.index-row:focus-visible .index-row-title-text {
   background-image: var(--squiggle-underline);
   animation: squiggle-drift 1.2s linear infinite;
 }
@@ -90,9 +87,7 @@ nav a:focus-visible,
   .case-back:hover,
   .case-back:focus-visible,
   .index-row:hover .index-row-title-text,
-  .index-row:focus-visible .index-row-title-text,
-  .drafts-toggle:hover .drafts-toggle-text,
-  .drafts-toggle:focus-visible .drafts-toggle-text {
+  .index-row:focus-visible .index-row-title-text {
     animation: none;
   }
 }

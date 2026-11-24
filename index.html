@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=4" />
+  <link rel="stylesheet" href="site.css?v=7" />
 </head>
 <body class="single-page">
 
@@ -29,13 +29,6 @@
 
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
-      <div class="hero-drafts" id="hero-drafts" hidden>
-        <p class="visually-hidden">Earlier drafts of this headline, struck through:</p>
-        <ol class="hero-drafts-list">
-          <li class="hero-draft"><del>She uses words to make cool things.</del></li>
-          <li class="hero-draft"><del>Bess is a content and UX designer based in San Francisco.</del></li>
-        </ol>
-      </div>
       <div class="hero-text-slot">
         <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a content designer based in San Francisco. She builds the systems that make products make sense.</h1>
       </div>
@@ -56,10 +49,6 @@
           <span class="hero-switch-option hero-switch-option--chaos" data-mode="chaos" aria-hidden="true">Chaos</span>
         </button>
         <span id="hero-style-state" class="visually-hidden">Currently: Calm</span>
-        <button type="button" class="drafts-toggle" aria-expanded="false" aria-controls="hero-drafts">
-          <span class="drafts-toggle-text">see drafts</span>
-          <span class="drafts-toggle-icon" aria-hidden="true"></span>
-        </button>
       </div>
     </div>
   </section>
@@ -166,25 +155,6 @@
   </footer>
 
   <script>
-    (function initHeroDrafts() {
-      var button = document.querySelector('.drafts-toggle');
-      var drafts = document.getElementById('hero-drafts');
-      if (!button || !drafts) return;
-
-      button.addEventListener('click', function () {
-        var open = button.getAttribute('aria-expanded') !== 'true';
-        button.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (open) {
-          drafts.hidden = false;
-          void drafts.offsetHeight;
-          drafts.classList.add('is-open');
-        } else {
-          drafts.classList.remove('is-open');
-          drafts.hidden = true;
-        }
-      });
-    })();
-
     (function initHeroNewspaperToggle() {
       var toggle = document.getElementById('hero-newspaper-toggle');
       var hero = document.querySelector('.hero-headline');
@@ -208,15 +178,25 @@
         if (stateText) stateText.textContent = on ? 'Currently: Chaos' : 'Currently: Calm';
       }
 
+      // Count visual lines. Mixed fonts sit at slightly different heights on the
+      // same line, so group text boxes whose vertical centres are close together.
       function getLineCount(el) {
         var range = document.createRange();
         range.selectNodeContents(el);
         var rects = range.getClientRects();
-        var tops = {};
+        var tolerance = parseFloat(window.getComputedStyle(el).fontSize) * 0.5;
+        var centres = [];
         for (var i = 0; i < rects.length; i++) {
-          tops[Math.round(rects[i].top)] = true;
+          if (rects[i].width > 0) centres.push((rects[i].top + rects[i].bottom) / 2);
         }
-        return Object.keys(tops).length;
+        centres.sort(function (a, b) { return a - b; });
+        var lines = 0;
+        var last = -Infinity;
+        for (var j = 0; j < centres.length; j++) {
+          if (centres[j] - last > tolerance) lines++;
+          last = centres[j];
+        }
+        return lines;
       }
 
       function updateHeroSlotHeight() {

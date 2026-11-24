@@ -1,5 +1,5 @@
-@import url('tokens.css?v=2');
-@import url('type.css?v=2');
+@import url('tokens.css?v=4');
+@import url('type.css?v=4');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -200,7 +200,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .single-page .hero-headline.hero-headline--landing,
 .single-page .type-title--hero.hero-headline--landing {
-  font-size: clamp(2rem, 7.25vw, 8rem);
+  font-size: clamp(2rem, 6.5vw, 7.25rem);
   font-weight: 400;
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -210,7 +210,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 @media (max-width: 600px) {
   .single-page .hero-headline.hero-headline--landing,
   .single-page .type-title--hero.hero-headline--landing {
-    font-size: clamp(1.65rem, 8.5vw, 3rem);
+    font-size: clamp(1.6rem, 7.75vw, 2.75rem);
     line-height: 1.15;
     letter-spacing: -0.03em;
   }
@@ -218,87 +218,6 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .hero-controls {
   margin-top: clamp(1.25rem, 2.5vw, 2rem);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-/* "see drafts" disclosure */
-.drafts-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0;
-  border: none;
-  background: none;
-  font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.2;
-  color: var(--ink-gray);
-  cursor: pointer;
-}
-
-.drafts-toggle:hover,
-.drafts-toggle:focus-visible { color: var(--ink); }
-
-.drafts-toggle:focus-visible {
-  outline: 2px solid var(--clay);
-  outline-offset: 3px;
-}
-
-.drafts-toggle-icon {
-  width: 0.4em;
-  height: 0.4em;
-  border-right: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  transform: translateY(-0.12em) rotate(45deg);
-  transition: transform 0.2s var(--ease-out);
-}
-
-.drafts-toggle[aria-expanded="true"] .drafts-toggle-icon {
-  transform: translateY(0.08em) rotate(-135deg);
-}
-
-.hero-drafts {
-  margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
-  opacity: 0;
-  transform: translateY(-8px);
-  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-}
-
-.hero-drafts.is-open {
-  opacity: 1;
-  transform: none;
-}
-
-.hero-drafts-list {
-  list-style: none;
-}
-
-.hero-draft {
-  font-family: var(--sans);
-  font-size: clamp(1.25rem, 3.4vw, 3.25rem);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  color: var(--ink-gray);
-}
-
-.hero-draft + .hero-draft { margin-top: 0.2em; }
-
-/* Editor's redline strike */
-.hero-draft del {
-  text-decoration-line: line-through;
-  text-decoration-color: #D7261E;
-  text-decoration-thickness: max(2px, 0.07em);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-drafts,
-  .drafts-toggle-icon {
-    transition: none;
-  }
 }
 
 .single-page .hero-headline.hero-headline--landing {
@@ -361,8 +280,8 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .hero-switch[aria-checked="true"] .hero-switch-track {
   background-color: #fff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='20'%3E%3Crect width='24' height='20' fill='white'/%3E%3Cg fill='none' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M-24 3q6 -1.9 12 0t12 0t12 0t12 0t12 0' stroke='%23E5532D'/%3E%3Cpath d='M-18 8q6 -1.9 12 0t12 0t12 0t12 0t12 0' stroke='%232F6BDE'/%3E%3Cpath d='M-12 13q6 -1.9 12 0t12 0t12 0t12 0t12 0' stroke='%23F2B705'/%3E%3Cpath d='M-6 18q6 -1.9 12 0t12 0t12 0t12 0t12 0' stroke='%238B45D6'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 24px 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='white'/%3E%3Cg fill='none' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M0 3.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%23E5532D'/%3E%3Cpath d='M0 9.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%232F6BDE'/%3E%3Cpath d='M0 15.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%23F2B705'/%3E%3Cpath d='M0 21.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%238B45D6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 24px 24px;
   background-position: 0 50%;
   border-color: var(--ink);
 }
@@ -415,6 +334,12 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
   .hero-switch-option {
     transition: none;
   }
+}
+
+/* Keep Chaos lines spaced exactly like Calm: the mixed fonts carry different
+   built-in ascent/descent, which would otherwise push lines apart. */
+html[data-hero-font="newspaper"] .hero-word {
+  line-height: 0;
 }
 
 html[data-hero-font="newspaper"] .hero-word--f0 {
