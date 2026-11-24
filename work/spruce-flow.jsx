@@ -62,15 +62,16 @@ const STEP_LABELS = [
   'Run Spruce',
   'Scan high-traffic directories',
   'Detect issues',
-  'Severity rating',
+  'Rate severity by issue type, string liveness, and daily views',
   'Draft diffs'
 ];
 
+// Extra detail shown under the active step; empty means label only.
 const STEP_DESCRIPTIONS = [
-  'Content design AI agent can work autonomously after 7+ iterations',
+  '',
   'Spruce auto-scans 30 directories in the Facebook Profile codebase throughout the week',
   'Style, brand voice, terminology, accessibility, localization',
-  'Determine severity based on type of issue, string liveness and daily views',
+  '',
   'Draft diffs for human review of highest-severity issues, and file eng tasks for issues outside CD scope'
 ];
 
@@ -142,7 +143,7 @@ function SpruceFlowAnimation() {
               >
                 {STEP_LABELS[idx]}
               </div>
-              {step === idx && (
+              {step === idx && STEP_DESCRIPTIONS[idx] && (
                 <div
                   style={{
                     fontSize: '12px',
