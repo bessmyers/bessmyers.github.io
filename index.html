@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>bess myers — content designer</title>
+  <title>Bess Myers — Content designer</title>
   <meta name="description" content="Bess Myers is a content designer based in San Francisco. She builds the systems that make products make sense." />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -17,11 +17,11 @@
   <header class="site-band site-band--header site-header">
     <div class="site-frame">
       <div class="section-inner section-inner--header">
-        <a href="#top" class="site-name">bess myers · content designer</a>
+        <a href="#top" class="site-name">Bess Myers · Content designer</a>
         <nav>
-          <a href="#about">about</a>
-          <a href="#work">work</a>
-          <a href="#connect">connect</a>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#connect">Connect</a>
         </nav>
       </div>
     </div>
@@ -39,11 +39,12 @@
           id="hero-newspaper-toggle"
           role="switch"
           aria-checked="false"
-          aria-label="Off"
+          aria-label="Mixed fonts"
         >
           <span class="hero-switch-track" aria-hidden="true">
             <span class="hero-switch-thumb"></span>
           </span>
+          <span class="hero-switch-label">Mixed fonts</span>
         </button>
       </div>
     </div>
@@ -52,7 +53,7 @@
   <section id="about" class="site-band page-section reveal">
     <div class="site-frame">
       <div class="section-inner">
-        <p class="section-label">about</p>
+        <p class="section-label">About</p>
         <div class="about-flex">
           <div class="about-photo-col">
             <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" width="400" height="500" />
@@ -76,7 +77,7 @@
   <section id="work" class="site-band page-section portfolio-section reveal">
     <div class="site-frame">
       <div class="section-inner">
-        <p class="section-label">work</p>
+        <p class="section-label">Work</p>
 
         <div class="portfolio-wrap">
           <div id="portfolio-public">
@@ -119,23 +120,23 @@
   <section id="connect" class="site-band page-section reveal">
     <div class="site-frame">
       <div class="section-inner">
-        <p class="section-label">connect</p>
+        <p class="section-label">Connect</p>
         <div class="index-list">
           <a class="index-row" href="/resume.pdf" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">Experience</span>
-            <span class="index-row-meta">Resume</span>
+            <span class="index-row-title type-title type-title--row">Resume</span>
+            <span class="index-row-meta">Experience</span>
           </a>
           <a class="index-row" href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">Professional profile</span>
-            <span class="index-row-meta">LinkedIn</span>
+            <span class="index-row-title type-title type-title--row">LinkedIn</span>
+            <span class="index-row-meta">Professional profile</span>
           </a>
           <a class="index-row" href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">Writing</span>
-            <span class="index-row-meta">Medium</span>
+            <span class="index-row-title type-title type-title--row">Medium</span>
+            <span class="index-row-meta">Writing</span>
           </a>
           <a class="index-row" href="mailto:bessrhmyers@gmail.com">
-            <span class="index-row-title type-title type-title--row">Say hello</span>
-            <span class="index-row-meta">Email</span>
+            <span class="index-row-title type-title type-title--row">Email</span>
+            <span class="index-row-meta">Say hello</span>
           </a>
         </div>
       </div>
@@ -145,7 +146,7 @@
   <footer class="site-band site-band--footer">
     <div class="site-frame">
       <div class="section-inner">
-        <p class="footer-copy">© 2026 bess myers · Made with the help of Cursor and Claude Design</p>
+        <p class="footer-copy">© 2026 Bess Myers · Made with the help of Cursor and Claude Design</p>
       </div>
     </div>
   </footer>
@@ -271,7 +272,6 @@
         hero.style.fontSize = '';
         document.documentElement.removeAttribute('data-hero-font');
         toggle.setAttribute('aria-checked', 'false');
-        toggle.setAttribute('aria-label', 'Off');
         void hero.offsetHeight;
         plainLineCount = getLineCount(hero);
       }
@@ -282,7 +282,6 @@
         }
         wrapNewspaperWords();
         toggle.setAttribute('aria-checked', 'true');
-        toggle.setAttribute('aria-label', 'On');
         fitNewspaperFontSize();
       }
 
@@ -317,7 +316,6 @@
         if (isAnimating) return;
 
         toggle.setAttribute('aria-checked', on ? 'true' : 'false');
-        toggle.setAttribute('aria-label', on ? 'On' : 'Off');
 
         if (on) crossfadeHero(renderNewspaper);
         else crossfadeHero(renderPlain);

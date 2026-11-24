@@ -616,7 +616,6 @@ body {
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.2;
-  text-transform: lowercase;
   color: var(--ink-muted);
 }
 
