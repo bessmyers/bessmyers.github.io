@@ -1,5 +1,5 @@
 @import url('../tokens.css?v=7');
-@import url('../type.css?v=8');
+@import url('../type.css?v=9');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -628,6 +628,7 @@ body {
 }
 
 .case-footer {
+  margin: 0 2rem;
   padding: 3rem 0;
   font-family: var(--sans);
   font-size: clamp(0.875rem, 1.25vw, 1rem);
@@ -655,6 +656,10 @@ body {
   .site-wrap--wide .proto-player {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .site-wrap--wide .case-footer {
+    margin: 0 1.5rem;
   }
 
   .case-facts,
