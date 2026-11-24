@@ -18,7 +18,7 @@
   --space-hero-top: clamp(3rem, 8vw, 5rem);
   --space-block: clamp(2.5rem, 5vw, 4rem);
   --space-label: 0.75rem;
-  --row-pad-x: clamp(0.75rem, 3vw, 1.75rem);
   --content-max: 68rem;
+  --squiggle-underline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='6'%3E%3Cg fill='none' stroke-width='1.75' stroke-linecap='round'%3E%3Cpath d='M0 3Q3 -1 6 3' stroke='%23E5532D'/%3E%3Cpath d='M6 3Q9 7 12 3' stroke='%232F6BDE'/%3E%3Cpath d='M12 3Q15 -1 18 3' stroke='%23F2B705'/%3E%3Cpath d='M18 3Q21 7 24 3' stroke='%238B45D6'/%3E%3C/g%3E%3C/svg%3E");
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=3" />
+  <link rel="stylesheet" href="site.css?v=4" />
 </head>
 <body class="single-page">
 
@@ -29,6 +29,13 @@
 
   <section id="top" class="landing-section site-band">
     <div class="site-frame landing-inner">
+      <div class="hero-drafts" id="hero-drafts" hidden>
+        <p class="visually-hidden">Earlier drafts of this headline, struck through:</p>
+        <ol class="hero-drafts-list">
+          <li class="hero-draft"><del>She uses words to make cool things.</del></li>
+          <li class="hero-draft"><del>Bess is a content and UX designer based in San Francisco.</del></li>
+        </ol>
+      </div>
       <div class="hero-text-slot">
         <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a content designer based in San Francisco. She builds the systems that make products make sense.</h1>
       </div>
@@ -49,6 +56,10 @@
           <span class="hero-switch-option hero-switch-option--chaos" data-mode="chaos" aria-hidden="true">Chaos</span>
         </button>
         <span id="hero-style-state" class="visually-hidden">Currently: Calm</span>
+        <button type="button" class="drafts-toggle" aria-expanded="false" aria-controls="hero-drafts">
+          <span class="drafts-toggle-text">see drafts</span>
+          <span class="drafts-toggle-icon" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </section>
@@ -95,7 +106,7 @@
                   class="index-row work-row work-row--case-study"
                   href="work/locked-profiles.html"
                 >
-                  <span class="index-row-title type-title type-title--row">Changing privacy settings for 100M people</span>
+                  <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Changing privacy settings for 100M people</span></span>
                   <span class="index-row-meta work-row-category">User flows · Meta</span>
                   <time class="index-row-meta work-row-year" datetime="2025">2025</time>
                   <p class="work-teaser">Led content strategy for a forced privacy setting change at scale</p>
@@ -106,7 +117,7 @@
                   class="index-row work-row work-row--case-study"
                   href="work/ai-auditing.html"
                 >
-                  <span class="index-row-title type-title type-title--row">Teaching AI what good content design looks like</span>
+                  <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Teaching AI what good content design looks like</span></span>
                   <span class="index-row-meta work-row-category">Tools · AI · Meta</span>
                   <time class="index-row-meta work-row-year" datetime="2026">2026</time>
                   <p class="work-teaser">Turned CD expertise into an agent that expanded coverage across Facebook Profile</p>
@@ -126,19 +137,19 @@
         <p class="section-label">Connect</p>
         <div class="index-list">
           <a class="index-row" href="/resume.pdf" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">Resume</span>
+            <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Resume</span></span>
             <span class="index-row-meta">Experience</span>
           </a>
           <a class="index-row" href="https://www.linkedin.com/in/bessrhmyers/" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">LinkedIn</span>
+            <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">LinkedIn</span></span>
             <span class="index-row-meta">Professional profile</span>
           </a>
           <a class="index-row" href="https://medium.com/@bessrhmyers" target="_blank" rel="noopener">
-            <span class="index-row-title type-title type-title--row">Medium</span>
+            <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Medium</span></span>
             <span class="index-row-meta">Writing</span>
           </a>
           <a class="index-row" href="mailto:bessrhmyers@gmail.com">
-            <span class="index-row-title type-title type-title--row">Email</span>
+            <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Email</span></span>
             <span class="index-row-meta">Say hello</span>
           </a>
         </div>
@@ -155,6 +166,25 @@
   </footer>
 
   <script>
+    (function initHeroDrafts() {
+      var button = document.querySelector('.drafts-toggle');
+      var drafts = document.getElementById('hero-drafts');
+      if (!button || !drafts) return;
+
+      button.addEventListener('click', function () {
+        var open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+          drafts.hidden = false;
+          void drafts.offsetHeight;
+          drafts.classList.add('is-open');
+        } else {
+          drafts.classList.remove('is-open');
+          drafts.hidden = true;
+        }
+      });
+    })();
+
     (function initHeroNewspaperToggle() {
       var toggle = document.getElementById('hero-newspaper-toggle');
       var hero = document.querySelector('.hero-headline');

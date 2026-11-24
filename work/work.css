@@ -1,5 +1,5 @@
-@import url('../tokens.css');
-@import url('../type.css');
+@import url('../tokens.css?v=2');
+@import url('../type.css?v=2');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,7 +47,8 @@ body {
   transition: color 0.2s;
 }
 
-.case-back:hover { color: var(--clay); }
+.case-back:hover,
+.case-back:focus-visible { color: var(--ink); }
 
 .site-wrap--wide .case-header {
   max-width: 1100px;

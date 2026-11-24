@@ -48,3 +48,51 @@
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   max-width: 42rem;
 }
+
+/* Link hover: multicolor wavy underline, same colours as the Chaos switch */
+.site-name,
+nav a,
+.case-back,
+.index-row-title-text,
+.drafts-toggle-text {
+  text-decoration: none;
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 24px 6px;
+  padding-bottom: 6px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.site-name:hover,
+.site-name:focus-visible,
+nav a:hover,
+nav a:focus-visible,
+.case-back:hover,
+.case-back:focus-visible,
+.index-row:hover .index-row-title-text,
+.index-row:focus-visible .index-row-title-text,
+.drafts-toggle:hover .drafts-toggle-text,
+.drafts-toggle:focus-visible .drafts-toggle-text {
+  background-image: var(--squiggle-underline);
+  animation: squiggle-drift 1.2s linear infinite;
+}
+
+@keyframes squiggle-drift {
+  to { background-position: 24px 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-name:hover,
+  .site-name:focus-visible,
+  nav a:hover,
+  nav a:focus-visible,
+  .case-back:hover,
+  .case-back:focus-visible,
+  .index-row:hover .index-row-title-text,
+  .index-row:focus-visible .index-row-title-text,
+  .drafts-toggle:hover .drafts-toggle-text,
+  .drafts-toggle:focus-visible .drafts-toggle-text {
+    animation: none;
+  }
+}
