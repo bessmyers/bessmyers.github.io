@@ -183,11 +183,10 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .single-page .landing-section {
-  min-height: calc(100svh - 4.5rem);
   display: flex;
   align-items: flex-start;
   padding-top: 0;
-  padding-bottom: clamp(1.5rem, 6vh, 4rem);
+  padding-bottom: 0;
 }
 
 .single-page .landing-inner {
