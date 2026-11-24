@@ -39,12 +39,13 @@
           id="hero-newspaper-toggle"
           role="switch"
           aria-checked="false"
-          aria-label="Mixed fonts"
+          aria-label="Headline style: Calm or Chaos"
         >
+          <span class="hero-switch-option hero-switch-option--calm" data-mode="calm" aria-hidden="true">Calm</span>
           <span class="hero-switch-track" aria-hidden="true">
             <span class="hero-switch-thumb"></span>
           </span>
-          <span class="hero-switch-label">Mixed fonts</span>
+          <span class="hero-switch-option hero-switch-option--chaos" data-mode="chaos" aria-hidden="true">Chaos</span>
         </button>
       </div>
     </div>
@@ -220,7 +221,7 @@
 
       function setAnimating(active) {
         isAnimating = active;
-        toggle.disabled = active;
+        toggle.setAttribute('aria-busy', active ? 'true' : 'false');
       }
 
       function fitNewspaperFontSize() {
@@ -331,8 +332,12 @@
         }
       }
 
-      toggle.addEventListener('click', function () {
-        setMode(toggle.getAttribute('aria-checked') !== 'true');
+      toggle.addEventListener('click', function (e) {
+        if (isAnimating) return;
+        var isOn = toggle.getAttribute('aria-checked') === 'true';
+        var picked = e.target.closest && e.target.closest('[data-mode]');
+        var next = picked ? picked.getAttribute('data-mode') === 'chaos' : !isOn;
+        if (next !== isOn) setMode(next);
       });
 
       window.addEventListener('resize', function () {
