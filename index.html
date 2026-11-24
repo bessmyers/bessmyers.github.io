@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css" />
+  <link rel="stylesheet" href="site.css?v=2" />
 </head>
 <body class="single-page">
 
@@ -40,6 +40,7 @@
           role="switch"
           aria-checked="false"
           aria-label="Headline style: Calm or Chaos"
+          aria-describedby="hero-style-state"
         >
           <span class="hero-switch-option hero-switch-option--calm" data-mode="calm" aria-hidden="true">Calm</span>
           <span class="hero-switch-track" aria-hidden="true">
@@ -47,6 +48,7 @@
           </span>
           <span class="hero-switch-option hero-switch-option--chaos" data-mode="chaos" aria-hidden="true">Chaos</span>
         </button>
+        <span id="hero-style-state" class="visually-hidden">Currently: Calm</span>
       </div>
     </div>
   </section>
@@ -169,6 +171,13 @@
       var isAnimating = false;
       var HERO_FADE_MS = 250;
 
+      var stateText = document.getElementById('hero-style-state');
+
+      function setChecked(on) {
+        toggle.setAttribute('aria-checked', on ? 'true' : 'false');
+        if (stateText) stateText.textContent = on ? 'Currently: Chaos' : 'Currently: Calm';
+      }
+
       function getLineCount(el) {
         var range = document.createRange();
         range.selectNodeContents(el);
@@ -272,7 +281,7 @@
         hero.textContent = text;
         hero.style.fontSize = '';
         document.documentElement.removeAttribute('data-hero-font');
-        toggle.setAttribute('aria-checked', 'false');
+        setChecked(false);
         void hero.offsetHeight;
         plainLineCount = getLineCount(hero);
       }
@@ -282,7 +291,7 @@
           measurePlainLineCount();
         }
         wrapNewspaperWords();
-        toggle.setAttribute('aria-checked', 'true');
+        setChecked(true);
         fitNewspaperFontSize();
       }
 
@@ -316,7 +325,7 @@
 
         if (isAnimating) return;
 
-        toggle.setAttribute('aria-checked', on ? 'true' : 'false');
+        setChecked(on);
 
         if (on) crossfadeHero(renderNewspaper);
         else crossfadeHero(renderPlain);
