@@ -1,7 +1,6 @@
 .type-eyebrow,
 .work-index-head-cell,
-.case-tag,
-.case-section > h2 {
+.case-tag {
   font-family: var(--sans);
   font-size: 0.68rem;
   font-weight: 600;

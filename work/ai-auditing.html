@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="work.css?v=6" />
+  <link rel="stylesheet" href="work.css?v=9" />
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -19,34 +19,39 @@
     <a href="../work.html" class="case-back">← Work</a>
     <p class="case-tag">Tools · AI · Meta</p>
     <h1 class="case-title type-title type-title--case">Teaching AI what good content design looks like</h1>
-    <p class="case-lead-question">How do you scale one content designer across an entire product surface?</p>
+    <p class="case-subtitle">How do you scale one content designer across an entire product surface?</p>
+    <ul class="case-results" aria-label="Results">
+      <li><span class="case-results-value">23</span> <span class="case-results-label">prompt test rounds to ensure accuracy</span></li>
+      <li><span class="case-results-value">30</span> <span class="case-results-label">Profile directories scanned every week</span></li>
+      <li><span class="case-results-value">54%</span> <span class="case-results-label">increase in diff accuracy over the prompt lifecycle</span></li>
+    </ul>
+    <dl class="case-facts case-facts--three">
+      <div class="case-fact">
+        <dt>My role</dt>
+        <dd>Sole content designer, Core Identity</dd>
+      </div>
+      <div class="case-fact">
+        <dt>Surface</dt>
+        <dd>Facebook Profile</dd>
+      </div>
+      <div class="case-fact">
+        <dt>Tools</dt>
+        <dd>Claude Code, internal agents for analytics and diff creation</dd>
+      </div>
+    </dl>
     <p class="case-intro">When you're the only content designer on a team, you have to make choices about what gets your attention. There are only so many hours, and the work that's in front of you always feels more urgent than the work that's been sitting untouched for years.</p>
-    <p class="case-intro">On Facebook Core Identity, that untouched work was everywhere. Profile is a sprawling surface with decades of accumulated strings. <strong>I could do the current projects well, or I could do the audit work, but I couldn't do both.</strong> I built an agent AI that could help me keep an eye on all surfaces at once.</p>
-    <div class="case-meta-grid" aria-label="Project scope">
-      <div class="case-meta-item">
-        <p class="case-meta-label">Tools</p>
-        <p class="case-meta-value">Claude Code, internal agents for analytics and diff creation</p>
-      </div>
-      <div class="case-meta-item">
-        <p class="case-meta-label">Surface</p>
-        <p class="case-meta-value">Facebook Profile</p>
-      </div>
-      <div class="case-meta-item">
-        <p class="case-meta-label">Team</p>
-        <p class="case-meta-value">Core Identity (sole content designer)</p>
-      </div>
-    </div>
+    <p class="case-intro">On Facebook Core Identity, that untouched work was everywhere. Profile is a sprawling surface with decades of accumulated strings. I could do the current projects well, or I could do the audit work, but I couldn't do both. I built an agent AI that could help me keep an eye on all surfaces at once.</p>
   </header>
 
   <section class="case-section">
     <h2>Core content problem</h2>
-    <p>Without a way to systematically surface outdated, inconsistent or incorrect content across Profile, <strong>problems stayed invisible until someone happened to stumble across them.</strong> I needed a way to monitor the codebase continuously, flag issues by severity and generate draft fixes I could review, without that work consuming all of my time.</p>
+    <p>Without a way to systematically surface outdated, inconsistent or incorrect content across Profile, problems stayed invisible until someone happened to stumble across them. I needed a way to monitor the codebase continuously, flag issues by severity and generate draft fixes I could review, without that work consuming all of my time.</p>
     <p>The challenge was to build an agent with enough content design judgment to ensure genuinely useful rather than superfluous output.</p>
   </section>
 
   <section class="case-section">
     <h2>My approach</h2>
-    <p>I created an agent I named Spruce, built with Claude Code and connected to internal tools for analytics and diff creation. Prompt architecture was key so Spruce could decide effectively what to care about most and what to do about it. I defined severity levels for content issues so Spruce could triage flagged issues. <strong>The prompt went through 23 test rounds before I was confident in its accuracy.</strong></p>
+    <p>I created an agent I named Spruce, built with Claude Code and connected to internal tools for analytics and diff creation. Prompt architecture was key so Spruce could decide effectively what to care about most and what to do about it. I defined severity levels for content issues so Spruce could triage flagged issues. The prompt went through 23 test rounds before I was confident in its accuracy.</p>
     <p>I also designed Spruce to hand off work to other agents rather than try to do everything itself. For example, it would call out to separate tools to check string liveness and pull daily view counts before deciding whether to flag it.</p>
     <p>One constraint I held firm on: Spruce submitted diffs as drafts and didn't land code directly to ensure accuracy and protect the time of engineers and designers.</p>
   </section>
@@ -78,22 +83,8 @@
 
   <section class="case-section">
     <h2>Results</h2>
-    <p>Over the prompt lifecycle, <strong>Spruce scanned 30 Profile directories weekly, giving me continuous visibility, and diff accuracy improved by 54%.</strong> Coverage across Profile increased in a way that would have been impossible for one person to achieve manually.</p>
+    <p>Over the prompt lifecycle, Spruce scanned 30 Profile directories weekly, giving me continuous visibility, and diff accuracy improved by 54%. Coverage across Profile increased in a way that would have been impossible for one person to achieve manually.</p>
     <p>One unexpected outcome was improved collaboration with eng. Engineers engaged with my diffs in ways that opened up conversations we wouldn't have had otherwise.</p>
-    <div class="case-stats case-stats--three">
-      <div class="case-stat">
-        <div class="case-stat-value">23</div>
-        <div class="case-stat-label">Prompt tests to ensure accuracy</div>
-      </div>
-      <div class="case-stat">
-        <div class="case-stat-value">30</div>
-        <div class="case-stat-label">Profile directories in codebase scanned weekly</div>
-      </div>
-      <div class="case-stat">
-        <div class="case-stat-value">54%</div>
-        <div class="case-stat-label">Increase in diff accuracy over prompt lifecycle</div>
-      </div>
-    </div>
   </section>
 
   <footer class="case-footer">© 2026 Bess Myers · Made with the help of Cursor and Claude Design</footer>
