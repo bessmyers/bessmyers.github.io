@@ -87,10 +87,12 @@ nav a,
   line-height: 1.12;
 }
 
+/* Header: midway between the original size (clamp 1.4rem / 3.5vw / 2.25rem) and 17px */
 .site-name,
 nav a {
-  font-size: 17px;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  letter-spacing: -0.025em;
+  text-transform: lowercase;
 }
 
 .section-label {
