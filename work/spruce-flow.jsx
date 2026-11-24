@@ -66,15 +66,6 @@ const STEP_LABELS = [
   'Draft diffs'
 ];
 
-// Extra detail shown under the active step; empty means label only.
-const STEP_DESCRIPTIONS = [
-  '',
-  'Spruce auto-scans 30 directories in the Facebook Profile codebase throughout the week',
-  'Style, brand voice, terminology, accessibility, localization',
-  '',
-  'Draft diffs for human review of highest-severity issues, and file eng tasks for issues outside CD scope'
-];
-
 function SpruceFlowAnimation() {
   const [step, setStep] = useState(0);
   const totalSteps = 4;
@@ -143,19 +134,6 @@ function SpruceFlowAnimation() {
               >
                 {STEP_LABELS[idx]}
               </div>
-              {step === idx && STEP_DESCRIPTIONS[idx] && (
-                <div
-                  style={{
-                    fontSize: '12px',
-                    color: '#4A4740',
-                    lineHeight: 1.4,
-                    marginTop: '0.5rem',
-                    animation: 'spruceFadeIn 0.4s ease-out'
-                  }}
-                >
-                  {STEP_DESCRIPTIONS[idx]}
-                </div>
-              )}
             </div>
           ))}
         </div>
