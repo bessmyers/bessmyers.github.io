@@ -125,6 +125,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 
 .section-label {
   width: fit-content;
+  text-transform: lowercase;
   color: var(--ink);
   margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
 }
