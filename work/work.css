@@ -31,8 +31,7 @@ body {
 }
 
 .case-header {
-  padding: 3rem 0 2rem;
-  border-bottom: 1px solid var(--rule);
+  padding: 3rem 0 clamp(1.5rem, 4vw, 3rem);
 }
 
 .case-back {
@@ -157,13 +156,13 @@ body {
   color: var(--ink);
 }
 
-/* Body text: 20px, 1.6 line height, capped at 680px */
+/* Body text: 19px, 1.6 line height, #2a2825, capped at 640px */
 .case-intro,
 .case-section p,
 .case-section li {
-  font-size: clamp(1.125rem, 0.6vw + 1rem, 1.25rem);
+  font-size: 19px;
   line-height: 1.6;
-  max-width: 680px;
+  max-width: 640px;
 }
 
 .case-intro {
@@ -192,21 +191,31 @@ body {
   margin-top: 0.35rem;
 }
 
-.case-section {
-  padding: 4rem 0;
-  border-bottom: 1px solid var(--rule);
+/* Each section: 260px label column + content column (max 640px) */
+.case-section,
+.proto-player {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 640px);
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+  padding: clamp(2rem, 4vw, 3rem) 0;
 }
 
-.case-section:last-of-type { border-bottom: none; }
+.case-section-body > :last-child { margin-bottom: 0; }
+
+/* The carousel sits in the content column, under "My approach" */
+.proto-player > * { grid-column: 2; }
 
 .case-section > h2 {
   width: fit-content;
-  margin-bottom: 1.5rem;
+  justify-self: start;
+  margin: 0;
+  padding-top: 0.15rem;
   font-family: var(--sans);
-  font-size: clamp(1.5rem, 1.5vw + 1rem, 1.75rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   text-transform: none;
   color: var(--ink);
 }
@@ -216,7 +225,7 @@ body {
   display: block;
   width: 100%;
   height: 8px;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   background-color: var(--chaos-blue);
   -webkit-mask: var(--heading-wave) repeat-x 0 50% / 16px 8px;
   mask: var(--heading-wave) repeat-x 0 50% / 16px 8px;
@@ -224,7 +233,7 @@ body {
 
 .case-section p,
 .case-section li {
-  color: var(--ink-soft);
+  color: var(--ink-body);
   margin-bottom: 1em;
 }
 
@@ -239,10 +248,7 @@ body {
   color: var(--ink);
 }
 
-.proto-player {
-  padding: 3rem 0 4rem;
-  border-bottom: 1px solid var(--rule);
-}
+
 
 .proto-device {
   max-width: 280px;
@@ -663,4 +669,90 @@ body {
   }
 
   .proto-device { max-width: 240px; }
+}
+
+
+/* Pull quote at the start of each challenge section */
+.case-section p.case-pullquote {
+  margin-bottom: 0.75em;
+  font-size: clamp(1.625rem, 2vw + 1rem, 2.125rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.case-pullquote-accent { color: #E4572E; }
+
+/* Early draft vs shipped */
+.draft-compare {
+  max-width: 640px;
+  margin: 2rem 0 0;
+}
+
+.draft-compare-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.draft-card {
+  padding: 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.draft-card--early { background: var(--bg-tint); }
+
+.case-section .draft-card-label {
+  margin-bottom: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink-muted);
+}
+
+.case-section .draft-card-text {
+  margin-bottom: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.draft-card-text del {
+  color: var(--ink-gray);
+  text-decoration-line: line-through;
+  text-decoration-color: #D7261E;
+  text-decoration-thickness: 2px;
+}
+
+.draft-compare-caption {
+  margin-top: 0.75rem;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink-gray);
+}
+
+/* Keep card text readable inside the narrower content column */
+.case-section .severity-item p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Tablets and phones: everything in one column */
+@media (max-width: 900px) {
+  .case-section,
+  .proto-player {
+    display: block;
+  }
+
+  .case-section > h2 { margin-bottom: 1.25rem; }
+}
+
+@media (max-width: 600px) {
+  .draft-compare-cards {
+    grid-template-columns: 1fr;
+  }
 }

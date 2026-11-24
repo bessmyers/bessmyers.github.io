@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="work.css?v=10" />
+  <link rel="stylesheet" href="work.css?v=12" />
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -44,54 +44,64 @@
 
   <section class="case-section">
     <h2>The problem</h2>
-    <p>As the only content designer on Facebook's Core Identity team, I had to choose where my attention went. Current projects always felt more urgent than strings that had sat untouched for years, and on Profile, a surface with decades of accumulated content, those strings were everywhere. I could do current projects well or do the audit work.</p>
-    <p>I needed a way to monitor the codebase continuously, flag issues by severity, and draft fixes for me to review, without that work taking over my week.</p>
+    <div class="case-section-body">
+      <p>As the only content designer on Facebook's Core Identity team, I had to choose where my attention went. Current projects always felt more urgent than strings that had sat untouched for years, and on Profile, a surface with decades of accumulated content, those strings were everywhere. I could do current projects well or do the audit work.</p>
+      <p>I needed a way to monitor the codebase continuously, flag issues by severity, and draft fixes for me to review, without that work taking over my week.</p>
+    </div>
   </section>
 
   <section class="case-section">
     <h2>The challenge</h2>
-    <p>Build an agent with enough content design judgment to ensure genuinely useful rather than superfluous output.</p>
+    <div class="case-section-body">
+      <p class="case-pullquote">Build an agent with enough <span class="case-pullquote-accent">content design judgment</span> to ensure genuinely useful rather than superfluous output.</p>
+    </div>
   </section>
 
   <section class="case-section">
     <h2>My approach</h2>
-    <p>I built an agent called Spruce with Claude Code and connected it to internal tools for analytics and diff creation. Three decisions shaped it:</p>
-    <ul>
-      <li><strong>A severity rubric.</strong> I defined what Spruce should care about most so it could triage instead of flagging everything. The prompt went through 23 rounds of testing before I trusted its judgment.</li>
-      <li><strong>"Don't be a hero" mentality.</strong> Before flagging a string, Spruce called other tools for support to check whether it was still live and how many daily views it got.</li>
-      <li><strong>Drafts only.</strong> Spruce submitted fixes as draft diffs and never landed code itself. Every change got human review, and engineers' and designers' time stayed protected.</li>
-    </ul>
+    <div class="case-section-body">
+      <p>I built an agent called Spruce with Claude Code and connected it to internal tools for analytics and diff creation. Three decisions shaped it:</p>
+      <p>I defined what Spruce should care about most so it could triage instead of flagging everything. The prompt went through 23 rounds of testing before I trusted its judgment.</p>
+      <p>Before flagging a string, Spruce called other tools for support to check whether it was still live and how many daily views it got.</p>
+      <p>Spruce submitted fixes as draft diffs and never landed code itself. Every change got human review, and engineers' and designers' time stayed protected.</p>
+    </div>
   </section>
 
   <section class="case-section case-section--spruce">
     <h2>How Spruce works</h2>
-    <div class="spruce-flow-embed embedded-widget">
-      <div id="spruce-flow-root" aria-label="Spruce agent flow animation"></div>
+    <div class="case-section-body">
+      <div class="spruce-flow-embed embedded-widget">
+        <div id="spruce-flow-root" aria-label="Spruce agent flow animation"></div>
+      </div>
     </div>
   </section>
 
   <section class="case-section">
     <h2>Severity rubric</h2>
-    <div class="severity-grid">
-      <div class="severity-item severity-item--high" role="group" tabindex="0" aria-labelledby="severity-high">
-        <h3 id="severity-high">High</h3>
-        <p>Blocks assistive technology or translation. Vague or misleading CTA labels. High-traffic surfaces.</p>
-      </div>
-      <div class="severity-item severity-item--moderate" role="group" tabindex="0" aria-labelledby="severity-moderate">
-        <h3 id="severity-moderate">Moderate</h3>
-        <p>Inconsistent terminology, or issues on lower-traffic surfaces.</p>
-      </div>
-      <div class="severity-item severity-item--low" role="group" tabindex="0" aria-labelledby="severity-low">
-        <h3 id="severity-low">Low</h3>
-        <p>Casing, punctuation, or style drift that doesn't block comprehension.</p>
+    <div class="case-section-body">
+      <div class="severity-grid">
+        <div class="severity-item severity-item--high" role="group" tabindex="0" aria-labelledby="severity-high">
+          <h3 id="severity-high">High</h3>
+          <p>Blocks assistive technology or translation. Vague or misleading CTA labels. High-traffic surfaces.</p>
+        </div>
+        <div class="severity-item severity-item--moderate" role="group" tabindex="0" aria-labelledby="severity-moderate">
+          <h3 id="severity-moderate">Moderate</h3>
+          <p>Inconsistent terminology, or issues on lower-traffic surfaces.</p>
+        </div>
+        <div class="severity-item severity-item--low" role="group" tabindex="0" aria-labelledby="severity-low">
+          <h3 id="severity-low">Low</h3>
+          <p>Casing, punctuation, or style drift that doesn't block comprehension.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="case-section">
     <h2>Results</h2>
-    <p>Spruce scanned 30 Profile directories every week, giving me continuous visibility. Diff accuracy improved 54% over the prompt's lifecycle.</p>
-    <p>The unexpected win was collaboration. Engineers engaged with my diffs, which opened conversations about content we wouldn't have had otherwise.</p>
+    <div class="case-section-body">
+      <p>Spruce scanned 30 Profile directories every week, giving me continuous visibility. Diff accuracy improved 54% over the prompt's lifecycle.</p>
+      <p>The unexpected win was collaboration. Engineers engaged with my diffs, which opened conversations about content we wouldn't have had otherwise.</p>
+    </div>
   </section>
 
   <footer class="case-footer">© 2026 Bess Myers · Made with the help of Cursor and Claude Design</footer>
