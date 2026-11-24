@@ -1,0 +1,5 @@
+# Mac system files
+.DS_Store
+
+# Drafts and source files that should not be published
+_incoming/
