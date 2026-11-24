@@ -90,3 +90,21 @@ nav a:focus-visible,
     animation: none;
   }
 }
+
+/* Footer: "Chaos" spelled in the Chaos colours */
+.chaos-c1, .chaos-c5 { color: var(--chaos-red); }
+.chaos-c2 { color: var(--chaos-blue); }
+.chaos-c3 { color: var(--chaos-yellow); }
+.chaos-c4 { color: var(--chaos-purple); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
