@@ -19,6 +19,8 @@
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --sans-header: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --serif: 'Libre Baskerville', Georgia, serif;
+  /* Display italic serif, shared with the Chaos hero: section headings and metric numerals */
+  --display: 'Playfair Display', Georgia, serif;
   --type-title-weight: 600;
   --type-title-tracking: -0.02em;
   --type-title-leading: 1.25;
