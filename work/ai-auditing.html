@@ -7,18 +7,38 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="work.css?v=24" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="work.css?v=28" />
+  <script src="../chaos.js?v=1"></script>
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
+<header class="site-band site-band--header site-header">
+  <div class="site-frame">
+    <div class="section-inner section-inner--header">
+      <a href="../index.html" class="site-name">Bess Myers · Content designer</a>
+      <nav>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#connect">Connect</a>
+        <span class="nav-switch-slot is-shown">
+          <button type="button" class="nav-switch" role="switch" aria-checked="false" aria-label="Chaos mode" data-chaos-toggle>
+            <span class="nav-switch-label" data-mode="calm" aria-hidden="true">Calm</span>
+            <span class="nav-switch-track" aria-hidden="true"><span class="nav-switch-thumb"></span></span>
+            <span class="nav-switch-label" data-mode="chaos" aria-hidden="true">Chaos</span>
+          </button>
+        </span>
+      </nav>
+    </div>
+  </div>
+</header>
 <div class="site-wrap site-wrap--wide">
   <header class="case-header">
     <a href="../work.html" class="case-back">← Work</a>
     <p class="case-tag">AI · Tools · Meta · 2026</p>
-    <h1 class="case-title type-title type-title--case">Teaching AI what good content design looks like</h1>
+    <h1 data-chaos-words class="case-title type-title type-title--case">Teaching AI what good content design looks like</h1>
     <p class="case-subtitle">How do you scale one content designer across an entire product surface?</p>
     <ul class="case-results" aria-label="Results">
       <li><span class="case-results-value">30</span> <span class="case-results-label">Profile code directories scanned weekly</span></li>
@@ -43,7 +63,7 @@
   </header>
 
   <section class="case-section">
-    <h2>The problem</h2>
+    <h2 data-chaos-words>The problem</h2>
     <div class="case-section-body">
       <p>As the only content designer on Facebook's Core Identity team, I had to choose where my attention went. Current projects always felt more urgent than strings that had sat untouched for years, and on Profile, a surface with decades of accumulated content, those strings were everywhere. I could do current projects well or do the audit work.</p>
       <p>I needed a way to monitor the codebase continuously, flag issues by severity, and draft fixes for me to review, without that work taking over my week.</p>
@@ -51,14 +71,14 @@
   </section>
 
   <section class="case-section">
-    <h2>The challenge</h2>
+    <h2 data-chaos-words>The challenge</h2>
     <div class="case-section-body">
       <p class="case-pullquote">Build an agent with enough <span class="case-pullquote-accent">content design judgment</span> to ensure genuinely useful rather than superfluous output.</p>
     </div>
   </section>
 
   <section class="case-section">
-    <h2>My approach</h2>
+    <h2 data-chaos-words>My approach</h2>
     <div class="case-section-body">
       <p>I built an agent called Spruce with Claude Code and connected it to internal tools for analytics and diff creation. Three decisions shaped it:</p>
       <p>I defined what Spruce should care about most so it could triage instead of flagging everything. The prompt went through 23 rounds of testing before I trusted its judgment.</p>
@@ -68,7 +88,7 @@
   </section>
 
   <section class="case-section case-section--spruce">
-    <h2>How Spruce works</h2>
+    <h2 data-chaos-words>How Spruce works</h2>
     <div class="case-section-body">
       <div class="spruce-flow-embed embedded-widget">
         <div id="spruce-flow-root" aria-label="Spruce agent flow animation"></div>
@@ -77,7 +97,7 @@
   </section>
 
   <section class="case-section">
-    <h2>Severity rubric</h2>
+    <h2 data-chaos-words>Severity rubric</h2>
     <div class="case-section-body">
       <div class="severity-grid">
         <div class="severity-item severity-item--high" role="group" tabindex="0" aria-labelledby="severity-high">
@@ -97,7 +117,7 @@
   </section>
 
   <section class="case-section">
-    <h2>Results</h2>
+    <h2 data-chaos-words>Results</h2>
     <div class="case-section-body">
       <p>Spruce scanned 30 Profile directories every week, giving me continuous visibility. Diff accuracy improved 54% over the prompt's lifecycle.</p>
       <p>The unexpected win was collaboration. Engineers engaged with my diffs, which opened conversations about content we wouldn't have had otherwise.</p>
@@ -107,6 +127,6 @@
   <footer class="case-footer">© 2026 Bess Myers. Built with Claude Code. Edited more than necessary.</footer>
 </div>
 
-<script type="text/babel" src="spruce-flow.jsx?v=12"></script>
+<script type="text/babel" src="spruce-flow.jsx?v=13"></script>
 </body>
 </html>

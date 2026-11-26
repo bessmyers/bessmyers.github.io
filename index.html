@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-chaos-custom>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="images/bess-parthenon.webp" type="image/webp" fetchpriority="low" />
-  <link rel="stylesheet" href="site.css?v=24" />
+  <script src="chaos.js?v=1"></script>
+  <link rel="stylesheet" href="site.css?v=28" />
 </head>
 <body class="single-page">
 
@@ -23,6 +24,13 @@
           <a href="#about">About</a>
           <a href="#work">Work</a>
           <a href="#connect">Connect</a>
+          <span class="nav-switch-slot">
+            <button type="button" class="nav-switch" role="switch" aria-checked="false" aria-label="Chaos mode" data-chaos-toggle>
+              <span class="nav-switch-label" data-mode="calm" aria-hidden="true">Calm</span>
+              <span class="nav-switch-track" aria-hidden="true"><span class="nav-switch-thumb"></span></span>
+              <span class="nav-switch-label" data-mode="chaos" aria-hidden="true">Chaos</span>
+            </button>
+          </span>
         </nav>
       </div>
     </div>
@@ -33,14 +41,14 @@
       <div class="hero-text-slot">
         <h1 class="hero-headline hero-headline--landing type-title type-title--hero">Bess is a designer based in San Francisco. She uses words to make cool things.</h1>
       </div>
-      <div class="hero-controls">
+      <div class="hero-controls" data-chaos-anchor>
         <button
           type="button"
           class="hero-switch"
           id="hero-newspaper-toggle"
           role="switch"
           aria-checked="false"
-          aria-label="Headline style: Calm or Chaos"
+          aria-label="Chaos mode"
           aria-describedby="hero-style-state"
         >
           <span class="hero-switch-option hero-switch-option--calm" data-mode="calm" aria-hidden="true">Calm</span>
@@ -164,13 +172,13 @@
       if (!toggle || !hero || !heroSlot) return;
 
       var text = hero.textContent.trim();
-      var storageKey = 'hero_newspaper_mode';
       var fontCount = 11;
       var resizeTimer;
       var plainLineCount = 0;
       var desktopMQ = window.matchMedia('(min-width: 601px)');
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var isAnimating = false;
+      var pendingMode = null;
       var HERO_FADE_MS = 250;
 
       var stateText = document.getElementById('hero-style-state');
@@ -344,15 +352,19 @@
           window.setTimeout(function () {
             clearHeroFade();
             setAnimating(false);
+            // A toggle was flipped mid-animation: catch up to the latest state
+            if (pendingMode !== null) {
+              var next = pendingMode;
+              pendingMode = null;
+              if (next !== (toggle.getAttribute('aria-checked') === 'true')) setMode(next);
+            }
           }, HERO_FADE_MS);
         }, HERO_FADE_MS);
       }
 
+      // Renders a mode; the state itself (and localStorage) lives in SiteChaos
       function setMode(on, options) {
         options = options || {};
-        try {
-          localStorage.setItem(storageKey, on ? '1' : '0');
-        } catch (e) {}
 
         if (options.instant || prefersReducedMotion) {
           if (on) renderNewspaper();
@@ -360,7 +372,10 @@
           return;
         }
 
-        if (isAnimating) return;
+        if (isAnimating) {
+          pendingMode = on;
+          return;
+        }
 
         setChecked(on);
 
@@ -379,11 +394,15 @@
       }
 
       toggle.addEventListener('click', function (e) {
-        if (isAnimating) return;
-        var isOn = toggle.getAttribute('aria-checked') === 'true';
+        var isOn = window.SiteChaos.get();
         var picked = e.target.closest && e.target.closest('[data-mode]');
         var next = picked ? picked.getAttribute('data-mode') === 'chaos' : !isOn;
-        if (next !== isOn) setMode(next);
+        window.SiteChaos.set(next);
+      });
+
+      // Hero toggle, nav switch and other tabs all go through SiteChaos
+      window.SiteChaos.subscribe(function (on) {
+        if (on !== (toggle.getAttribute('aria-checked') === 'true') || isAnimating) setMode(on);
       });
 
       window.addEventListener('resize', function () {
@@ -391,10 +410,7 @@
         resizeTimer = setTimeout(onResize, 150);
       });
 
-      var saved = false;
-      try {
-        saved = localStorage.getItem(storageKey) === '1';
-      } catch (e) {}
+      var saved = window.SiteChaos.get();
 
       renderPlain();
       updateHeroSlotHeight();

@@ -1,5 +1,6 @@
-@import url('tokens.css?v=16');
-@import url('type.css?v=18');
+@import url('tokens.css?v=17');
+@import url('type.css?v=19');
+@import url('chrome.css?v=4');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -36,21 +37,9 @@ a { color: inherit; }
   display: none !important;
 }
 
-.site-frame {
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .site-band { width: 100%; }
 
 .site-band + .site-band { padding-top: var(--space-block); }
-
-.site-band--header {
-  padding-top: 2rem;
-  padding-bottom: 0;
-}
 
 .site-band--footer {
   border-top: 1px solid var(--rule);
@@ -70,22 +59,6 @@ a { color: inherit; }
 
 .section-inner { max-width: var(--content-max); }
 
-.section-inner--header {
-  max-width: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.site-name,
-nav a {
-  font-family: var(--sans);
-  font-weight: 400;
-  line-height: 1.12;
-}
-
 /* Section headings use the Chaos display italic serif */
 .section-label {
   font-family: var(--display);
@@ -94,40 +67,9 @@ nav a {
   line-height: 1.12;
 }
 
-/* Header: midway between the original size (clamp 1.4rem / 3.5vw / 2.25rem) and 17px */
-.site-name,
-nav a {
-  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
-  letter-spacing: -0.025em;
-  text-transform: lowercase;
-}
-
 .section-label {
   font-size: clamp(2.25rem, 3.4vw + 1rem, 3.25rem);
   letter-spacing: -0.01em;
-}
-
-.site-name {
-  color: var(--ink);
-  text-decoration: none;
-}
-
-nav { display: flex; gap: 1.5rem; align-items: baseline; }
-
-nav a {
-  color: var(--ink-soft);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-nav a:hover,
-nav a:focus-visible,
-nav a[aria-current="page"] { color: var(--ink); }
-
-nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
-
-.single-page nav a[aria-current="page"] {
-  border-bottom: none;
 }
 
 .section-label {
@@ -193,13 +135,6 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 /* Single-page layout */
 .single-page {
   overflow-x: hidden;
-}
-
-.single-page .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--bg);
 }
 
 .single-page .site-band + .site-band,
@@ -365,66 +300,6 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
    built-in ascent/descent, which would otherwise push lines apart. */
 html[data-hero-font="newspaper"] .hero-word {
   line-height: 0;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f0 {
-  font-family: var(--sans);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f2 {
-  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f3 {
-  font-family: 'Courier Prime', 'Courier New', monospace;
-  font-weight: 700;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f4 {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f5 {
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f6 {
-  font-family: 'Special Elite', 'Courier New', monospace;
-  font-weight: 400;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f7 {
-  font-family: 'Abril Fatface', Georgia, serif;
-  font-weight: 400;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f8 {
-  font-family: 'UnifrakturMaguntia', 'Old English Text MT', serif;
-  font-weight: 400;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f9 {
-  font-family: 'Permanent Marker', 'Comic Sans MS', cursive;
-  font-weight: 400;
-}
-
-html[data-hero-font="newspaper"] .hero-word--f10 {
-  font-family: 'Dancing Script', 'Brush Script MT', cursive;
-  font-weight: 600;
 }
 
 /* About photo: portrait in Calm, crossfades to the Parthenon in Chaos */
@@ -831,15 +706,3 @@ html[data-hero-font="newspaper"] .work-card:focus-visible {
 }
 
 .site-main.is-ready { opacity: 1; }
-
-@media (min-width: 900px) {
-  .site-frame {
-    padding-left: clamp(1.5rem, 4vw, 3rem);
-    padding-right: clamp(1.5rem, 4vw, 3rem);
-  }
-
-}
-
-@media (max-width: 600px) {
-  nav { gap: 1rem; }
-}

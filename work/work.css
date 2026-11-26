@@ -1,5 +1,6 @@
-@import url('../tokens.css?v=15');
-@import url('../type.css?v=17');
+@import url('../tokens.css?v=16');
+@import url('../type.css?v=18');
+@import url('../chrome.css?v=4');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -705,4 +706,40 @@ body {
   }
 
   .case-section > h2 { margin-bottom: 1.25rem; }
+}
+
+/* Chaos mode on case studies (state from chaos.js, shared with the home page):
+   headings in mixed fonts word by word, metric and severity cards tilted. */
+html[data-hero-font="newspaper"] .chaos-word {
+  /* keep line spacing the same as Calm despite the fonts' different metrics */
+  line-height: 0;
+}
+
+.case-results > li:nth-child(odd),
+.severity-item:nth-child(odd) { --chaos-tilt: -1deg; }
+.case-results > li:nth-child(even),
+.severity-item:nth-child(even) { --chaos-tilt: 1deg; }
+
+.case-results > li {
+  transition: transform 0.35s var(--ease-out);
+}
+
+html[data-hero-font="newspaper"] .case-results > li,
+html[data-hero-font="newspaper"] .severity-item {
+  transform: rotate(var(--chaos-tilt, 0deg));
+}
+
+html[data-hero-font="newspaper"] .severity-item:hover,
+html[data-hero-font="newspaper"] .severity-item:focus-visible {
+  transform: rotate(var(--chaos-tilt, 0deg)) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-results > li { transition: none; }
+  .severity-item { transition-property: background, border-color; }
+
+  html[data-hero-font="newspaper"] .severity-item:hover,
+  html[data-hero-font="newspaper"] .severity-item:focus-visible {
+    transform: rotate(var(--chaos-tilt, 0deg));
+  }
 }

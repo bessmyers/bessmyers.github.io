@@ -1,0 +1,277 @@
+/* Shared site chrome: sticky header, nav, the compact Chaos switch and the
+   Chaos font set. Imported by site.css (home) and work/work.css (case studies). */
+
+.site-frame {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.site-band--header {
+  padding-top: 2rem;
+  padding-bottom: 0;
+}
+
+.section-inner--header {
+  max-width: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.site-name,
+nav a {
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+/* Header: midway between the original size (clamp 1.4rem / 3.5vw / 2.25rem) and 17px */
+.site-name,
+nav a {
+  font-size: clamp(1.25rem, 2.6vw, 1.65rem);
+  letter-spacing: -0.025em;
+  text-transform: lowercase;
+}
+
+.site-name {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+nav {
+  --nav-gap: 1.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--nav-gap);
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav a:hover,
+nav a:focus-visible,
+nav a[aria-current="page"] { color: var(--ink); }
+
+nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+
+.single-page nav a[aria-current="page"] {
+  border-bottom: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+}
+
+/* A short strip of background under the sticky header, so scrolling text
+   doesn't butt up against the nav (an overlay: it doesn't move the layout) */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 0.75rem;
+  background: linear-gradient(var(--bg) 60%, color-mix(in srgb, var(--bg) 0%, transparent));
+  pointer-events: none;
+}
+
+@media (min-width: 900px) {
+  .site-frame {
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    padding-right: clamp(1.5rem, 4vw, 3rem);
+  }
+
+}
+
+@media (max-width: 600px) {
+  nav { --nav-gap: 1rem; }
+}
+
+/* Compact Calm/Chaos switch in the nav (chaos.js keeps it in sync).
+   Hidden: the slot collapses to zero width (the negative margin cancels
+   the nav gap), so the links stay flush right. Shown: it opens and fades in. */
+.nav-switch-slot {
+  /* zero height, switch centred on the row: it never changes the nav height */
+  display: flex;
+  align-items: center;
+  height: 0;
+  max-width: 0;
+  /* clip sideways only, so the 44px tap area above/below still works */
+  overflow-x: clip;
+  overflow-y: visible;
+  align-self: center;
+  margin-left: calc(-1 * var(--nav-gap));
+  opacity: 0;
+  visibility: hidden;
+  transition: max-width 0.3s var(--ease-out), opacity 0.2s var(--ease-out), visibility 0s linear 0.3s;
+}
+
+.nav-switch-slot.is-shown {
+  max-width: 12rem;
+  opacity: 1;
+  visibility: visible;
+  transition: max-width 0.3s var(--ease-out), opacity 0.25s var(--ease-out) 0.05s, visibility 0s;
+}
+
+.nav-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* left padding = the nav gap; vertical padding makes a 44px target
+     without making the header taller */
+  padding: 0.7rem 0.3rem 0.7rem var(--nav-gap);
+  margin: -0.7rem -0.3rem -0.7rem 0;
+  border: none;
+  background: none;
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-switch-label {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  color: var(--ink-gray);
+  transition: color 0.22s var(--ease-out);
+}
+
+.nav-switch[aria-checked="false"] .nav-switch-label[data-mode="calm"],
+.nav-switch[aria-checked="true"] .nav-switch-label[data-mode="chaos"] {
+  color: var(--ink);
+}
+
+.nav-switch-track {
+  position: relative;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 1.375rem;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--rule);
+  transition: background 0.22s var(--ease-out);
+}
+
+.nav-switch[aria-checked="true"] .nav-switch-track {
+  background-color: var(--paper);
+  /* same stripes as the hero switch: coral, teal, mustard, navy */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='%23FBF7F0'/%3E%3Cg fill='none' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M0 3.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%23C8334F'/%3E%3Cpath d='M0 9.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%232D6B72'/%3E%3Cpath d='M0 15.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%23C99A2E'/%3E%3Cpath d='M0 21.0q3 -2.4 6 0t6 0t6 0t6 0' stroke='%231F2B47'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 18px 18px;
+  background-position: 0 50%;
+}
+
+.nav-switch-thumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  transition: transform 0.22s var(--ease-out);
+}
+
+.nav-switch[aria-checked="true"] .nav-switch-thumb {
+  transform: translateX(0.875rem);
+}
+
+.nav-switch:focus-visible {
+  outline: none;
+}
+
+.nav-switch:focus-visible .nav-switch-track {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 25%, transparent);
+}
+
+/* Mobile: switch only */
+@media (max-width: 760px) {
+  .nav-switch-label { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-switch-slot,
+  .nav-switch-slot.is-shown,
+  .nav-switch-track,
+  .nav-switch-thumb,
+  .nav-switch-label {
+    transition: none;
+  }
+}
+
+/* Chaos font set: hero words, heading letters and case-study heading words */
+html[data-hero-font="newspaper"] .hero-word--f0 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f2 {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f3 {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: 700;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f4 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f5 {
+  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f6 {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-weight: 400;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f7 {
+  font-family: 'Abril Fatface', Georgia, serif;
+  font-weight: 400;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f8 {
+  font-family: 'UnifrakturMaguntia', 'Old English Text MT', serif;
+  font-weight: 400;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f9 {
+  font-family: 'Permanent Marker', 'Comic Sans MS', cursive;
+  font-weight: 400;
+}
+
+html[data-hero-font="newspaper"] .hero-word--f10 {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-weight: 600;
+}
+

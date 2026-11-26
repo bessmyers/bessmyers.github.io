@@ -7,15 +7,35 @@
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="work.css?v=24" />
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="work.css?v=28" />
+  <script src="../chaos.js?v=1"></script>
 </head>
 <body>
+<header class="site-band site-band--header site-header">
+  <div class="site-frame">
+    <div class="section-inner section-inner--header">
+      <a href="../index.html" class="site-name">Bess Myers · Content designer</a>
+      <nav>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#connect">Connect</a>
+        <span class="nav-switch-slot is-shown">
+          <button type="button" class="nav-switch" role="switch" aria-checked="false" aria-label="Chaos mode" data-chaos-toggle>
+            <span class="nav-switch-label" data-mode="calm" aria-hidden="true">Calm</span>
+            <span class="nav-switch-track" aria-hidden="true"><span class="nav-switch-thumb"></span></span>
+            <span class="nav-switch-label" data-mode="chaos" aria-hidden="true">Chaos</span>
+          </button>
+        </span>
+      </nav>
+    </div>
+  </div>
+</header>
 <div class="site-wrap site-wrap--wide">
   <header class="case-header">
     <a href="../work.html" class="case-back">← Work</a>
     <p class="case-tag">Privacy · User flows · Meta · 2025</p>
-    <h1 class="case-title type-title type-title--case">Changing privacy settings for 100M people without causing panic</h1>
+    <h1 data-chaos-words class="case-title type-title type-title--case">Changing privacy settings for 100M people without causing panic</h1>
     <p class="case-subtitle">How do you take an option away from 100M people without making them feel punished?</p>
     <ul class="case-results" aria-label="Results">
       <li><span class="case-results-value">94.4%</span> <span class="case-results-label">kept their profile private</span></li>
@@ -40,7 +60,7 @@
   </header>
 
   <section class="case-section">
-    <h2>The problem</h2>
+    <h2 data-chaos-words>The problem</h2>
     <div class="case-section-body">
       <p>About 100M Facebook profiles had contradictory settings: locked for privacy, but open to public followers. Meta was retiring that combination. Anyone who wanted to keep public followers had to switch to professional mode, and everyone else would lose them.</p>
       <p>At this scale, a confusing notification means churn and lost trust. My job was to explain a required choice clearly enough that people could make it with confidence.</p>
@@ -48,7 +68,7 @@
   </section>
 
   <section class="case-section">
-    <h2>The challenge</h2>
+    <h2 data-chaos-words>The challenge</h2>
     <div class="case-section-body">
       <p class="case-pullquote">The core content challenge was <span class="case-pullquote-accent">an emotional one</span>.</p>
       <p>The framing had to be honest without causing alarm, and clear enough that people could make a choice rather than just react.</p>
@@ -57,7 +77,7 @@
   </section>
 
   <section class="case-section">
-    <h2>My approach</h2>
+    <h2 data-chaos-words>My approach</h2>
     <div class="case-section-body">
       <p>I directed content across 8 multi-screen flows and 5 emails. Two decisions mattered most:</p>
       <p>My early drafts tried so hard to calm people that the drafts became vague and confusing. I rewrote the first screen around the one thing that changed, keeping or losing public followers, without nudging people toward either option.</p>
@@ -82,7 +102,7 @@
   </section>
 
   <section class="case-section">
-    <h2>Results</h2>
+    <h2 data-chaos-words>Results</h2>
     <div class="case-section-body">
       <p>94.4% of people who entered the flow chose to keep their profile private. They understood the choice and made it decisively. The surprise was the other 5.6%, who switched to professional mode to keep their followers and lean into their identities as creators. The change shipped to every group, including teens, with no SEVs or rollbacks.</p>
     </div>
