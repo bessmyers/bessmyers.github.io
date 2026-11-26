@@ -84,7 +84,10 @@ function SpruceFlowAnimation() {
   const paper = 'var(--paper)';
   const rule = 'var(--rule)';
   const ink = 'var(--ink)';
-  const muted = 'var(--ink-muted)';
+  // Upcoming steps: full opacity, darker outline and text so they read clearly
+  const upcomingBorder = 'color-mix(in srgb, var(--ink) 50%, var(--paper))';
+  const upcomingText = 'var(--ink-soft)';
+  const upcomingIcon = 'var(--ink-gray)';
 
   return (
     <div className="spruce-flow-app">
@@ -99,7 +102,7 @@ function SpruceFlowAnimation() {
                 minWidth: 0,
                 height: step === idx ? '260px' : '200px',
                 background: step >= idx ? coralLight : paper,
-                border: step >= idx ? `2px solid ${coral}` : `2px solid ${rule}`,
+                border: step >= idx ? `2px solid ${coral}` : `2px solid ${upcomingBorder}`,
                 borderRadius: '12px',
                 padding: '1rem 0.65rem',
                 display: 'flex',
@@ -109,7 +112,7 @@ function SpruceFlowAnimation() {
                 textAlign: 'center',
                 transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 transform: step === idx ? 'scale(1)' : 'scale(0.95)',
-                opacity: step >= idx ? 1 : 0.5
+                opacity: 1
               }}
             >
               <div
@@ -117,7 +120,7 @@ function SpruceFlowAnimation() {
                   width: '44px',
                   height: '44px',
                   marginBottom: '0.8rem',
-                  color: step >= idx ? coral : muted,
+                  color: step >= idx ? coral : upcomingIcon,
                   transition: 'all 0.4s ease',
                   display: 'flex',
                   alignItems: 'center',
@@ -130,7 +133,7 @@ function SpruceFlowAnimation() {
                 style={{
                   fontSize: step === idx ? '14px' : '12px',
                   fontWeight: step === idx ? '600' : '500',
-                  color: ink,
+                  color: step >= idx ? ink : upcomingText,
                   marginBottom: '0.5rem',
                   lineHeight: 1.3
                 }}
@@ -150,7 +153,7 @@ function SpruceFlowAnimation() {
           className="spruce-flow-btn"
           style={{
             background: step === 0 ? rule : coral,
-            color: step === 0 ? muted : paper,
+            color: step === 0 ? 'var(--ink-gray)' : paper,
             cursor: step === 0 ? 'default' : 'pointer'
           }}
         >
@@ -163,7 +166,7 @@ function SpruceFlowAnimation() {
           className="spruce-flow-btn"
           style={{
             background: step === totalSteps ? rule : coral,
-            color: step === totalSteps ? muted : paper,
+            color: step === totalSteps ? 'var(--ink-gray)' : paper,
             cursor: step === totalSteps ? 'default' : 'pointer'
           }}
         >

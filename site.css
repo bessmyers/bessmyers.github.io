@@ -1,5 +1,5 @@
-@import url('tokens.css?v=12');
-@import url('type.css?v=14');
+@import url('tokens.css?v=13');
+@import url('type.css?v=15');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 

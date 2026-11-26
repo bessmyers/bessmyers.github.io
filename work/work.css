@@ -1,5 +1,5 @@
-@import url('../tokens.css?v=12');
-@import url('../type.css?v=14');
+@import url('../tokens.css?v=13');
+@import url('../type.css?v=15');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -488,51 +488,52 @@ body {
   margin-top: 1rem;
 }
 
+/* Severity rubric: coral = high, mustard = moderate, teal = low */
 .severity-item {
-  background: var(--bg-tint);
-  border: 1px solid var(--rule);
+  --sev: var(--ink-muted);
+  background: color-mix(in srgb, var(--sev) 9%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--sev) 40%, var(--paper));
+  border-top: 4px solid var(--sev);
   border-radius: 8px;
   padding: 1.25rem;
   transition: background 0.2s, border-color 0.2s, transform 0.2s ease;
   transform-origin: center center;
 }
 
+.severity-item--high { --sev: var(--coral); }
+.severity-item--moderate { --sev: var(--mustard); }
+.severity-item--low { --sev: var(--teal); }
+
 .severity-item:focus {
   outline: none;
 }
 
-.severity-item--high:hover,
-.severity-item--high:focus-visible {
-  background: color-mix(in srgb, var(--coral) 12%, var(--paper));
-  border-color: color-mix(in srgb, var(--coral) 50%, var(--paper));
+.severity-item:hover,
+.severity-item:focus-visible {
+  background: color-mix(in srgb, var(--sev) 16%, var(--paper));
+  border-color: var(--sev);
   transform: scale(1.04);
   position: relative;
   z-index: 1;
 }
 
-.severity-item--moderate:hover,
-.severity-item--moderate:focus-visible {
-  background: color-mix(in srgb, var(--mustard) 16%, var(--paper));
-  border-color: color-mix(in srgb, var(--mustard) 60%, var(--paper));
-  transform: scale(1.04);
-  position: relative;
-  z-index: 1;
+.severity-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
 }
 
-.severity-item--low:hover,
-.severity-item--low:focus-visible {
-  background: color-mix(in srgb, var(--teal) 12%, var(--paper));
-  border-color: color-mix(in srgb, var(--teal) 50%, var(--paper));
-  transform: scale(1.04);
-  position: relative;
-  z-index: 1;
+@media (prefers-reduced-motion: reduce) {
+  .severity-item:hover,
+  .severity-item:focus-visible {
+    transform: none;
+  }
 }
 
 .severity-item h3 {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--ink);
+  color: color-mix(in srgb, var(--sev) 50%, var(--ink));
+  text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 
