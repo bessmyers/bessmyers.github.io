@@ -1,5 +1,5 @@
-@import url('tokens.css?v=14');
-@import url('type.css?v=16');
+@import url('tokens.css?v=15');
+@import url('type.css?v=17');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -425,6 +425,55 @@ html[data-hero-font="newspaper"] .hero-word--f9 {
 html[data-hero-font="newspaper"] .hero-word--f10 {
   font-family: 'Dancing Script', 'Brush Script MT', cursive;
   font-weight: 600;
+}
+
+/* About photo: Naxos in Calm, crossfades to the Parthenon in Chaos */
+.about-photo-stack {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.about-photo-layer {
+  display: block;
+}
+
+.about-photo-layer--chaos {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* fade out, then drop from the accessibility tree */
+  transition: opacity 0.3s var(--ease-out), visibility 0s linear 0.3s;
+}
+
+.about-photo-layer--calm {
+  transition: visibility 0s;
+}
+
+html[data-hero-font="newspaper"] .about-photo-layer--chaos {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s var(--ease-out), visibility 0s;
+}
+
+/* Hide Naxos once the Parthenon has faded in over it */
+html[data-hero-font="newspaper"] .about-photo-layer--calm {
+  visibility: hidden;
+  transition: visibility 0s linear 0.3s;
+}
+
+html[data-hero-font="newspaper"] .about-photo-stack {
+  transform: rotate(2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-photo-stack,
+  .about-photo-layer,
+  html[data-hero-font="newspaper"] .about-photo-layer {
+    transition: none;
+  }
 }
 
 /* Chaos beyond the hero: mixed-font section headings, tilted work cards */
