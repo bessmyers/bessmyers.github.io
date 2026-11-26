@@ -1,5 +1,5 @@
-@import url('tokens.css?v=8');
-@import url('type.css?v=10');
+@import url('tokens.css?v=9');
+@import url('type.css?v=11');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -504,9 +504,10 @@ html[data-hero-font="newspaper"] .hero-word--f10 {
 .about-photo {
   width: 100%;
   max-width: 20rem;
-  aspect-ratio: 4 / 5;
+  height: auto;
+  aspect-ratio: 16 / 25;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center;
   display: block;
 }
 
