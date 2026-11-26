@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="images/bess-parthenon.webp" type="image/webp" fetchpriority="low" />
-  <link rel="stylesheet" href="site.css?v=22" />
+  <link rel="stylesheet" href="site.css?v=23" />
 </head>
 <body class="single-page">
 
@@ -61,10 +61,9 @@
         <div class="about-flex">
           <div class="about-photo-col">
             <div class="about-photo-stack">
-              <picture class="about-photo-layer about-photo-layer--calm">
-                <source srcset="images/bess-naxos.webp" type="image/webp" />
-                <img src="images/bess-naxos.jpg" alt="Bess smiling beside the Portara, an ancient marble doorway on Naxos, Greece." class="about-photo" width="640" height="1000" />
-              </picture>
+              <div class="about-photo-layer about-photo-layer--calm">
+                <img src="images/bess.jpg" alt="Bess Myers" class="about-photo" width="400" height="500" />
+              </div>
               <!-- Chaos photo: loaded with the page (and preloaded in <head>) so the swap never flashes -->
               <picture class="about-photo-layer about-photo-layer--chaos">
                 <source srcset="images/bess-parthenon.webp" type="image/webp" />
