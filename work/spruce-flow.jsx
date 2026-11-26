@@ -78,10 +78,13 @@ function SpruceFlowAnimation() {
     if (step > 0) setStep(step - 1);
   };
 
-  const clay = '#B5734A';
-  const clayLight = '#fff5f0';
-  const oat = '#FBF9F5';
-  const rule = '#E5DFD4';
+  // Palette tokens from tokens.css
+  const coral = 'var(--coral)';
+  const coralLight = 'color-mix(in srgb, var(--coral) 8%, var(--paper))';
+  const paper = 'var(--paper)';
+  const rule = 'var(--rule)';
+  const ink = 'var(--ink)';
+  const muted = 'var(--ink-muted)';
 
   return (
     <div className="spruce-flow-app">
@@ -95,8 +98,8 @@ function SpruceFlowAnimation() {
                 flex: '1 1 0',
                 minWidth: 0,
                 height: step === idx ? '260px' : '200px',
-                background: step >= idx ? clayLight : oat,
-                border: step >= idx ? `2px solid ${clay}` : `2px solid ${rule}`,
+                background: step >= idx ? coralLight : paper,
+                border: step >= idx ? `2px solid ${coral}` : `2px solid ${rule}`,
                 borderRadius: '12px',
                 padding: '1rem 0.65rem',
                 display: 'flex',
@@ -114,7 +117,7 @@ function SpruceFlowAnimation() {
                   width: '44px',
                   height: '44px',
                   marginBottom: '0.8rem',
-                  color: step >= idx ? clay : '#ccc',
+                  color: step >= idx ? coral : muted,
                   transition: 'all 0.4s ease',
                   display: 'flex',
                   alignItems: 'center',
@@ -127,7 +130,7 @@ function SpruceFlowAnimation() {
                 style={{
                   fontSize: step === idx ? '14px' : '12px',
                   fontWeight: step === idx ? '600' : '500',
-                  color: '#1C1B18',
+                  color: ink,
                   marginBottom: '0.5rem',
                   lineHeight: 1.3
                 }}
@@ -146,8 +149,8 @@ function SpruceFlowAnimation() {
           disabled={step === 0}
           className="spruce-flow-btn"
           style={{
-            background: step === 0 ? rule : clay,
-            color: step === 0 ? '#8A857A' : '#FBF9F5',
+            background: step === 0 ? rule : coral,
+            color: step === 0 ? muted : paper,
             cursor: step === 0 ? 'default' : 'pointer'
           }}
         >
@@ -159,8 +162,8 @@ function SpruceFlowAnimation() {
           disabled={step === totalSteps}
           className="spruce-flow-btn"
           style={{
-            background: step === totalSteps ? rule : clay,
-            color: step === totalSteps ? '#8A857A' : '#FBF9F5',
+            background: step === totalSteps ? rule : coral,
+            color: step === totalSteps ? muted : paper,
             cursor: step === totalSteps ? 'default' : 'pointer'
           }}
         >

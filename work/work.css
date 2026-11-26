@@ -1,10 +1,9 @@
-@import url('../tokens.css?v=7');
-@import url('../type.css?v=9');
+@import url('../tokens.css?v=8');
+@import url('../type.css?v=10');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --oat-mid: var(--bg-tint);
   --radius: 0;
 }
 
@@ -156,7 +155,7 @@ body {
   color: var(--ink);
 }
 
-/* Body text: 19px, 1.6 line height, #2a2825, capped at 640px */
+/* Body text: 19px, 1.6 line height, --ink-body, capped at 640px */
 .case-intro,
 .case-section p,
 .case-section li {
@@ -226,7 +225,7 @@ body {
   width: 100%;
   height: 8px;
   margin-top: 0.6rem;
-  background-color: var(--chaos-blue);
+  background-color: var(--teal);
   -webkit-mask: var(--heading-wave) repeat-x 0 50% / 16px 8px;
   mask: var(--heading-wave) repeat-x 0 50% / 16px 8px;
 }
@@ -253,14 +252,14 @@ body {
 .proto-device {
   max-width: 280px;
   margin: 0 auto;
-  background: #1a1a1a;
+  background: var(--ink);
   border-radius: 36px;
   padding: 12px;
-  box-shadow: 0 24px 48px rgba(28, 27, 24, 0.12);
+  box-shadow: 0 24px 48px color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
 .proto-screen-wrap {
-  background: #fff;
+  background: var(--paper);
   border-radius: 24px;
   overflow: hidden;
   aspect-ratio: 9 / 19.5;
@@ -315,8 +314,8 @@ body {
 }
 
 .proto-nav button:hover:not(:disabled) {
-  border-color: var(--clay);
-  color: var(--clay);
+  border-color: var(--coral);
+  color: var(--coral);
 }
 
 .proto-nav button:disabled {
@@ -347,7 +346,7 @@ body {
 }
 
 .proto-dot.active {
-  background: var(--clay);
+  background: var(--coral);
   transform: scale(1.15);
 }
 
@@ -367,7 +366,7 @@ body {
 }
 
 .flow-step {
-  background: var(--oat-mid);
+  background: var(--bg-tint);
   padding: 1.5rem 1.75rem;
   cursor: pointer;
   transition: background 0.2s;
@@ -488,7 +487,7 @@ body {
 }
 
 .severity-item {
-  background: var(--oat-mid);
+  background: var(--bg-tint);
   border: 1px solid var(--rule);
   border-radius: 8px;
   padding: 1.25rem;
@@ -502,8 +501,8 @@ body {
 
 .severity-item--high:hover,
 .severity-item--high:focus-visible {
-  background: rgba(200, 60, 50, 0.12);
-  border-color: rgba(200, 60, 50, 0.45);
+  background: color-mix(in srgb, var(--coral) 12%, var(--paper));
+  border-color: color-mix(in srgb, var(--coral) 50%, var(--paper));
   transform: scale(1.04);
   position: relative;
   z-index: 1;
@@ -511,8 +510,8 @@ body {
 
 .severity-item--moderate:hover,
 .severity-item--moderate:focus-visible {
-  background: rgba(230, 120, 40, 0.12);
-  border-color: rgba(230, 120, 40, 0.45);
+  background: color-mix(in srgb, var(--mustard) 16%, var(--paper));
+  border-color: color-mix(in srgb, var(--mustard) 60%, var(--paper));
   transform: scale(1.04);
   position: relative;
   z-index: 1;
@@ -520,8 +519,8 @@ body {
 
 .severity-item--low:hover,
 .severity-item--low:focus-visible {
-  background: rgba(220, 180, 40, 0.14);
-  border-color: rgba(200, 160, 30, 0.45);
+  background: color-mix(in srgb, var(--teal) 12%, var(--paper));
+  border-color: color-mix(in srgb, var(--teal) 50%, var(--paper));
   transform: scale(1.04);
   position: relative;
   z-index: 1;
@@ -543,7 +542,7 @@ body {
 }
 
 .mock-diff {
-  background: #fff;
+  background: var(--paper);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 1.25rem;
@@ -572,7 +571,7 @@ body {
 }
 
 .mock-diff-change ins {
-  color: var(--clay);
+  color: var(--coral);
   text-decoration: none;
   font-weight: 500;
 }
@@ -588,8 +587,8 @@ body {
   margin-right: 0.35rem;
 }
 
-.mock-pill.severe { background: #f0ddd4; color: #8b4513; }
-.mock-pill.draft { background: var(--oat-mid); color: var(--ink-muted); }
+.mock-pill.severe { background: color-mix(in srgb, var(--coral) 14%, var(--paper)); color: color-mix(in srgb, var(--coral) 75%, var(--ink)); }
+.mock-pill.draft { background: var(--bg-tint); color: var(--ink-muted); }
 
 .mock-task {
   display: flex;
@@ -608,8 +607,8 @@ body {
   font-style: italic;
   margin-top: 1rem;
   padding: 1rem;
-  background: var(--oat-mid);
-  border-left: 2px solid var(--clay);
+  background: var(--bg-tint);
+  border-left: 2px solid var(--coral);
 }
 
 .handoff-list {
@@ -687,7 +686,7 @@ body {
   color: var(--ink);
 }
 
-.case-pullquote-accent { color: #E4572E; }
+.case-pullquote-accent { color: var(--coral); }
 
 /* Keep card text readable inside the narrower content column */
 .case-section .severity-item p {
