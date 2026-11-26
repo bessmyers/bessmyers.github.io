@@ -1,4 +1,4 @@
-const { useState } = React;
+const { useState, useEffect, useRef } = React;
 
 function StepIcon({ stepNum }) {
   const iconProps = {
@@ -68,108 +68,40 @@ const STEP_LABELS = [
 
 function SpruceFlowAnimation() {
   const [step, setStep] = useState(0);
-  const totalSteps = 4;
+  const totalSteps = STEP_LABELS.length - 1;
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
-  const handleNext = () => {
-    if (step < totalSteps) setStep(step + 1);
-  };
+  // When a button disables at either end, keep keyboard focus on the other one
+  useEffect(() => {
+    const active = document.activeElement;
+    if (step === totalSteps && active === nextRef.current) prevRef.current.focus();
+    if (step === 0 && active === prevRef.current) nextRef.current.focus();
+  }, [step]);
 
-  const handlePrev = () => {
-    if (step > 0) setStep(step - 1);
-  };
-
-  // Palette tokens from tokens.css
-  const coral = 'var(--coral)';
-  const coralLight = 'color-mix(in srgb, var(--coral) 8%, var(--paper))';
-  const paper = 'var(--paper)';
-  const rule = 'var(--rule)';
-  const ink = 'var(--ink)';
-  // Upcoming steps: full opacity, darker outline and text so they read clearly
-  const upcomingBorder = 'color-mix(in srgb, var(--ink) 50%, var(--paper))';
-  const upcomingText = 'var(--ink-soft)';
-  const upcomingIcon = 'var(--ink-gray)';
+  const stateOf = (idx) => (idx === step ? 'is-current' : idx < step ? 'is-done' : 'is-upcoming');
 
   return (
     <div className="spruce-flow-app">
       <div className="spruce-flow-stage">
-        <div className="spruce-flow-steps">
-          {[0, 1, 2, 3, 4].map((idx) => (
-            <div
-              key={idx}
-              className="spruce-flow-step"
-              style={{
-                flex: '1 1 0',
-                minWidth: 0,
-                height: step === idx ? '260px' : '200px',
-                background: step >= idx ? coralLight : paper,
-                border: step >= idx ? `2px solid ${coral}` : `2px solid ${upcomingBorder}`,
-                borderRadius: '12px',
-                padding: '1rem 0.65rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                transform: step === idx ? 'scale(1)' : 'scale(0.95)',
-                opacity: 1
-              }}
-            >
-              <div
-                style={{
-                  width: '44px',
-                  height: '44px',
-                  marginBottom: '0.8rem',
-                  color: step >= idx ? coral : upcomingIcon,
-                  transition: 'all 0.4s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <StepIcon stepNum={idx} />
-              </div>
-              <div
-                style={{
-                  fontSize: step === idx ? '14px' : '12px',
-                  fontWeight: step === idx ? '600' : '500',
-                  color: step >= idx ? ink : upcomingText,
-                  marginBottom: '0.5rem',
-                  lineHeight: 1.3
-                }}
-              >
-                {STEP_LABELS[idx]}
-              </div>
-            </div>
+        <ol className="spruce-flow-steps">
+          {STEP_LABELS.map((label, idx) => (
+            <li key={idx} className={'spruce-flow-step ' + stateOf(idx)} aria-current={idx === step ? 'step' : undefined}>
+              <span className="spruce-flow-icon" aria-hidden="true"><StepIcon stepNum={idx} /></span>
+              <span className="spruce-flow-label">{label}</span>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
+      <p className="visually-hidden" aria-live="polite">
+        {'Step ' + (step + 1) + ' of ' + STEP_LABELS.length + ': ' + STEP_LABELS[step]}
+      </p>
 
       <div className="spruce-flow-controls">
-        <button
-          type="button"
-          onClick={handlePrev}
-          disabled={step === 0}
-          className="spruce-flow-btn"
-          style={{
-            background: step === 0 ? rule : coral,
-            color: step === 0 ? 'var(--ink-gray)' : paper,
-            cursor: step === 0 ? 'default' : 'pointer'
-          }}
-        >
+        <button type="button" ref={prevRef} onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0} className="spruce-flow-btn">
           ← Previous
         </button>
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={step === totalSteps}
-          className="spruce-flow-btn"
-          style={{
-            background: step === totalSteps ? rule : coral,
-            color: step === totalSteps ? 'var(--ink-gray)' : paper,
-            cursor: step === totalSteps ? 'default' : 'pointer'
-          }}
-        >
+        <button type="button" ref={nextRef} onClick={() => setStep(Math.min(totalSteps, step + 1))} disabled={step === totalSteps} className="spruce-flow-btn">
           Next →
         </button>
       </div>

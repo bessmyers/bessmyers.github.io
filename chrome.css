@@ -1,6 +1,18 @@
 /* Shared site chrome: sticky header, nav, the compact Chaos switch and the
    Chaos font set. Imported by site.css (home) and work/work.css (case studies). */
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .site-frame {
   max-width: var(--content-max);
   margin: 0 auto;
@@ -196,7 +208,7 @@ nav a[aria-current="page"] { border-bottom: 1px solid var(--ink); padding-bottom
 }
 
 .nav-switch:focus-visible .nav-switch-track {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 25%, transparent);
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
 }
 
 /* Mobile: switch only */

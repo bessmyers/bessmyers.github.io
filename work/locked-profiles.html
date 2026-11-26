@@ -4,11 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Changing privacy settings for 100M people — Bess Myers</title>
+  <meta name="description" content="How do you take an option away from 100M people without making them feel punished? A content design case study by Bess Myers." />
+  <!-- Social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bess Myers" />
+  <meta property="og:title" content="Changing privacy settings for 100M people — Bess Myers" />
+  <meta property="og:description" content="How do you take an option away from 100M people without making them feel punished? A content design case study by Bess Myers." />
+  <meta property="og:url" content="https://bessmyers.com/work/locked-profiles.html" />
+  <meta property="og:image" content="https://bessmyers.com/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bess Myers. Bess is a designer based in San Francisco. She uses words to make cool things." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Changing privacy settings for 100M people — Bess Myers" />
+  <meta name="twitter:description" content="How do you take an option away from 100M people without making them feel punished? A content design case study by Bess Myers." />
+  <meta name="twitter:image" content="https://bessmyers.com/images/og-image.png" />
+  <meta name="twitter:image:alt" content="Bess Myers. Bess is a designer based in San Francisco. She uses words to make cool things." />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="work.css?v=28" />
+  <link rel="stylesheet" href="work.css?v=31" />
   <script src="../chaos.js?v=1"></script>
 </head>
 <body>
@@ -88,16 +104,17 @@
   <section class="proto-player" id="proto-player" aria-label="Interactive flow prototype">
     <div class="proto-device">
       <div class="proto-screen-wrap">
-        <img src="../images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="" class="proto-screen" id="proto-screen" />
+        <img src="../images/portfolio/locked-profiles/01-locked-profile-notif.png" alt="Screen 1 of 8: In-app notification" class="proto-screen" id="proto-screen" />
       </div>
     </div>
-    <p class="proto-step-label" id="proto-label">Notification</p>
+    <p class="proto-step-label" id="proto-label">In-app notification</p>
     <p class="proto-step-count" id="proto-count">1 of 8</p>
+    <p class="visually-hidden" id="proto-live" aria-live="polite"></p>
     <div class="proto-nav">
       <button type="button" id="proto-prev" aria-label="Previous screen">←</button>
       <button type="button" id="proto-next" aria-label="Next screen">→</button>
     </div>
-    <div class="proto-dots" id="proto-dots"></div>
+    <div class="proto-dots" id="proto-dots" role="group" aria-label="Choose a screen"></div>
     <p class="proto-end-note" id="proto-end"></p>
   </section>
 
@@ -131,12 +148,14 @@
   const next = document.getElementById('proto-next');
   const dots = document.getElementById('proto-dots');
   const endNote = document.getElementById('proto-end');
+  const live = document.getElementById('proto-live');
 
   STEPS.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.type = 'button';
     dot.className = 'proto-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Go to step ' + (i + 1));
+    dot.setAttribute('aria-label', 'Go to step ' + (i + 1) + ': ' + STEPS[i].label);
+    if (i === 0) dot.setAttribute('aria-current', 'step');
     dot.addEventListener('click', () => goTo(i));
     dots.appendChild(dot);
   });
@@ -147,12 +166,20 @@
     setTimeout(() => {
       index = i;
       screen.src = STEPS[index].src;
+      screen.alt = 'Screen ' + (index + 1) + ' of ' + STEPS.length + ': ' + STEPS[index].label;
+      live.textContent = 'Screen ' + (index + 1) + ' of ' + STEPS.length + ': ' + STEPS[index].label;
       label.textContent = STEPS[index].label;
       count.textContent = (index + 1) + ' of ' + STEPS.length;
       prev.disabled = index === 0;
       next.disabled = index === STEPS.length - 1;
       endNote.textContent = index === STEPS.length - 1 ? 'End of flow' : '';
-      dots.querySelectorAll('.proto-dot').forEach((d, j) => d.classList.toggle('active', j === index));
+      dots.querySelectorAll('.proto-dot').forEach((d, j) => {
+        d.classList.toggle('active', j === index);
+        if (j === index) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current');
+      });
+      // Keep keyboard focus when a button disables at either end
+      if (document.activeElement === next && next.disabled) prev.focus();
+      if (document.activeElement === prev && prev.disabled) next.focus();
       screen.classList.remove('fade');
     }, 200);
   }

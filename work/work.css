@@ -1,5 +1,5 @@
-@import url('../tokens.css?v=16');
-@import url('../type.css?v=18');
+@import url('../tokens.css?v=19');
+@import url('../type.css?v=21');
 @import url('../chrome.css?v=4');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -328,7 +328,7 @@ body {
 
 .proto-dots {
   display: flex;
-  gap: 8px;
+  gap: 0;
   justify-content: center;
   margin-top: 1.25rem;
   flex-wrap: wrap;
@@ -337,20 +337,40 @@ body {
   margin-right: auto;
 }
 
+/* 24px tap target (WCAG 2.5.8) around an 8px dot */
 .proto-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  position: relative;
+  width: 24px;
+  height: 24px;
   border: none;
-  background: var(--rule);
+  background: none;
   padding: 0;
   cursor: pointer;
+}
+
+.proto-dot::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 50%, var(--paper)); /* 3.3:1 */
   transition: background 0.2s, transform 0.2s;
 }
 
-.proto-dot.active {
+.proto-dot.active::before {
   background: var(--coral);
   transform: scale(1.15);
+}
+
+.proto-dot:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+  border-radius: 50%;
+}
+
+.proto-nav button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .proto-end-note {
@@ -432,12 +452,112 @@ body {
 }
 
 .spruce-flow-steps {
+  list-style: none;
   display: flex;
-  align-items: stretch;
-  justify-content: stretch;
+  align-items: center;
   gap: 0.75rem;
   width: 100%;
   min-width: 0;
+}
+
+/* Done and current steps are coral; upcoming steps are outlined in gray */
+.spruce-flow-step {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0.65rem;
+  border-radius: 12px;
+  border: 2px solid color-mix(in srgb, var(--ink) 50%, var(--paper));
+  background: var(--paper);
+  transform: scale(0.95);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.spruce-flow-step.is-done,
+.spruce-flow-step.is-current {
+  border-color: var(--coral);
+  background: color-mix(in srgb, var(--coral) 8%, var(--paper));
+}
+
+.spruce-flow-step.is-current {
+  height: 260px;
+  transform: scale(1);
+}
+
+.spruce-flow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.8rem;
+  color: var(--ink-gray);
+  transition: color 0.4s ease;
+}
+
+.is-done .spruce-flow-icon,
+.is-current .spruce-flow-icon { color: var(--coral); }
+
+.spruce-flow-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.is-done .spruce-flow-label { color: var(--ink); }
+
+.is-current .spruce-flow-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Narrow screens: stack the steps instead of scrolling sideways */
+@media (max-width: 640px) {
+  .spruce-flow-steps {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .spruce-flow-step,
+  .spruce-flow-step.is-current {
+    flex: none;
+    height: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    transform: none;
+  }
+
+  .spruce-flow-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .spruce-flow-icon svg { width: 26px; height: 26px; }
+
+  .spruce-flow-label,
+  .is-current .spruce-flow-label {
+    margin-bottom: 0;
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spruce-flow-step,
+  .spruce-flow-icon { transition: none; }
 }
 
 .spruce-flow-controls {
@@ -455,7 +575,21 @@ body {
   font-family: var(--sans);
   border: none;
   border-radius: 8px;
+  background: var(--coral);
+  color: var(--paper);
+  cursor: pointer;
   transition: background 0.2s ease-out, opacity 0.2s;
+}
+
+.spruce-flow-btn:disabled {
+  background: var(--rule);
+  color: var(--ink-gray);
+  cursor: default;
+}
+
+.spruce-flow-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .spruce-flow-btn:not(:disabled):hover {
@@ -472,14 +606,6 @@ body {
     max-width: 720px;
   }
 
-  .spruce-flow-stage {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .spruce-flow-steps {
-    min-width: 640px;
-  }
 }
 
 .severity-grid {
