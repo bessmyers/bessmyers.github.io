@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=20" />
+  <link rel="stylesheet" href="site.css?v=21" />
 </head>
 <body class="single-page">
 
@@ -227,6 +227,29 @@
         document.documentElement.setAttribute('data-hero-font', 'newspaper');
       }
 
+      // Chaos beyond the hero: section headings become mixed-font letters.
+      // The heading keeps its text as an aria-label so it isn't read letter by letter.
+      var sectionHeadings = document.querySelectorAll('.section-label');
+      var headingText = Array.prototype.map.call(sectionHeadings, function (h) { return h.textContent.trim(); });
+
+      function setChaosHeadings(on) {
+        sectionHeadings.forEach(function (h, hi) {
+          var label = headingText[hi];
+          if (!on) {
+            if (h.hasAttribute('aria-label')) {
+              h.textContent = label;
+              h.removeAttribute('aria-label');
+            }
+            return;
+          }
+          if (h.hasAttribute('aria-label')) return;
+          h.setAttribute('aria-label', label);
+          h.innerHTML = '<span aria-hidden="true">' + label.split('').map(function (ch, i) {
+            return '<span class="chaos-letter hero-word--f' + ((i * 4 + hi * 3 + 1) % fontCount) + '">' + ch + '</span>';
+          }).join('') + '</span>';
+        });
+      }
+
       function clearHeroFade() {
         hero.style.transition = '';
         hero.style.opacity = '';
@@ -282,6 +305,7 @@
 
       function renderPlain() {
         clearHeroFade();
+        setChaosHeadings(false);
         hero.textContent = text;
         hero.style.fontSize = '';
         document.documentElement.removeAttribute('data-hero-font');
@@ -295,6 +319,7 @@
           measurePlainLineCount();
         }
         wrapNewspaperWords();
+        setChaosHeadings(true);
         setChecked(true);
         fitNewspaperFontSize();
       }

@@ -1,5 +1,5 @@
-@import url('tokens.css?v=13');
-@import url('type.css?v=15');
+@import url('tokens.css?v=14');
+@import url('type.css?v=16');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -425,6 +425,39 @@ html[data-hero-font="newspaper"] .hero-word--f9 {
 html[data-hero-font="newspaper"] .hero-word--f10 {
   font-family: 'Dancing Script', 'Brush Script MT', cursive;
   font-weight: 600;
+}
+
+/* Chaos beyond the hero: mixed-font section headings, tilted work cards */
+html[data-hero-font="newspaper"] .section-label .chaos-letter {
+  font-size: 1.08em;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+html[data-hero-font="newspaper"] .section-label .chaos-letter.hero-word--f2,
+html[data-hero-font="newspaper"] .section-label .chaos-letter.hero-word--f5 {
+  text-transform: uppercase;
+  font-size: 0.95em;
+}
+
+.work-cards > li:nth-child(odd) { --chaos-tilt: -1deg; }
+.work-cards > li:nth-child(even) { --chaos-tilt: 1deg; }
+
+html[data-hero-font="newspaper"] .work-card {
+  transform: rotate(var(--chaos-tilt, 0deg));
+}
+
+html[data-hero-font="newspaper"] .work-card:hover,
+html[data-hero-font="newspaper"] .work-card:focus-visible {
+  transform: translateY(-6px) rotate(var(--chaos-tilt, 0deg));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the static tilt, but no lift */
+  html[data-hero-font="newspaper"] .work-card:hover,
+  html[data-hero-font="newspaper"] .work-card:focus-visible {
+    transform: rotate(var(--chaos-tilt, 0deg));
+  }
 }
 
 .single-page .page-section {
