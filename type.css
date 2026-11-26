@@ -52,7 +52,8 @@
 .site-name,
 nav a,
 .case-back,
-.index-row-title-text {
+.index-row-title-text,
+.work-card-title-text {
   text-decoration: none;
   background-repeat: repeat-x;
   background-position: 0 100%;
@@ -69,7 +70,9 @@ nav a:focus-visible,
 .case-back:hover,
 .case-back:focus-visible,
 .index-row:hover .index-row-title-text,
-.index-row:focus-visible .index-row-title-text {
+.index-row:focus-visible .index-row-title-text,
+.work-card:hover .work-card-title-text,
+.work-card:focus-visible .work-card-title-text {
   background-image: var(--squiggle-underline);
   animation: squiggle-drift 1.2s linear infinite;
 }
@@ -86,7 +89,9 @@ nav a:focus-visible,
   .case-back:hover,
   .case-back:focus-visible,
   .index-row:hover .index-row-title-text,
-  .index-row:focus-visible .index-row-title-text {
+  .index-row:focus-visible .index-row-title-text,
+  .work-card:hover .work-card-title-text,
+  .work-card:focus-visible .work-card-title-text {
     animation: none;
   }
 }

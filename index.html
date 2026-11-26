@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Courier+Prime:wght@700&family=Dancing+Script:wght@600&family=Libre+Baskerville:ital,wght@0,700;1,400&family=Oswald:wght@600&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,700;1,400&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="site.css?v=17" />
+  <link rel="stylesheet" href="site.css?v=18" />
 </head>
 <body class="single-page">
 
@@ -86,37 +86,40 @@
         <h2 class="section-label">Work</h2>
 
         <div class="portfolio-wrap">
-          <div id="portfolio-public">
-            <div class="work-index-head" aria-hidden="true">
-              <span class="work-index-head-cell work-index-head-cell--title">Project</span>
-              <span class="work-index-head-cell">Category</span>
-              <span class="work-index-head-cell work-index-head-cell--year">Year</span>
-            </div>
-            <ul class="work-index" role="list">
-              <li class="work-index-item">
-                <a
-                  class="index-row work-row work-row--case-study"
-                  href="work/locked-profiles.html"
-                >
-                  <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Changing privacy settings for 100M people</span></span>
-                  <span class="index-row-meta work-row-category">User flows · Meta</span>
-                  <time class="index-row-meta work-row-year" datetime="2025">2025</time>
-                  <p class="work-teaser">Led content strategy for a forced privacy setting change at scale</p>
+          <ul class="work-cards" role="list">
+              <li>
+                <a class="work-card" href="work/locked-profiles.html">
+                  <picture class="work-card-media">
+                    <source srcset="images/work/locked-profiles.webp" type="image/webp" />
+                    <img src="images/work/locked-profiles.jpg" alt="" width="1200" height="900" loading="lazy" />
+                  </picture>
+                  <div class="work-card-body">
+                    <div class="work-card-meta">
+                      <ul class="work-card-tags" aria-label="Tags"><li>User flows</li><li>Meta</li></ul>
+                      <time class="work-card-year" datetime="2025">2025</time>
+                    </div>
+                    <h3 class="work-card-title"><span class="work-card-title-text">Changing privacy settings for 100M people</span></h3>
+                    <p class="work-card-metric"><span class="work-card-metric-value">94.4%</span> <span class="work-card-metric-label">kept their profile private</span></p>
+                  </div>
                 </a>
               </li>
-              <li class="work-index-item">
-                <a
-                  class="index-row work-row work-row--case-study"
-                  href="work/ai-auditing.html"
-                >
-                  <span class="index-row-title type-title type-title--row"><span class="index-row-title-text">Teaching AI what good content design looks like</span></span>
-                  <span class="index-row-meta work-row-category">Tools · AI · Meta</span>
-                  <time class="index-row-meta work-row-year" datetime="2026">2026</time>
-                  <p class="work-teaser">Turned CD expertise into an agent that expanded coverage across Facebook Profile</p>
+              <li>
+                <a class="work-card" href="work/ai-auditing.html">
+                  <picture class="work-card-media">
+                    <source srcset="images/work/ai-auditing.webp" type="image/webp" />
+                    <img src="images/work/ai-auditing.jpg" alt="" width="1200" height="900" loading="lazy" />
+                  </picture>
+                  <div class="work-card-body">
+                    <div class="work-card-meta">
+                      <ul class="work-card-tags" aria-label="Tags"><li>Tools</li><li>AI</li><li>Meta</li></ul>
+                      <time class="work-card-year" datetime="2026">2026</time>
+                    </div>
+                    <h3 class="work-card-title"><span class="work-card-title-text">Teaching AI what good content design looks like</span></h3>
+                    <p class="work-card-metric"><span class="work-card-metric-value">54%</span> <span class="work-card-metric-label">increase in diff accuracy over the prompt’s lifecycle</span></p>
+                  </div>
                 </a>
               </li>
-            </ul>
-          </div>
+          </ul>
 
         </div>
       </div>
